@@ -271,7 +271,8 @@ export const TRALIBER_KIT_ITEMS: KitItemData[] = [
 ];
 
 export const WHATSAPP_CONFIG = {
-  phoneNumber: '15550192834',
+  phoneNumber: '918921019251',
+  formattedNumber: '+91 89210 19251',
   defaultMessage: "Hi Traliber, I'd like to order the Travel Essentials Kit!",
   getLink: (customNote?: string) => {
     const text = customNote

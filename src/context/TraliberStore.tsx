@@ -1,7 +1,6 @@
 'use client';
 
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import { TRALIBER_KIT_ITEMS, TRALIBER_POUCH } from '@/data/traliber-kit';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 
 export interface Testimonial {
   id: string;
@@ -114,7 +113,7 @@ const INITIAL_ORDERS: OrderItem[] = [
   {
     id: 'TRL-9841',
     customerName: 'Sophie Bennett',
-    phone: '+1 (555) 349-2810',
+    phone: '+91 89210 19251',
     bundle: 'Duo Journey Pack (2x Kits)',
     destination: 'Seattle, USA',
     amount: '$69',
