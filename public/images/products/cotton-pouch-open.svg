@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 360" width="460" height="360" fill="none">
+  <defs>
+    <linearGradient id="pouchShadow2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#22213A" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#22213A" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="canvasGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="20%" stop-color="#F9F8FD"/>
+      <stop offset="80%" stop-color="#EDEAF8"/>
+      <stop offset="100%" stop-color="#DCD7EE"/>
+    </linearGradient>
+    <linearGradient id="innerCavity" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#181628"/>
+      <stop offset="40%" stop-color="#28243E"/>
+      <stop offset="100%" stop-color="#3D375B"/>
+    </linearGradient>
+    <linearGradient id="zipperGold2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#D4AF37"/>
+      <stop offset="50%" stop-color="#FDF6C7"/>
+      <stop offset="100%" stop-color="#AA820A"/>
+    </linearGradient>
+    <linearGradient id="brandGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8657F6" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#55C7DE" stop-opacity="0.1"/>
+    </linearGradient>
+    <pattern id="canvasWeave2" width="8" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 4 L8 4 M4 0 L4 8" stroke="#D8D4E5" stroke-width="0.75" stroke-opacity="0.45"/>
+    </pattern>
+    <filter id="softShadow2" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="22" stdDeviation="18" flood-color="#22213A" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+  <!-- Floor Shadow -->
+  <ellipse cx="230" cy="325" rx="185" ry="24" fill="url(#pouchShadow2)"/>
+
+  <g filter="url(#softShadow2)">
+    <!-- Back Pouch Wall (Interior back) -->
+    <path d="M90 120 C90 70 120 50 170 50 L290 50 C340 50 370 70 370 120 L385 270 C385 300 360 315 325 315 L135 315 C100 315 75 300 75 270 Z" fill="#201C33"/>
+    
+    <!-- Interior Cavity with Soft Glow -->
+    <ellipse cx="230" cy="115" rx="140" ry="45" fill="url(#innerCavity)"/>
+    <ellipse cx="230" cy="118" rx="120" ry="32" fill="url(#brandGlow)"/>
+
+    <!-- Left & Right Upper Zipper Teeth Opened Wide -->
+    <path d="M95 105 C130 65 190 60 215 62" stroke="url(#zipperGold2)" stroke-width="4" stroke-dasharray="4 2"/>
+    <path d="M365 105 C330 65 270 60 245 62" stroke="url(#zipperGold2)" stroke-width="4" stroke-dasharray="4 2"/>
+
+    <!-- Front Folded Down Pouch Body -->
+    <path d="M85 130 C120 160 340 160 375 130 L385 260 C385 292 358 310 325 310 L135 310 C102 310 75 292 75 260 Z" fill="url(#canvasGrad2)"/>
+    <path d="M85 130 C120 160 340 160 375 130 L385 260 C385 292 358 310 325 310 L135 310 C102 310 75 292 75 260 Z" fill="url(#canvasWeave2)"/>
+
+    <!-- Front Rim Stitching & Flap Depth -->
+    <path d="M86 132 C125 164 335 164 374 132" stroke="#FFFFFF" stroke-width="3.5" fill="none"/>
+    <path d="M92 142 C130 172 330 172 368 142" stroke="#B8B2CB" stroke-width="1.5" stroke-dasharray="4 3" fill="none"/>
+    <path d="M90 134 C130 165 330 165 370 134" stroke="url(#zipperGold2)" stroke-width="3" stroke-dasharray="3 2" fill="none"/>
+
+    <!-- Front Label -->
+    <rect x="170" y="200" width="120" height="56" rx="8" fill="#FFFFFF" stroke="#E5E2F0" stroke-width="1.5"/>
+    <text x="230" y="226" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="14" font-weight="800" letter-spacing="2" fill="#22213A">TRALIBER</text>
+    <text x="230" y="242" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="7" font-weight="600" letter-spacing="2" fill="#788CF5">OPEN REVEAL</text>
+  </g>
+</svg>

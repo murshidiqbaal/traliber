@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 320" width="440" height="320" fill="none">
+  <defs>
+    <linearGradient id="pouchShadow" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#22213A" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#22213A" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="canvasGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="25%" stop-color="#F9F8FD"/>
+      <stop offset="70%" stop-color="#F0EDF9"/>
+      <stop offset="100%" stop-color="#E2DEEE"/>
+    </linearGradient>
+    <linearGradient id="zipperGold" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#D4AF37"/>
+      <stop offset="50%" stop-color="#FDF6C7"/>
+      <stop offset="100%" stop-color="#AA820A"/>
+    </linearGradient>
+    <linearGradient id="ribbonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8657F6"/>
+      <stop offset="100%" stop-color="#55C7DE"/>
+    </linearGradient>
+    <pattern id="canvasWeave" width="8" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 4 L8 4 M4 0 L4 8" stroke="#D8D4E5" stroke-width="0.75" stroke-opacity="0.45"/>
+      <circle cx="2" cy="2" r="0.5" fill="#8657F6" fill-opacity="0.08"/>
+      <circle cx="6" cy="6" r="0.5" fill="#788CF5" fill-opacity="0.08"/>
+    </pattern>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="18" stdDeviation="16" flood-color="#22213A" flood-opacity="0.16"/>
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#8657F6" flood-opacity="0.1"/>
+    </filter>
+  </defs>
+  <!-- Floor Shadow -->
+  <ellipse cx="220" cy="285" rx="170" ry="22" fill="url(#pouchShadow)"/>
+  
+  <!-- Main Pouch Body -->
+  <g filter="url(#softShadow)">
+    <!-- Base Shape -->
+    <path d="M70 100 C70 85 85 75 110 75 L330 75 C355 75 370 85 370 100 L380 230 C380 258 358 275 330 275 L110 275 C82 275 60 258 60 230 Z" fill="url(#canvasGrad)"/>
+    <path d="M70 100 C70 85 85 75 110 75 L330 75 C355 75 370 85 370 100 L380 230 C380 258 358 275 330 275 L110 275 C82 275 60 258 60 230 Z" fill="url(#canvasWeave)"/>
+    
+    <!-- Organic Canvas Folds and Volume -->
+    <path d="M85 95 Q140 105 220 102 Q300 105 355 95" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" opacity="0.9"/>
+    <path d="M95 245 Q160 260 220 258 Q280 260 345 245" stroke="#D1CCE0" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/>
+    <path d="M90 120 Q80 180 85 235" stroke="#D6D1E3" stroke-width="1.5" stroke-dasharray="2 3"/>
+    <path d="M350 120 Q360 180 355 235" stroke="#D6D1E3" stroke-width="1.5" stroke-dasharray="2 3"/>
+
+    <!-- Double Stitching Rim -->
+    <path d="M100 86 L340 86" stroke="#9E97B5" stroke-width="1.5" stroke-dasharray="4 3"/>
+    <path d="M96 265 L344 265" stroke="#9E97B5" stroke-width="1.5" stroke-dasharray="4 3"/>
+
+    <!-- Top Zipper Track (Closed) -->
+    <rect x="100" y="70" width="240" height="10" rx="5" fill="#3D3A50"/>
+    <path d="M102 75 L338 75" stroke="url(#zipperGold)" stroke-width="3.5" stroke-dasharray="3 2"/>
+
+    <!-- Zipper Slider & Pull Tag -->
+    <rect x="210" y="67" width="16" height="15" rx="3" fill="#D4AF37"/>
+    <path d="M218 82 L218 108" stroke="#AA820A" stroke-width="3" stroke-linecap="round"/>
+    <rect x="211" y="98" width="14" height="28" rx="4" fill="url(#ribbonGrad)"/>
+    <circle cx="218" cy="104" r="2.5" fill="#FFFFFF"/>
+    
+    <!-- Front Minimalist Branding Label -->
+    <rect x="160" y="150" width="120" height="58" rx="8" fill="#FFFFFF" stroke="#E5E2F0" stroke-width="1.5"/>
+    <text x="220" y="177" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="14" font-weight="800" letter-spacing="2" fill="#22213A">TRALIBER</text>
+    <text x="220" y="193" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="7" font-weight="600" letter-spacing="2" fill="#8657F6">TRAVEL KIT</text>
+  </g>
+</svg>

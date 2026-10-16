@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+:root {
+  --traliber-purple: #8657f6;
+  --traliber-blue: #788cf5;
+  --traliber-cyan: #55c7de;
+  --traliber-navy: #22213a;
+  --traliber-soft: #f8f7fc;
+  --background: #ffffff;
+  --foreground: #22213a;
+}
+
+@theme {
+  --color-traliber-purple: #8657f6;
+  --color-traliber-blue: #788cf5;
+  --color-traliber-cyan: #55c7de;
+  --color-traliber-navy: #22213a;
+  --color-traliber-soft: #f8f7fc;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: #f8f7fc;
+  color: #22213a;
+}
+
+body {
+  overflow-x: hidden;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+/* Glassmorphism utility */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(134, 87, 246, 0.12);
+}
+
+.glass-panel-dark {
+  background: rgba(34, 33, 58, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(120, 140, 245, 0.2);
+}
+
+/* Custom delicate scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f8f7fc;
+}
+::-webkit-scrollbar-thumb {
+  background: #c9c3e2;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #8657f6;
+}

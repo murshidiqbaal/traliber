@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200" width="240" height="200" fill="none">
+  <defs>
+    <linearGradient id="wipePack1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="60%" stop-color="#F3EFFC"/>
+      <stop offset="100%" stop-color="#E2DAF5"/>
+    </linearGradient>
+    <linearGradient id="wipePack2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="60%" stop-color="#EAF8FA"/>
+      <stop offset="100%" stop-color="#D2EEF4"/>
+    </linearGradient>
+    <filter id="wipeShadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="2" dy="10" stdDeviation="8" flood-color="#22213A" flood-opacity="0.14"/>
+    </filter>
+  </defs>
+  <g filter="url(#wipeShadow)">
+    <!-- Back Packet (Pack #2) -->
+    <g transform="translate(30, 10) rotate(8, 100, 80)">
+      <rect x="20" y="20" width="130" height="135" rx="14" fill="url(#wipePack2)" stroke="#C6E9F0" stroke-width="1.5"/>
+      <rect x="20" y="20" width="130" height="8" fill="#B4E3EC" opacity="0.6"/>
+      <rect x="20" y="147" width="130" height="8" fill="#B4E3EC" opacity="0.6"/>
+      <rect x="50" y="55" width="70" height="38" rx="8" fill="#FFFFFF" stroke="#788CF5" stroke-width="1"/>
+      <text x="85" y="74" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="7" font-weight="800" fill="#22213A">TRALIBER</text>
+      <text x="85" y="84" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="5" font-weight="700" fill="#55C7DE">WET WIPE #2</text>
+    </g>
+
+    <!-- Front Packet (Pack #1) -->
+    <g transform="translate(10, 20) rotate(-4, 90, 85)">
+      <rect x="15" y="15" width="134" height="138" rx="14" fill="url(#wipePack1)" stroke="#D8CEF0" stroke-width="1.5"/>
+      <!-- Sealed Crimp Edges -->
+      <path d="M15 15 L149 15 M15 18 L149 18 M15 150 L149 150 M15 153 L149 153" stroke="#9E92C3" stroke-width="1" stroke-dasharray="2 2"/>
+      
+      <!-- Moisture Lock Resealable Flap -->
+      <rect x="42" y="50" width="80" height="48" rx="10" fill="#FFFFFF" stroke="#8657F6" stroke-width="1.5"/>
+      <text x="82" y="70" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="8.5" font-weight="800" letter-spacing="1" fill="#22213A">TRALIBER</text>
+      <text x="82" y="82" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="6" font-weight="700" letter-spacing="0.5" fill="#8657F6">CLEANSING WIPE</text>
+      <circle cx="82" cy="91" r="3" fill="#55C7DE"/>
+      
+      <!-- Badge (2 Pack indicator) -->
+      <rect x="48" y="112" width="68" height="16" rx="8" fill="#F0ECFA"/>
+      <text x="82" y="123" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="6" font-weight="700" fill="#788CF5">PACK OF 2 • 100% ECO</text>
+    </g>
+  </g>
+</svg>

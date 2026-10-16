@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 120" width="280" height="120" fill="none">
+  <defs>
+    <linearGradient id="handleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#EBE8F4"/>
+      <stop offset="50%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#D7D2E8"/>
+    </linearGradient>
+    <linearGradient id="bristleGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#55C7DE"/>
+      <stop offset="50%" stop-color="#788CF5"/>
+      <stop offset="100%" stop-color="#8657F6"/>
+    </linearGradient>
+    <linearGradient id="gripGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#8657F6"/>
+      <stop offset="100%" stop-color="#55C7DE"/>
+    </linearGradient>
+    <filter id="brushShadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="2" dy="8" stdDeviation="6" flood-color="#22213A" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+  <g filter="url(#brushShadow)">
+    <!-- Brush Handle -->
+    <path d="M260 62 C260 70 240 72 200 70 C150 67 110 65 75 66 C50 67 35 62 25 58 C20 56 20 52 25 50 C38 46 55 52 75 52 C115 52 155 50 200 48 C240 46 260 52 260 62 Z" fill="url(#handleGrad)"/>
+    
+    <!-- Ergonomic Thumb Grip -->
+    <rect x="135" y="54" width="40" height="9" rx="4.5" fill="url(#gripGrad)"/>
+    <circle cx="145" cy="58.5" r="1.5" fill="#FFFFFF"/>
+    <circle cx="155" cy="58.5" r="1.5" fill="#FFFFFF"/>
+    <circle cx="165" cy="58.5" r="1.5" fill="#FFFFFF"/>
+
+    <!-- Bristle Head Base & Bristles -->
+    <rect x="25" y="32" width="38" height="20" rx="3" fill="url(#bristleGrad)"/>
+    <!-- Bristle Rows -->
+    <path d="M27 32 L27 48 M31 30 L31 48 M35 30 L35 48 M39 30 L39 48 M43 30 L43 48 M47 30 L47 48 M51 30 L51 48 M55 30 L55 48 M59 32 L59 48" stroke="#FFFFFF" stroke-width="1.2" stroke-opacity="0.7"/>
+    
+    <!-- Clear Protective Travel Cap Outline -->
+    <rect x="18" y="26" width="52" height="34" rx="7" fill="#788CF5" fill-opacity="0.12" stroke="#788CF5" stroke-width="1.2" stroke-dasharray="2 1"/>
+    
+    <!-- Wordmark -->
+    <text x="210" y="61" font-family="'Outfit', sans-serif" font-size="6" font-weight="700" letter-spacing="1" fill="#8657F6">TRALIBER</text>
+  </g>
+</svg>
