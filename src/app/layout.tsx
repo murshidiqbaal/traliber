@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { Geist, Geist_Mono, Playfair_Display, Caveat } from 'next/font/google';
 import './globals.css';
 
 const geistSans = Geist({
@@ -10,6 +10,18 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: '--font-geist-mono',
   subsets: ['latin'],
+});
+
+const playfair = Playfair_Display({
+  variable: '--font-playfair',
+  subsets: ['latin'],
+  display: 'swap',
+});
+
+const caveat = Caveat({
+  variable: '--font-caveat',
+  subsets: ['latin'],
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
@@ -36,6 +48,7 @@ export const metadata: Metadata = {
 };
 
 import { TraliberProvider } from '@/context/TraliberStore';
+import { AdminShortcutListener } from '@/components/AdminShortcutListener';
 
 export default function RootLayout({
   children,
@@ -45,10 +58,13 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} ${caveat.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-[#F8F7FC] text-[#22213A] font-sans">
-        <TraliberProvider>{children}</TraliberProvider>
+        <TraliberProvider>
+          {children}
+          <AdminShortcutListener />
+        </TraliberProvider>
       </body>
     </html>
   );

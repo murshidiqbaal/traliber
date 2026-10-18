@@ -1,153 +1,174 @@
 'use client';
 
 import React from 'react';
-import { WHATSAPP_CONFIG, TRALIBER_POUCH } from '@/data/traliber-kit';
+import { WHATSAPP_CONFIG } from '@/data/traliber-kit';
 import {
   MessageCircle,
-  ArrowDown,
   ShieldCheck,
-  Plane,
-  Sparkles,
   Leaf,
-  Star,
+  Briefcase,
 } from 'lucide-react';
 import { useTraliberStore } from '@/context/TraliberStore';
 
 export const HeroSection: React.FC = () => {
-  const { trackWhatsAppClick, getProductImage } = useTraliberStore();
-  const pouchImage = getProductImage('cotton-pouch-closed', TRALIBER_POUCH.closedImage);
+  const { trackWhatsAppClick, getProductImage, getCustomText } = useTraliberStore();
+
+  const heroBg = getProductImage('hero_background', '/images/hero-alpine-pouch.jpg');
+  const heroEyebrow = getCustomText('hero_eyebrow', 'TRAVEL ✦ ESSENTIALS');
+  const heroHeadline1 = getCustomText('hero_headline_1', 'Smaller');
+  const heroHeadline2 = getCustomText('hero_headline_2', 'Bag.');
+  const heroHeadline3 = getCustomText('hero_headline_3', 'Brighter');
+  const heroHeadline4 = getCustomText('hero_headline_4', 'Journeys.');
+  const heroSubtitle = getCustomText(
+    'hero_subtitle',
+    'Ten thoughtfully chosen travel essentials for a cleaner, safer and more comfortable tomorrow.'
+  );
+  const heroCtaText = getCustomText('hero_cta_text', 'Get Your Travel Kit');
+  const heroAnnotation = getCustomText('hero_annotation', "Ready for what's next");
+
+  const badge1Title = getCustomText('hero_badge1_title', 'CLEAN');
+  const badge1Sub = getCustomText('hero_badge1_sub', 'Essentials');
+  const badge2Title = getCustomText('hero_badge2_title', 'SAFE');
+  const badge2Sub = getCustomText('hero_badge2_sub', 'Travel');
+  const badge3Title = getCustomText('hero_badge3_title', 'TRAVEL');
+  const badge3Sub = getCustomText('hero_badge3_sub', 'Friendly');
+
   return (
-    <section className="relative min-h-[92vh] flex items-center justify-center pt-24 pb-16 bg-[#F8F7FC] overflow-hidden">
-      {/* Background Studio Light Orbs */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] md:w-[850px] h-[600px] md:h-[850px] rounded-full bg-gradient-to-tr from-[#8657F6]/10 via-[#788CF5]/10 to-[#55C7DE]/15 blur-3xl" />
-        <div className="absolute top-12 left-10 w-64 h-64 rounded-full bg-[#8657F6]/5 blur-2xl" />
-        <div className="absolute bottom-10 right-10 w-72 h-72 rounded-full bg-[#55C7DE]/8 blur-2xl" />
-      </div>
+    <section
+      className="relative min-h-screen flex items-center justify-center pt-28 pb-20 overflow-hidden bg-cover bg-center bg-no-repeat"
+      style={{
+        backgroundImage: `url('${heroBg}')`,
+      }}
+    >
+      {/* Light Gradient overlay for pristine text contrast on the left side */}
+      <div className="absolute inset-0 bg-gradient-to-r from-white/85 via-white/45 to-transparent pointer-events-none" />
+
+      {/* Gentle bottom blend into the next section */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#F8F7FC] via-[#F8F7FC]/70 to-transparent pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          {/* Left Column: Value Proposition & CTAs */}
-          <div className="lg:col-span-7 text-center lg:text-left space-y-6">
-            {/* Top pill badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#8657F6]/25 shadow-sm text-xs font-bold text-[#22213A]">
-              <span className="w-2 h-2 rounded-full bg-[#8657F6] animate-pulse" />
-              <span className="bg-gradient-to-r from-[#8657F6] to-[#788CF5] bg-clip-text text-transparent">
-                All-in-One Personal Care
-              </span>
-              <span className="text-[#22213A]/30">|</span>
-              <span className="text-[#22213A]/70 font-semibold">10 Essentials</span>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center min-h-[75vh]">
+          {/* Left Column: Value Proposition & Typography */}
+          <div className="lg:col-span-6 text-left space-y-6 sm:space-y-7 pt-4">
+            {/* Eyebrow */}
+            <div className="flex items-center gap-2 text-xs font-mono font-bold tracking-widest text-[#22213A]/70 uppercase">
+              <span>{heroEyebrow}</span>
             </div>
 
             {/* Main Headline */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-[#22213A] tracking-tight leading-[1.1]">
-              Travel Light.{' '}
-              <span className="bg-gradient-to-r from-[#8657F6] via-[#788CF5] to-[#55C7DE] bg-clip-text text-transparent">
-                Stay Clean.
-              </span>
-              <br />
-              Every Journey.
+            <h1 className="text-5xl sm:text-6xl md:text-7xl font-serif font-extrabold text-[#22213A] tracking-tight leading-[1.04]">
+              {heroHeadline1}<br />
+              {heroHeadline2}<br />
+              <span className="text-[#4F75FF]">{heroHeadline3}</span><br />
+              {heroHeadline4}
             </h1>
 
             {/* Subtitle */}
-            <p className="text-base sm:text-lg text-[#22213A]/75 max-w-xl mx-auto lg:mx-0 font-normal leading-relaxed">
-              Thoughtfully curated personal-care travel essentials, precision-packed inside a compact cotton pouch. No bulky liquids, no airport stress, zero compromise on personal hygiene.
+            <p className="text-base sm:text-lg text-[#22213A]/80 font-normal max-w-md leading-relaxed">
+              {heroSubtitle}
             </p>
 
-            {/* Key Trust Signals */}
-            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 text-xs font-bold text-[#22213A]">
-              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/80 border border-[#22213A]/5 shadow-2xs">
-                <Plane className="w-3.5 h-3.5 text-[#8657F6]" />
-                <span>100% TSA Carry-On Safe</span>
-              </div>
-              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/80 border border-[#22213A]/5 shadow-2xs">
-                <ShieldCheck className="w-3.5 h-3.5 text-[#55C7DE]" />
-                <span>Zero Liquid Leaks</span>
-              </div>
-              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/80 border border-[#22213A]/5 shadow-2xs">
-                <Leaf className="w-3.5 h-3.5 text-[#788CF5]" />
-                <span>Eco-Conscious Materials</span>
-              </div>
-            </div>
-
-            {/* CTAs */}
-            <div className="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-              <a
-                href="#kit-reveal"
-                className="w-full sm:w-auto px-7 py-3.5 rounded-full bg-[#22213A] text-white font-bold text-sm shadow-lg shadow-[#22213A]/20 hover:bg-[#8657F6] transition-all duration-300 flex items-center justify-center gap-2 group cursor-pointer"
-              >
-                <span>Scroll to Unpack Kit</span>
-                <ArrowDown className="w-4 h-4 transition-transform group-hover:translate-y-1" />
-              </a>
-
+            {/* CTA Button */}
+            <div className="pt-1">
               <a
                 href={WHATSAPP_CONFIG.getLink()}
                 onClick={() => trackWhatsAppClick('Hero Section CTA')}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto px-7 py-3.5 rounded-full bg-gradient-to-r from-[#25D366] to-[#128C7E] text-white font-bold text-sm shadow-lg shadow-[#25D366]/25 hover:opacity-95 transition-all flex items-center justify-center gap-2"
+                className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-[#1E1B4B] hover:bg-[#2C2860] text-white font-bold text-sm shadow-xl hover:shadow-2xl transition-all duration-300 group"
               >
-                <MessageCircle className="w-4 h-4 fill-current" />
-                <span>Order via WhatsApp</span>
+                <MessageCircle className="w-4 h-4 text-white" />
+                <span>{heroCtaText}</span>
+                <span className="text-base font-light transition-transform duration-300 group-hover:translate-x-1">→</span>
               </a>
             </div>
 
-            {/* Social Proof */}
-            <div className="pt-4 flex items-center justify-center lg:justify-start gap-3 text-xs text-[#22213A]/70">
-              <div className="flex items-center text-amber-400">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-3.5 h-3.5 fill-current" />
-                ))}
+            {/* 3 Circular Feature Badges */}
+            <div className="pt-4 flex items-center gap-6 sm:gap-8">
+              {/* Badge 1: Clean */}
+              <div className="flex flex-col items-center text-center gap-1.5 group cursor-default">
+                <div className="w-12 h-12 rounded-full border border-[#22213A]/20 bg-white/80 backdrop-blur-xs flex items-center justify-center shadow-xs transition-transform group-hover:scale-105">
+                  <Leaf className="w-5 h-5 text-[#22213A]" />
+                </div>
+                <div>
+                  <span className="block text-[11px] font-extrabold text-[#22213A] uppercase tracking-wider">
+                    {badge1Title}
+                  </span>
+                  <span className="block text-[10px] text-[#22213A]/70 font-medium">
+                    {badge1Sub}
+                  </span>
+                </div>
               </div>
-              <span className="font-semibold text-[#22213A]">4.9/5 Rating</span>
-              <span>•</span>
-              <span>Loved by 14,000+ travelers worldwide</span>
+
+              {/* Badge 2: Safe */}
+              <div className="flex flex-col items-center text-center gap-1.5 group cursor-default">
+                <div className="w-12 h-12 rounded-full border border-[#22213A]/20 bg-white/80 backdrop-blur-xs flex items-center justify-center shadow-xs transition-transform group-hover:scale-105">
+                  <ShieldCheck className="w-5 h-5 text-[#22213A]" />
+                </div>
+                <div>
+                  <span className="block text-[11px] font-extrabold text-[#22213A] uppercase tracking-wider">
+                    {badge2Title}
+                  </span>
+                  <span className="block text-[10px] text-[#22213A]/70 font-medium">
+                    {badge2Sub}
+                  </span>
+                </div>
+              </div>
+
+              {/* Badge 3: Travel Friendly */}
+              <div className="flex flex-col items-center text-center gap-1.5 group cursor-default">
+                <div className="w-12 h-12 rounded-full border border-[#22213A]/20 bg-white/80 backdrop-blur-xs flex items-center justify-center shadow-xs transition-transform group-hover:scale-105">
+                  <Briefcase className="w-5 h-5 text-[#22213A]" />
+                </div>
+                <div>
+                  <span className="block text-[11px] font-extrabold text-[#22213A] uppercase tracking-wider">
+                    {badge3Title}
+                  </span>
+                  <span className="block text-[10px] text-[#22213A]/70 font-medium">
+                    {badge3Sub}
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
 
-          {/* Right Column: Hero Visual Studio Presentation */}
-          <div className="lg:col-span-5 relative flex items-center justify-center">
-            {/* Visual Glass Base */}
-            <div className="relative w-full max-w-[440px] aspect-square flex items-center justify-center">
-              {/* Outer decorative ring */}
-              <div className="absolute inset-0 rounded-full border border-[#8657F6]/20 animate-spin-slow pointer-events-none" />
-              <div className="absolute inset-4 rounded-full border border-dashed border-[#55C7DE]/25 pointer-events-none" />
+          {/* Right Column: Hand-drawn script annotation pointing to the pouch */}
+          <div className="lg:col-span-6 relative flex flex-col items-end justify-between min-h-[300px] lg:min-h-[500px]">
+            {/* Hand-drawn annotation */}
+            <div className="hidden sm:flex items-center gap-2 self-end lg:mr-8 mt-4 select-none">
+              <span className="font-handwriting text-2xl sm:text-3xl text-[#22213A] rotate-[-4deg]">
+                {heroAnnotation}
+              </span>
+              <svg
+                className="w-10 h-8 text-[#22213A] -rotate-12 translate-y-1"
+                viewBox="0 0 50 30"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M 5 20 Q 25 5 42 16" />
+                <path d="M 36 10 L 44 16 L 38 22" />
+              </svg>
+            </div>
 
-              {/* Main Closed Kit Pouch */}
-              <div className="relative z-10 p-4 transition-transform duration-500 hover:scale-105">
-                <img
-                  src={pouchImage}
-                  alt="Traliber Closed Cotton Travel Pouch"
-                  className="w-full h-auto drop-shadow-2xl select-none"
-                  loading="eager"
-                />
-              </div>
-
-              {/* Floating Feature Tags */}
-              <div className="absolute -top-2 right-4 bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-xl border border-[#8657F6]/20 shadow-md text-[11px] font-bold text-[#22213A] flex items-center gap-1.5 animate-bounce-slow">
-                <Sparkles className="w-3.5 h-3.5 text-[#8657F6]" />
-                100% Organic Canvas
-              </div>
-
-              <div className="absolute bottom-6 -left-2 bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-xl border border-[#55C7DE]/25 shadow-md text-[11px] font-bold text-[#22213A] flex items-center gap-1.5">
-                <ShieldCheck className="w-3.5 h-3.5 text-[#55C7DE]" />
-                TSA Chewable Tabs
-              </div>
-
-              <div className="absolute -bottom-2 right-8 bg-[#22213A] text-white px-3 py-1 rounded-full text-[10px] font-bold tracking-wider uppercase shadow-lg">
-                Compact • 22cm
-              </div>
+            {/* Bottom Right Scroll Indicator */}
+            <div className="mt-auto pt-12 self-end">
+              <a
+                href="#whats-inside"
+                className="flex flex-col items-center gap-1.5 text-[#22213A]/80 hover:text-[#1E1B4B] transition-colors group cursor-pointer"
+              >
+                <div className="w-5 h-8 rounded-full border-2 border-[#22213A]/60 flex justify-center pt-1.5 group-hover:border-[#1E1B4B]">
+                  <div className="w-1 h-2 rounded-full bg-[#22213A] animate-bounce" />
+                </div>
+                <span className="text-[10px] font-bold tracking-widest uppercase">
+                  SCROLL TO EXPLORE
+                </span>
+              </a>
             </div>
           </div>
         </div>
-      </div>
-
-      {/* Downward prompt directly guiding to Section 2 */}
-      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-[11px] font-bold text-[#8657F6] tracking-wider uppercase opacity-80 hover:opacity-100 transition-opacity">
-        <a href="#kit-reveal" className="flex flex-col items-center gap-1">
-          <span>Scroll to unpack kit</span>
-          <ArrowDown className="w-3.5 h-3.5 animate-bounce" />
-        </a>
       </div>
     </section>
   );

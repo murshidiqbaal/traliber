@@ -106,7 +106,7 @@ export const KitItem: React.FC<KitItemProps> = ({
         <img
           src={imageSrc}
           alt={item.name}
-          className="w-24 sm:w-28 md:w-36 lg:w-40 h-auto select-none pointer-events-none object-contain"
+          className="w-20 sm:w-24 md:w-28 lg:w-32 max-h-24 md:max-h-28 h-auto select-none pointer-events-none object-contain"
           loading="eager"
         />
 

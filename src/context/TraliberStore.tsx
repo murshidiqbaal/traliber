@@ -43,6 +43,7 @@ interface TraliberContextType {
   testimonials: Testimonial[];
   orders: OrderItem[];
   customImages: Record<string, string>; // itemId -> custom image URL/data URL
+  customTexts: Record<string, string>; // contentKey -> text value
   trackPageView: () => void;
   trackUnpackScroll: () => void;
   trackWhatsAppClick: (sourceLabel?: string) => void;
@@ -56,6 +57,10 @@ interface TraliberContextType {
   updateProductImage: (itemId: string, imageUrl: string) => void;
   resetProductImage: (itemId: string) => void;
   getProductImage: (itemId: string, fallback: string) => string;
+  updateCustomText: (key: string, value: string) => void;
+  resetCustomText: (key: string) => void;
+  getCustomText: (key: string, fallback: string) => string;
+  resetAllContent: () => void;
 }
 
 const INITIAL_TESTIMONIALS: Testimonial[] = [
@@ -178,6 +183,7 @@ export const TraliberProvider: React.FC<{ children: React.ReactNode }> = ({
   const [testimonials, setTestimonials] = useState<Testimonial[]>(INITIAL_TESTIMONIALS);
   const [orders, setOrders] = useState<OrderItem[]>(INITIAL_ORDERS);
   const [customImages, setCustomImages] = useState<Record<string, string>>({});
+  const [customTexts, setCustomTexts] = useState<Record<string, string>>({});
   const [isLoaded, setIsLoaded] = useState(false);
 
   // Load from localStorage on client mount
@@ -194,6 +200,9 @@ export const TraliberProvider: React.FC<{ children: React.ReactNode }> = ({
 
       const storedImages = localStorage.getItem('traliber_custom_images');
       if (storedImages) setCustomImages(JSON.parse(storedImages));
+
+      const storedTexts = localStorage.getItem('traliber_custom_texts');
+      if (storedTexts) setCustomTexts(JSON.parse(storedTexts));
     } catch (e) {
       console.warn('LocalStorage load error', e);
     }
@@ -208,10 +217,11 @@ export const TraliberProvider: React.FC<{ children: React.ReactNode }> = ({
       localStorage.setItem('traliber_testimonials', JSON.stringify(testimonials));
       localStorage.setItem('traliber_orders', JSON.stringify(orders));
       localStorage.setItem('traliber_custom_images', JSON.stringify(customImages));
+      localStorage.setItem('traliber_custom_texts', JSON.stringify(customTexts));
     } catch (e) {
       console.warn('LocalStorage save error', e);
     }
-  }, [analytics, testimonials, orders, customImages, isLoaded]);
+  }, [analytics, testimonials, orders, customImages, customTexts, isLoaded]);
 
   // Trackers
   const trackPageView = () => {
@@ -299,6 +309,30 @@ export const TraliberProvider: React.FC<{ children: React.ReactNode }> = ({
     return customImages[itemId] || fallback;
   };
 
+  // Text Content Replacement
+  const updateCustomText = (key: string, value: string) => {
+    setCustomTexts((prev) => ({ ...prev, [key]: value }));
+  };
+
+  const resetCustomText = (key: string) => {
+    setCustomTexts((prev) => {
+      const copy = { ...prev };
+      delete copy[key];
+      return copy;
+    });
+  };
+
+  const getCustomText = (key: string, fallback: string) => {
+    return customTexts[key] !== undefined ? customTexts[key] : fallback;
+  };
+
+  const resetAllContent = () => {
+    setCustomImages({});
+    setCustomTexts({});
+    localStorage.removeItem('traliber_custom_images');
+    localStorage.removeItem('traliber_custom_texts');
+  };
+
   return (
     <TraliberContext.Provider
       value={{
@@ -306,6 +340,7 @@ export const TraliberProvider: React.FC<{ children: React.ReactNode }> = ({
         testimonials,
         orders,
         customImages,
+        customTexts,
         trackPageView,
         trackUnpackScroll,
         trackWhatsAppClick,
@@ -319,6 +354,10 @@ export const TraliberProvider: React.FC<{ children: React.ReactNode }> = ({
         updateProductImage,
         resetProductImage,
         getProductImage,
+        updateCustomText,
+        resetCustomText,
+        getCustomText,
+        resetAllContent,
       }}
     >
       {children}

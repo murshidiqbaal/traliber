@@ -1,7 +1,8 @@
 import { Navbar } from '@/components/Navbar';
 import { HeroSection } from '@/components/HeroSection';
+import { WhatsInsideSection } from '@/components/WhatsInsideSection';
 import { KitRevealSection } from '@/components/KitRevealSection';
-import { KitInventoryGrid } from '@/components/KitInventoryGrid';
+import { EditorialStorytellingSection } from '@/components/EditorialStorytellingSection';
 import { BenefitsSection } from '@/components/BenefitsSection';
 import { TestimonialsSection } from '@/components/TestimonialsSection';
 import { FounderSection } from '@/components/FounderSection';
@@ -16,14 +17,17 @@ export default function Home() {
       <Navbar />
 
       <main className="flex-1 w-full">
-        {/* SECTION 1: Existing landing page and hero */}
+        {/* SECTION 1: Landing Page / Alpine Mountain Hero */}
         <HeroSection />
 
-        {/* SECTION 2: Full-width scroll-driven product unpacking experience */}
+        {/* SECTION 2: What's Inside — Ten little things. A big difference. */}
+        <WhatsInsideSection />
+
+        {/* SECTION 3: Full-width scroll-driven product unpacking animation */}
         <KitRevealSection />
 
-        {/* SECTION 3: Product contents and item descriptions */}
-        <KitInventoryGrid />
+        {/* SECTION 4: Single-Frame Editorial Product Storytelling pinned on scroll */}
+        <EditorialStorytellingSection />
 
         {/* SECTION 4: Product benefits and travel lifestyle content */}
         <BenefitsSection />

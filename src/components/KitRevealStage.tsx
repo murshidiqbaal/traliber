@@ -9,14 +9,7 @@ import {
   KitItemData,
 } from '@/data/traliber-kit';
 import { KitItem } from './KitItem';
-import {
-  MessageCircle,
-  Sparkles,
-  Info,
-  CheckCircle2,
-  X,
-  Compass,
-} from 'lucide-react';
+import { MessageCircle, X } from 'lucide-react';
 import { useTraliberStore } from '@/context/TraliberStore';
 
 interface KitRevealStageProps {
@@ -28,14 +21,12 @@ export const KitRevealStage: React.FC<KitRevealStageProps> = ({
   scrollProgress,
   isReducedMotion = false,
 }) => {
-  const { getProductImage, trackUnpackScroll, trackWhatsAppClick, trackProductInspect } = useTraliberStore();
+  const { getProductImage, trackUnpackScroll, trackProductInspect } = useTraliberStore();
   const [isMobile, setIsMobile] = useState(false);
   const [selectedItem, setSelectedItem] = useState<KitItemData | null>(null);
-  const [currentStageNum, setCurrentStageNum] = useState(1);
   const trackedUnpackRef = React.useRef(false);
 
-  const pouchClosedSrc = getProductImage('cotton-pouch-closed', TRALIBER_POUCH.closedImage);
-  const pouchOpenSrc = getProductImage('cotton-pouch-open', TRALIBER_POUCH.openImage);
+  const pouchSrc = getProductImage('cotton-pouch-closed', TRALIBER_POUCH.closedImage);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -46,55 +37,25 @@ export const KitRevealStage: React.FC<KitRevealStageProps> = ({
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // Track stage number and trigger unpack analytics
   useEffect(() => {
     const unsubscribe = scrollProgress.on('change', (latest) => {
-      if (latest < 0.15) setCurrentStageNum(1);
-      else if (latest < 0.3) {
-        setCurrentStageNum(2);
-        if (!trackedUnpackRef.current) {
-          trackedUnpackRef.current = true;
-          trackUnpackScroll();
-        }
-      } else if (latest < 0.65) setCurrentStageNum(3);
-      else if (latest < 0.85) setCurrentStageNum(4);
-      else setCurrentStageNum(5);
+      if (latest > 0.15 && !trackedUnpackRef.current) {
+        trackedUnpackRef.current = true;
+        trackUnpackScroll();
+      }
     });
     return () => unsubscribe();
   }, [scrollProgress, trackUnpackScroll]);
 
-  // Stage 1 Intro Text Transforms
-  const introOpacity = useTransform(scrollProgress, [0, 0.12, 0.2], [1, 1, 0]);
-  const introY = useTransform(scrollProgress, [0, 0.18], [0, -25]);
-
-  // Pouch Opening Layered Transforms
-  const closedPouchOpacity = useTransform(scrollProgress, [0, 0.15, 0.28], [1, 1, 0]);
-  const openPouchOpacity = useTransform(scrollProgress, [0.18, 0.28, 1], [0, 1, 1]);
-  const pouchY = useTransform(
-    scrollProgress,
-    [0, 0.25, 0.65, 1],
-    [0, isMobile ? 25 : 30, isMobile ? 50 : 60, isMobile ? 55 : 65]
-  );
+  // Gentle subtle breathing scale for the center pouch
   const pouchScale = useTransform(
     scrollProgress,
-    [0, 0.2, 0.6, 1],
-    [isMobile ? 1.05 : 1.15, isMobile ? 1.1 : 1.2, 1.05, 1.0]
+    [0, 0.35, 0.7, 1],
+    [isMobile ? 0.95 : 1.05, isMobile ? 1.0 : 1.1, isMobile ? 0.98 : 1.05, isMobile ? 0.95 : 1.0]
   );
 
-  // Stage 5 Final Reveal Transforms
-  const finalCtaOpacity = useTransform(scrollProgress, [0.82, 0.9, 1], [0, 1, 1]);
-  const finalCtaY = useTransform(scrollProgress, [0.82, 0.9], [30, 0]);
-
-  const stages = [
-    { num: 1, name: 'Closed Kit', range: '0–15%' },
-    { num: 2, name: 'Pouch Opens', range: '15–30%' },
-    { num: 3, name: 'Items Emerge', range: '30–65%' },
-    { num: 4, name: 'Exploded View', range: '65–85%' },
-    { num: 5, name: 'Complete Kit', range: '85–100%' },
-  ];
-
   return (
-    <div className="relative w-full h-full flex items-center justify-center overflow-hidden bg-[#F8F7FC] select-none">
+    <div className="relative w-full h-full flex items-center justify-center overflow-hidden bg-[#F8F7FC] select-none pt-16 sm:pt-20 md:pt-24 pb-8">
       {/* Studio Lighting Background: Restrained purple-to-cyan ambient glow */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] md:w-[950px] h-[700px] md:h-[950px] rounded-full bg-gradient-to-tr from-[#8657F6]/10 via-[#788CF5]/10 to-[#55C7DE]/15 blur-3xl" />
@@ -102,118 +63,28 @@ export const KitRevealStage: React.FC<KitRevealStageProps> = ({
         <div className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full bg-[#55C7DE]/8 blur-2xl" />
       </div>
 
-      {/* Floating Interactive Stage Navigation Pill */}
-      <div className="absolute top-4 sm:top-6 left-1/2 -translate-x-1/2 z-40 px-3 py-1.5 rounded-full bg-white/80 backdrop-blur-md border border-[#8657F6]/20 shadow-md shadow-[#22213A]/5 flex items-center gap-1.5 sm:gap-3 text-[11px] font-semibold text-[#22213A]">
-        <div className="flex items-center gap-1.5 pr-2 border-r border-[#22213A]/10">
-          <Compass className="w-3.5 h-3.5 text-[#8657F6] animate-spin-slow" />
-          <span className="hidden sm:inline font-bold tracking-wider text-[10px] uppercase text-[#788CF5]">
-            Scroll Explorer
-          </span>
-        </div>
-        <div className="flex items-center gap-1 sm:gap-2">
-          {stages.map((st) => (
-            <div
-              key={st.num}
-              className={`flex items-center gap-1 px-2 py-0.5 rounded-full transition-all duration-300 ${
-                currentStageNum === st.num
-                  ? 'bg-gradient-to-r from-[#8657F6] to-[#788CF5] text-white shadow-sm'
-                  : 'text-[#22213A]/50 hover:text-[#22213A]'
-              }`}
-            >
-              <span className="text-[10px] font-bold">{st.num}</span>
-              <span className="hidden md:inline text-[10px]">{st.name}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* STAGE 1 — INTRO HEADLINE (0–15%) */}
-      {!isReducedMotion && (
-        <motion.div
-          style={{ opacity: introOpacity, y: introY }}
-          className="absolute top-16 sm:top-20 z-30 text-center px-4 max-w-lg pointer-events-none"
-        >
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#8657F6]/10 text-[#8657F6] text-xs font-bold uppercase tracking-wider mb-2">
-            <Sparkles className="w-3 h-3" />
-            Stage 1: The Closed Kit
-          </div>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#22213A] tracking-tight leading-tight">
-            Everything You Need.{' '}
-            <span className="bg-gradient-to-r from-[#8657F6] via-[#788CF5] to-[#55C7DE] bg-clip-text text-transparent">
-              One Little Kit.
-            </span>
-          </h2>
-          <p className="mt-2 text-sm sm:text-base text-[#22213A]/70 font-medium">
-            Thoughtfully packed for wherever life takes you.
-          </p>
-          <p className="mt-1 text-xs text-[#788CF5] font-semibold flex items-center justify-center gap-1">
-            <span>↓</span> Scroll to unpack
-          </p>
-        </motion.div>
-      )}
-
       {/* CENTRAL STAGE CONTAINER */}
       <div className="relative w-full max-w-5xl h-[520px] sm:h-[580px] md:h-[640px] flex items-center justify-center">
         {/* COTTON POUCH (Central Visual Anchor) */}
         <motion.div
           style={
             isReducedMotion
-              ? { transform: `translateY(${isMobile ? 55 : 65}px) scale(1)` }
-              : { y: pouchY, scale: pouchScale }
+              ? { transform: `scale(1)` }
+              : { scale: pouchScale }
           }
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 flex flex-col items-center pointer-events-auto"
         >
-          <div className="relative w-72 sm:w-80 md:w-96 lg:w-[420px] flex items-center justify-center">
-            {/* Reduced motion static open pouch */}
-            {isReducedMotion ? (
-              <img
-                src={pouchOpenSrc}
-                alt="Open Cotton Pouch"
-                className="w-full h-auto drop-shadow-xl select-none"
-              />
-            ) : (
-              <>
-                {/* Layer 1: Closed Pouch */}
-                <motion.div
-                  style={{ opacity: closedPouchOpacity }}
-                  className="absolute inset-0 flex items-center justify-center"
-                >
-                  <img
-                    src={pouchClosedSrc}
-                    alt="Closed Cotton Pouch"
-                    className="w-full h-auto drop-shadow-xl select-none"
-                    loading="eager"
-                  />
-                </motion.div>
-
-                {/* Layer 2: Open Pouch */}
-                <motion.div
-                  style={{ opacity: openPouchOpacity }}
-                  className="relative flex items-center justify-center w-full"
-                >
-                  <img
-                    src={pouchOpenSrc}
-                    alt="Open Cotton Pouch"
-                    className="w-full h-auto drop-shadow-2xl select-none"
-                    loading="eager"
-                  />
-                </motion.div>
-              </>
-            )}
-
-            {/* Pouch Label */}
-            <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-white/95 px-3 py-1 rounded-full border border-[#8657F6]/30 shadow-md text-center pointer-events-none whitespace-nowrap">
-              <span className="text-xs font-extrabold text-[#22213A] tracking-wider uppercase">
-                {TRALIBER_POUCH.name}
-              </span>
-              <span className="ml-1.5 text-[10px] text-[#8657F6] font-semibold">
-                (Anchor Pouch)
-              </span>
-            </div>
+          <div className="relative w-64 sm:w-80 md:w-96 lg:w-[410px] flex items-center justify-center">
+            <img
+              src={pouchSrc}
+              alt="Traliber Travel Essentials Pouch"
+              className="w-full h-auto drop-shadow-2xl select-none"
+              loading="eager"
+            />
           </div>
         </motion.div>
 
-        {/* 9 TRAVEL ESSENTIAL ITEMS (Emerging from pouch in Stage 3-5) */}
+        {/* 9 TRAVEL ESSENTIAL ITEMS (Emerging from pouch) */}
         {TRALIBER_KIT_ITEMS.map((item) => (
           <KitItem
             key={item.id}
@@ -228,63 +99,6 @@ export const KitRevealStage: React.FC<KitRevealStageProps> = ({
           />
         ))}
       </div>
-
-      {/* STAGE 5 — COMPLETE KIT REVEAL (85–100%) */}
-      {isReducedMotion ? (
-        <div className="absolute bottom-6 sm:bottom-8 z-30 text-center px-4 max-w-lg">
-          <h2 className="text-xl sm:text-2xl font-bold text-[#22213A]">
-            Ready for Every Journey.
-          </h2>
-          <p className="text-xs sm:text-sm text-[#22213A]/70 mb-3">
-            Your travel essentials, together in one convenient kit.
-          </p>
-          <a
-            href={WHATSAPP_CONFIG.getLink()}
-            onClick={() => trackWhatsAppClick('Reduced Motion Reveal CTA')}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-gradient-to-r from-[#25D366] to-[#128C7E] text-white font-bold shadow-lg shadow-[#25D366]/25 hover:opacity-95 transition-transform hover:scale-105 active:scale-95"
-          >
-            <MessageCircle className="w-4 h-4 fill-current" />
-            Order via WhatsApp
-          </a>
-        </div>
-      ) : (
-        <motion.div
-          style={{ opacity: finalCtaOpacity, y: finalCtaY }}
-          className="absolute bottom-4 sm:bottom-8 z-30 text-center px-4 max-w-lg pointer-events-auto"
-        >
-          <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-[#55C7DE]/15 text-[#22213A] text-xs font-bold uppercase tracking-wider mb-2">
-            <CheckCircle2 className="w-3.5 h-3.5 text-[#55C7DE]" />
-            Complete Kit (10 Essentials)
-          </div>
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-[#22213A] tracking-tight">
-            Ready for Every Journey.
-          </h2>
-          <p className="mt-1 text-xs sm:text-sm text-[#22213A]/70 font-medium">
-            Your travel essentials, together in one convenient kit.
-          </p>
-          <div className="mt-3 flex flex-wrap items-center justify-center gap-3">
-            <a
-              href={WHATSAPP_CONFIG.getLink()}
-              onClick={() => trackWhatsAppClick('Stage 5 Complete Kit Reveal')}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-gradient-to-r from-[#25D366] to-[#128C7E] text-white font-bold text-sm shadow-xl shadow-[#25D366]/30 hover:shadow-2xl transition-all duration-300 hover:scale-105 active:scale-95"
-            >
-              <MessageCircle className="w-4 h-4 fill-current" />
-              Order via WhatsApp
-            </a>
-            <a
-              href="#kit-inventory"
-              className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full bg-white/90 text-[#22213A] border border-[#22213A]/15 text-xs font-bold hover:bg-[#F8F7FC] transition-colors"
-            >
-              <Info className="w-3.5 h-3.5 text-[#8657F6]" />
-              View Full Specs
-            </a>
-          </div>
-        </motion.div>
-      )}
 
       {/* QUICK INSPECTION MODAL (When clicking any item in the animation) */}
       {selectedItem && (

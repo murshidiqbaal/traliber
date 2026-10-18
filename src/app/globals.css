@@ -16,6 +16,8 @@
   --color-traliber-cyan: #55c7de;
   --color-traliber-navy: #22213a;
   --color-traliber-soft: #f8f7fc;
+  --font-serif: var(--font-playfair), Georgia, serif;
+  --font-handwriting: var(--font-caveat), 'Caveat', cursive;
 }
 
 html {
