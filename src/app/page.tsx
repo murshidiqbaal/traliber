@@ -3,6 +3,8 @@ import { HeroSection } from '@/components/HeroSection';
 import { KitRevealSection } from '@/components/KitRevealSection';
 import { KitInventoryGrid } from '@/components/KitInventoryGrid';
 import { BenefitsSection } from '@/components/BenefitsSection';
+import { TestimonialsSection } from '@/components/TestimonialsSection';
+import { FounderSection } from '@/components/FounderSection';
 import { OrderCtaSection } from '@/components/OrderCtaSection';
 import { Footer } from '@/components/Footer';
 import { WhatsAppFloat } from '@/components/WhatsAppFloat';
@@ -26,7 +28,13 @@ export default function Home() {
         {/* SECTION 4: Product benefits and travel lifestyle content */}
         <BenefitsSection />
 
-        {/* SECTION 5: Final "Order via WhatsApp" call to action */}
+        {/* SECTION 5: Traveler reviews & social proof */}
+        <TestimonialsSection />
+
+        {/* SECTION 6: Founder story and mission */}
+        <FounderSection />
+
+        {/* SECTION 7: Final "Order via WhatsApp" call to action */}
         <OrderCtaSection />
       </main>
 

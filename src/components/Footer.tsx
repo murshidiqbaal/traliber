@@ -54,6 +54,16 @@ export const Footer: React.FC = () => {
                 </a>
               </li>
               <li>
+                <a href="#testimonials" className="hover:text-white transition-colors">
+                  Traveler Reviews
+                </a>
+              </li>
+              <li>
+                <a href="#founder" className="hover:text-white transition-colors">
+                  Founder Story
+                </a>
+              </li>
+              <li>
                 <a href="#order-section" className="hover:text-white transition-colors">
                   Order Bundles
                 </a>

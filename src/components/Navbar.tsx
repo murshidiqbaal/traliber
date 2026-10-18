@@ -18,10 +18,10 @@ export const Navbar: React.FC = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent ${
         isScrolled
-          ? 'bg-white/90 backdrop-blur-md shadow-sm border-b border-[#8657F6]/10 py-3'
-          : 'bg-transparent py-5'
+          ? 'backdrop-blur-md py-3'
+          : 'py-5'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
@@ -35,7 +35,7 @@ export const Navbar: React.FC = () => {
         </a>
 
         {/* Desktop Nav Links */}
-        <nav className="hidden md:flex items-center gap-8 text-sm font-semibold text-[#22213A]">
+        <nav className="hidden lg:flex items-center gap-7 text-sm font-semibold text-[#22213A]">
           <a
             href="#kit-reveal"
             className="hover:text-[#8657F6] transition-colors flex items-center gap-1.5"
@@ -54,6 +54,18 @@ export const Navbar: React.FC = () => {
             className="hover:text-[#8657F6] transition-colors"
           >
             Why Traliber
+          </a>
+          <a
+            href="#testimonials"
+            className="hover:text-[#8657F6] transition-colors"
+          >
+            Reviews
+          </a>
+          <a
+            href="#founder"
+            className="hover:text-[#8657F6] transition-colors"
+          >
+            Founder
           </a>
           <a
             href="#order-section"
@@ -79,7 +91,7 @@ export const Navbar: React.FC = () => {
         {/* Mobile menu trigger */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden p-2 rounded-lg text-[#22213A] hover:bg-gray-100 transition-colors"
+          className="lg:hidden p-2 rounded-lg text-[#22213A] hover:bg-gray-100 transition-colors"
           aria-label="Toggle Navigation"
         >
           {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -88,7 +100,7 @@ export const Navbar: React.FC = () => {
 
       {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-white/95 backdrop-blur-xl border-b border-[#8657F6]/15 px-6 py-6 space-y-4 shadow-xl">
+        <div className="lg:hidden bg-white/95 backdrop-blur-xl border-b border-[#8657F6]/15 px-6 py-6 space-y-4 shadow-xl">
           <a
             href="#kit-reveal"
             onClick={() => setMobileMenuOpen(false)}
@@ -109,6 +121,20 @@ export const Navbar: React.FC = () => {
             className="block text-base font-bold text-[#22213A] hover:text-[#8657F6]"
           >
             Travel Lifestyle Benefits
+          </a>
+          <a
+            href="#testimonials"
+            onClick={() => setMobileMenuOpen(false)}
+            className="block text-base font-bold text-[#22213A] hover:text-[#8657F6]"
+          >
+            Traveler Reviews
+          </a>
+          <a
+            href="#founder"
+            onClick={() => setMobileMenuOpen(false)}
+            className="block text-base font-bold text-[#22213A] hover:text-[#8657F6]"
+          >
+            Founder Story
           </a>
           <a
             href="#order-section"
