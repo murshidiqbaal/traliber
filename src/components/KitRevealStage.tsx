@@ -55,7 +55,7 @@ export const KitRevealStage: React.FC<KitRevealStageProps> = ({
   );
 
   return (
-    <div className="relative w-full h-full flex items-center justify-center overflow-hidden bg-[#F8F7FC] select-none pt-16 sm:pt-20 md:pt-24 pb-8">
+    <div className="relative w-full h-full flex items-center justify-center overflow-hidden bg-[#F8F7FC] select-none pt-4 sm:pt-6 md:pt-8 pb-8">
       {/* Studio Lighting Background: Restrained purple-to-cyan ambient glow */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] md:w-[950px] h-[700px] md:h-[950px] rounded-full bg-gradient-to-tr from-[#8657F6]/10 via-[#788CF5]/10 to-[#55C7DE]/15 blur-3xl" />

@@ -11,11 +11,16 @@ export const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
           {/* Brand Info */}
           <div className="md:col-span-2 space-y-4">
-            <img
-              src="/images/traliber-logo.svg"
-              alt="Traliber Logo"
-              className="h-10 w-auto brightness-200 contrast-125"
-            />
+            <div className="flex items-center gap-3">
+              <img
+                src="/images/logo.png"
+                alt="Traliber Logo"
+                className="h-10 w-10 rounded-xl object-cover shadow-md"
+              />
+              <span className="font-bold text-xl tracking-wider text-white">
+                TRALIBER
+              </span>
+            </div>
             <p className="text-xs text-gray-400 max-w-sm leading-relaxed">
               Traliber redefines personal travel care. Thoughtfully packed essentials designed to eliminate airport friction, liquid leaks, and packing stress for modern wanderers.
             </p>

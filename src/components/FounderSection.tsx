@@ -8,7 +8,6 @@ import {
   Plane,
   Heart,
   Quote,
-  CheckCircle2,
   Compass,
 } from 'lucide-react';
 import { WHATSAPP_CONFIG } from '@/data/traliber-kit';
@@ -92,47 +91,17 @@ export const FounderSection: React.FC = () => {
               </span>
             </h2>
 
-            {/* Story Paragraphs */}
-            <div className="space-y-4 text-sm sm:text-base text-[#22213A]/75 leading-relaxed font-normal">
+            {/* Story Paragraphs - Reduced to essential narrative */}
+            <div className="space-y-3.5 text-sm sm:text-base text-[#22213A]/75 leading-relaxed font-normal">
               <p>
-                In 2023, while rushing through airport security for a connecting flight, I was pulled aside. A leaky mini toothpaste bottle had ruptured under cabin pressure, ruining my passport sleeve and clothes inside my carry-on bag.
-              </p>
-              <p>
-                Standing there wiping sticky mint gel off my laptop, I asked myself:{' '}
+                In 2023, a ruptured toothpaste tube under cabin pressure ruined my carry-on and sparked an obvious question:{' '}
                 <strong className="text-[#22213A] font-semibold">
-                  Why are travelers in the 21st century still wrestling with messy plastic bottles, liquid quotas, and hotel toiletries full of mystery chemicals?
+                  Why are travelers still wrestling with messy plastic bottles, liquid quotas, and leaky toiletries?
                 </strong>
               </p>
               <p>
-                That frustration sparked <strong className="text-[#8657F6]">Traliber</strong>. We spent fourteen months researching solid-state formulations—replacing paste with mint chewable tablets, bottled soap with dissolvable botanical paper leaves, and bulky towels with micro coin compresses—all housed inside an organic, water-resistant cotton pouch.
+                That frustration created <strong className="text-[#8657F6]">Traliber</strong>. We engineered a solid-state personal care kit—replacing messy liquids with chewable mint tablets, dissolvable botanical paper soap, and compressed towels in one water-resistant pouch. Zero spills. Zero checkpoint delays.
               </p>
-            </div>
-
-            {/* Three Founder Pillars */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
-              <div className="p-4 rounded-2xl bg-[#F8F7FC] border border-[#8657F6]/10">
-                <CheckCircle2 className="w-5 h-5 text-[#8657F6] mb-2" />
-                <h4 className="text-xs font-bold text-[#22213A] mb-1">Zero Liquid Stress</h4>
-                <p className="text-3xs text-[#22213A]/70 leading-normal">
-                  Pass any airport checkpoint with zero inspection delays or spills.
-                </p>
-              </div>
-
-              <div className="p-4 rounded-2xl bg-[#F8F7FC] border border-[#8657F6]/10">
-                <CheckCircle2 className="w-5 h-5 text-[#788CF5] mb-2" />
-                <h4 className="text-xs font-bold text-[#22213A] mb-1">Sustainable Materials</h4>
-                <p className="text-3xs text-[#22213A]/70 leading-normal">
-                  Biodegradable wood pulp covers, steel cutlery, and pure cotton.
-                </p>
-              </div>
-
-              <div className="p-4 rounded-2xl bg-[#F8F7FC] border border-[#8657F6]/10">
-                <CheckCircle2 className="w-5 h-5 text-[#55C7DE] mb-2" />
-                <h4 className="text-xs font-bold text-[#22213A] mb-1">Direct Founder Line</h4>
-                <p className="text-3xs text-[#22213A]/70 leading-normal">
-                  Speak directly to our team on WhatsApp for support or bespoke orders.
-                </p>
-              </div>
             </div>
 
             {/* Founder Sign-off & Direct WhatsApp Action */}

@@ -280,17 +280,12 @@ export const EditorialStorytellingSection: React.FC = () => {
                   <span>{currentItem.chapterNum}</span>
                   <span className="text-[#8657F6]/50">·</span>
                   <span>{currentItem.categoryLabel}</span>
-                </div>
-
-                {/* Micro-Label Badge */}
-                <div>
-                  <span className="inline-block px-3.5 py-1.5 rounded-md bg-[#8657F6]/15 text-[#8657F6] text-xs font-extrabold tracking-wider uppercase">
-                    {currentItem.microLabel}
-                  </span>
+                  <span className="text-[#8657F6]/50">·</span>
+                  <span className="text-[#22213A]/60 font-semibold">{currentItem.quantity}</span>
                 </div>
 
                 {/* Big Bold Headline */}
-                <h3 className="text-2xl sm:text-4xl lg:text-[44px] font-extrabold text-[#22213A] tracking-tight leading-[1.18]">
+                <h3 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#22213A] tracking-tight leading-[1.18]">
                   {headline}
                 </h3>
 
@@ -299,29 +294,16 @@ export const EditorialStorytellingSection: React.FC = () => {
                   {story}
                 </p>
 
-                {/* Practical Detail Card */}
-                <div className="p-4 sm:p-5 rounded-2xl bg-white border border-[#8657F6]/10 shadow-[0_4px_20px_rgba(0,0,0,0.03)] space-y-1.5 max-w-xl">
-                  <div className="flex items-center justify-between text-xs sm:text-sm">
-                    <span className="font-bold text-[#22213A]">Practical Detail</span>
-                    <span className="text-[11px] sm:text-xs font-bold text-[#8657F6] bg-[#8657F6]/15 px-3 py-0.5 rounded-full">
-                      {currentItem.quantity}
-                    </span>
-                  </div>
-                  <p className="text-xs sm:text-sm text-[#22213A]/70 leading-normal">
-                    {detail}
-                  </p>
-                </div>
-
                 {/* WhatsApp Action Button */}
-                <div className="pt-2">
+                <div className="pt-1">
                   <a
                     href={getWhatsAppItemLink(currentItem.name)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full bg-[#22213A] hover:bg-[#1a192e] text-white transition-all text-xs sm:text-sm font-bold shadow-md hover:shadow-lg active:scale-98"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#22213A] hover:bg-[#1a192e] text-white transition-all text-xs font-bold shadow-sm hover:shadow-md active:scale-98"
                   >
-                    <MessageCircle className="w-4 h-4 text-[#25D366]" />
-                    <span>Ask about this item on WhatsApp</span>
+                    <MessageCircle className="w-3.5 h-3.5 text-[#25D366]" />
+                    <span>Inquire on WhatsApp</span>
                   </a>
                 </div>
               </motion.div>

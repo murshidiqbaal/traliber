@@ -21,8 +21,7 @@ export const KitRevealSection: React.FC = () => {
       ref={containerRef}
       className={`relative w-full ${
         shouldReduceMotion ? 'h-auto py-16' : 'h-[360vh] md:h-[400vh]'
-      } bg-[#F8F7FC] border-y border-[#8657F6]/10`}
-    >
+      } bg-[#F8F7FC]`}>
       {/* Sticky Stage Container: Pins during scroll and releases naturally when the section ends */}
       <div
         className={`${

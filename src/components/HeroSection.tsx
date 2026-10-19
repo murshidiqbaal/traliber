@@ -35,21 +35,43 @@ export const HeroSection: React.FC = () => {
 
   return (
     <section
-      className="relative min-h-screen flex items-center justify-center pt-28 pb-20 overflow-hidden bg-cover bg-center bg-no-repeat"
+      className="relative min-h-screen flex items-center justify-center pt-24 pb-16 overflow-hidden bg-no-repeat bg-cover md:bg-[length:100%_auto] lg:bg-cover"
       style={{
         backgroundImage: `url('${heroBg}')`,
+        backgroundPosition: '85% center',
       }}
     >
-      {/* Light Gradient overlay for pristine text contrast on the left side */}
-      <div className="absolute inset-0 bg-gradient-to-r from-white/85 via-white/45 to-transparent pointer-events-none" />
-
-      {/* Gentle bottom blend into the next section */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#F8F7FC] via-[#F8F7FC]/70 to-transparent pointer-events-none" />
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center min-h-[75vh]">
           {/* Left Column: Value Proposition & Typography */}
-          <div className="lg:col-span-6 text-left space-y-6 sm:space-y-7 pt-4">
+          <div className="lg:col-span-6 text-left space-y-6 sm:space-y-7 pt-4 relative">
+            {/* Layered Smoky Gradient Background - strictly behind text */}
+            <div className="absolute -inset-6 sm:-inset-10 -z-10 pointer-events-none select-none overflow-visible">
+              {/* Layer 1: Core mist plume */}
+              <div
+                className="absolute inset-0 rounded-3xl blur-2xl opacity-90"
+                style={{
+                  background:
+                    'radial-gradient(ellipse at 30% 45%, rgba(255, 255, 255, 0.92) 0%, rgba(255, 255, 255, 0.6) 45%, rgba(255, 255, 255, 0) 75%)',
+                }}
+              />
+              {/* Layer 2: Diffused ambient smoke spread */}
+              <div
+                className="absolute -inset-6 sm:-inset-10 rounded-3xl blur-3xl opacity-80"
+                style={{
+                  background:
+                    'radial-gradient(ellipse at 25% 55%, rgba(255, 255, 255, 0.8) 0%, rgba(240, 244, 255, 0.45) 45%, rgba(255, 255, 255, 0) 75%)',
+                }}
+              />
+              {/* Layer 3: Upper atmospheric smoke feather */}
+              <div
+                className="absolute -top-10 -left-10 w-full h-3/4 blur-2xl opacity-70"
+                style={{
+                  background:
+                    'radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0) 65%)',
+                }}
+              />
+            </div>
             {/* Eyebrow */}
             <div className="flex items-center gap-2 text-xs font-mono font-bold tracking-widest text-[#22213A]/70 uppercase">
               <span>{heroEyebrow}</span>

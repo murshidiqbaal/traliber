@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
 import { WHATSAPP_CONFIG } from '@/data/traliber-kit';
-import { MessageCircle, Menu, X, Sparkles } from 'lucide-react';
+import { Menu, MessageCircle, X } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
 
 export const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -18,20 +18,22 @@ export const Navbar: React.FC = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent ${
-        isScrolled
-          ? 'backdrop-blur-md py-3'
-          : 'py-5'
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent ${isScrolled
+        ? 'backdrop-blur-md py-3'
+        : 'py-5'
+        }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         {/* Brand Logo */}
-        <a href="#" className="flex items-center gap-2 group">
+        <a href="#" className="flex items-center gap-2.5 group">
           <img
-            src="/images/traliber-logo.svg"
+            src="/images/logo-mark.png"
             alt="Traliber Logo"
-            className="h-9 sm:h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-102"
+            className="h-8 sm:h-9 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
           />
+          <span className="font-bold text-lg sm:text-xl tracking-wider text-[#22213A] group-hover:text-[#4F75FF] transition-colors">
+            TRALIBER
+          </span>
         </a>
 
         {/* Desktop Nav Links */}

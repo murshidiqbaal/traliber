@@ -36,7 +36,7 @@ export const WhatsInsideSection: React.FC = () => {
   return (
     <section
       id="whats-inside"
-      className="relative w-full bg-[#F8F7FC] pt-12 sm:pt-16 pb-20 sm:pb-24 overflow-hidden border-b border-[#8657F6]/10"
+      className="relative w-full bg-[#F8F7FC] pt-14 sm:pt-18 pb-6 sm:pb-8 overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full text-center">
         {/* Section Header */}
