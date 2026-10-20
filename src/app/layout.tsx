@@ -45,6 +45,14 @@ export const metadata: Metadata = {
     siteName: 'Traliber',
     type: 'website',
   },
+  icons: {
+    icon: [
+      { url: '/icon.png', type: 'image/png' },
+      { url: '/logo-icon.png', type: 'image/png' },
+    ],
+    shortcut: '/icon.png',
+    apple: '/apple-icon.png',
+  },
 };
 
 import { TraliberProvider } from '@/context/TraliberStore';

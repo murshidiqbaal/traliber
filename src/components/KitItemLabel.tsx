@@ -40,21 +40,21 @@ export const KitItemLabel: React.FC<KitItemLabelProps> = ({
   return (
     <motion.div
       style={{ opacity }}
-      className={`absolute ${getPlacementClass()} pointer-events-none z-30 transition-transform duration-200`}
+      className={`absolute ${getPlacementClass()} pointer-events-none z-30 transition-transform duration-200 will-change-transform [transform:translateZ(0)]`}
     >
-      <div className="flex flex-col items-center whitespace-nowrap bg-[#22213A]/90 text-white backdrop-blur-md px-2.5 py-1.5 rounded-lg border border-[#788CF5]/30 shadow-lg shadow-[#22213A]/20">
+      <div className="flex flex-col items-center whitespace-nowrap bg-[#1E1B4B] text-white px-3 py-1.5 rounded-lg border border-white/20 shadow-xl antialiased">
         <div className="flex items-center gap-1.5">
-          <span className="text-[11px] md:text-xs font-bold tracking-tight text-white font-sans">
+          <span className="text-[11px] md:text-xs font-bold tracking-tight text-white antialiased font-sans">
             {item.name}
           </span>
           {item.quantity && item.quantity > 1 && (
-            <span className="text-[9px] font-extrabold px-1.5 py-0.5 rounded-full bg-gradient-to-r from-[#8657F6] to-[#55C7DE] text-white leading-none">
+            <span className="text-[9px] font-extrabold px-1.5 py-0.5 rounded-full bg-[#8657F6] text-white leading-none">
               ×{item.quantity}
             </span>
           )}
         </div>
         {!isMobile && item.quantityLabel && (
-          <span className="text-[9px] text-[#55C7DE] font-medium tracking-wide">
+          <span className="text-[10px] text-[#A5B4FC] font-medium tracking-wide antialiased">
             {item.quantityLabel}
           </span>
         )}

@@ -57,6 +57,12 @@ export const Navbar: React.FC = () => {
             Why Traliber
           </a>
           <a
+            href="#pricing"
+            className="hover:text-[#4F75FF] transition-colors"
+          >
+            Pricing
+          </a>
+          <a
             href="#founder"
             className="hover:text-[#4F75FF] transition-colors"
           >
@@ -111,6 +117,13 @@ export const Navbar: React.FC = () => {
             className="block text-base font-bold text-[#22213A] hover:text-[#4F75FF]"
           >
             Why Traliber
+          </a>
+          <a
+            href="#pricing"
+            onClick={() => setMobileMenuOpen(false)}
+            className="block text-base font-bold text-[#22213A] hover:text-[#4F75FF]"
+          >
+            Pricing
           </a>
           <a
             href="#founder"

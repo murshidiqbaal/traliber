@@ -1,19 +1,19 @@
 'use client';
 
-import React from 'react';
 import {
-  ShieldCheck,
-  Sparkles,
   Heart,
   PackageCheck,
+  ShieldCheck,
+  Sparkles,
 } from 'lucide-react';
+import React from 'react';
 
 import { useTraliberStore } from '@/context/TraliberStore';
 
 export const WhatsInsideSection: React.FC = () => {
   const { getProductImage, getCustomText } = useTraliberStore();
 
-  const burstImg = getProductImage('whats_inside_burst', '/images/kit-burst-alpine.jpg');
+  const burstImg = getProductImage('whats_inside_burst', '/images/kit-burst-alpine.png');
   const eyebrow = getCustomText('whats_inside_eyebrow', "— WHAT'S INSIDE");
   const headlinePrefix = getCustomText('whats_inside_headline_prefix', 'Ten little things.');
   const headlineSuffix = getCustomText('whats_inside_headline_suffix', 'A big difference.');
@@ -67,7 +67,7 @@ export const WhatsInsideSection: React.FC = () => {
             />
 
             {/* Hand-drawn annotation: Left */}
-            <div className="absolute top-1/4 left-3 sm:left-8 z-20 flex flex-col items-start select-none pointer-events-none">
+            {/* <div className="absolute top-1/4 left-3 sm:left-8 z-20 flex flex-col items-start select-none pointer-events-none">
               <span className="font-handwriting text-xl sm:text-2xl md:text-3xl text-[#22213A] rotate-[-6deg] drop-shadow-xs max-w-[140px] sm:max-w-none text-left leading-tight">
                 {leftNote}
               </span>
@@ -83,10 +83,10 @@ export const WhatsInsideSection: React.FC = () => {
                 <path d="M 10 10 Q 40 10 55 35" />
                 <path d="M 45 32 L 55 35 L 56 24" />
               </svg>
-            </div>
+            </div> */}
 
             {/* Hand-drawn annotation: Right */}
-            <div className="absolute top-1/3 right-3 sm:right-8 z-20 flex flex-col items-end select-none pointer-events-none">
+            {/* <div className="absolute top-1/3 right-3 sm:right-8 z-20 flex flex-col items-end select-none pointer-events-none">
               <span className="font-handwriting text-xl sm:text-2xl md:text-3xl text-[#22213A] rotate-[4deg] drop-shadow-xs max-w-[140px] sm:max-w-none text-right leading-tight">
                 {rightNote}
               </span>
@@ -102,74 +102,77 @@ export const WhatsInsideSection: React.FC = () => {
                 <path d="M 60 10 Q 30 15 15 38" />
                 <path d="M 15 28 L 15 38 L 26 36" />
               </svg>
-            </div>
+            </div> */}
           </div>
         </div>
 
-        {/* Bottom Floating Pill Dock Bar */}
-        <div className="mt-10 sm:mt-14 max-w-5xl mx-auto">
-          <div className="bg-white/95 backdrop-blur-md rounded-3xl sm:rounded-full shadow-[0_15px_50px_rgba(34,33,58,0.08)] border border-gray-100 p-4 sm:p-5 sm:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-0 lg:divide-x lg:divide-gray-200/80">
+        {/* Bottom Floating Minimalist Feature Bar */}
+        <div className="mt-8 sm:mt-10 max-w-5xl mx-auto px-2 relative z-20">
+          <div className="bg-white rounded-2xl border border-[#22213A]/[0.08] shadow-[0_4px_25px_rgba(34,33,58,0.04)] p-2 sm:p-2.5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-1 lg:gap-0 lg:divide-x lg:divide-[#22213A]/[0.06]">
             {/* Category 1: Oral & Personal */}
-            <div className="flex items-center gap-3.5 px-3 sm:px-4 py-1 text-left">
-              <div className="w-10 h-10 rounded-full bg-gray-50 border border-gray-200/70 flex items-center justify-center text-[#22213A] shadow-2xs shrink-0">
-                <ShieldCheck className="w-4 h-4 text-[#22213A]" />
+            <div className="group flex items-center gap-3.5 p-3 sm:px-4 rounded-xl transition-all duration-300 hover:bg-gray-50/80 text-left cursor-default">
+              <div className="w-9 h-9 rounded-lg bg-[#22213A]/[0.03] border border-[#22213A]/[0.06] flex items-center justify-center text-[#22213A]/70 group-hover:bg-[#1E1B4B] group-hover:text-white group-hover:border-transparent transition-all duration-300 shrink-0">
+                <ShieldCheck className="w-4 h-4 stroke-[1.75]" />
               </div>
-              <div>
-                <h4 className="text-xs sm:text-sm font-extrabold text-[#22213A]">
+              <div className="min-w-0">
+                <h4 className="text-xs sm:text-[13px] font-semibold text-[#1E1B4B] tracking-tight group-hover:text-[#4F75FF] transition-colors duration-200 truncate sm:whitespace-normal">
                   {dock1Title}
                 </h4>
-                <p className="text-[11px] text-[#22213A]/60 font-medium">
+                <p className="text-[11px] text-[#22213A]/65 font-medium leading-snug mt-0.5">
                   {dock1Sub}
                 </p>
               </div>
             </div>
 
             {/* Category 2: Sanitization & Hygiene */}
-            <div className="flex items-center gap-3.5 px-3 sm:px-4 py-1 text-left">
-              <div className="w-10 h-10 rounded-full bg-gray-50 border border-gray-200/70 flex items-center justify-center text-[#22213A] shadow-2xs shrink-0">
-                <Sparkles className="w-4 h-4 text-[#22213A]" />
+            <div className="group flex items-center gap-3.5 p-3 sm:px-4 rounded-xl transition-all duration-300 hover:bg-gray-50/80 text-left cursor-default">
+              <div className="w-9 h-9 rounded-lg bg-[#22213A]/[0.03] border border-[#22213A]/[0.06] flex items-center justify-center text-[#22213A]/70 group-hover:bg-[#1E1B4B] group-hover:text-white group-hover:border-transparent transition-all duration-300 shrink-0">
+                <Sparkles className="w-4 h-4 stroke-[1.75]" />
               </div>
-              <div>
-                <h4 className="text-xs sm:text-sm font-extrabold text-[#22213A]">
+              <div className="min-w-0">
+                <h4 className="text-xs sm:text-[13px] font-semibold text-[#1E1B4B] tracking-tight group-hover:text-[#4F75FF] transition-colors duration-200 truncate sm:whitespace-normal">
                   {dock2Title}
                 </h4>
-                <p className="text-[11px] text-[#22213A]/60 font-medium">
+                <p className="text-[11px] text-[#22213A]/65 font-medium leading-snug mt-0.5">
                   {dock2Sub}
                 </p>
               </div>
             </div>
 
             {/* Category 3: Comfort & Utility */}
-            <div className="flex items-center gap-3.5 px-3 sm:px-4 py-1 text-left">
-              <div className="w-10 h-10 rounded-full bg-gray-50 border border-gray-200/70 flex items-center justify-center text-[#22213A] shadow-2xs shrink-0">
-                <Heart className="w-4 h-4 text-[#22213A]" />
+            <div className="group flex items-center gap-3.5 p-3 sm:px-4 rounded-xl transition-all duration-300 hover:bg-gray-50/80 text-left cursor-default">
+              <div className="w-9 h-9 rounded-lg bg-[#22213A]/[0.03] border border-[#22213A]/[0.06] flex items-center justify-center text-[#22213A]/70 group-hover:bg-[#1E1B4B] group-hover:text-white group-hover:border-transparent transition-all duration-300 shrink-0">
+                <Heart className="w-4 h-4 stroke-[1.75]" />
               </div>
-              <div>
-                <h4 className="text-xs sm:text-sm font-extrabold text-[#22213A]">
+              <div className="min-w-0">
+                <h4 className="text-xs sm:text-[13px] font-semibold text-[#1E1B4B] tracking-tight group-hover:text-[#4F75FF] transition-colors duration-200 truncate sm:whitespace-normal">
                   {dock3Title}
                 </h4>
-                <p className="text-[11px] text-[#22213A]/60 font-medium">
+                <p className="text-[11px] text-[#22213A]/65 font-medium leading-snug mt-0.5">
                   {dock3Sub}
                 </p>
               </div>
             </div>
 
             {/* Category 4: All 10 Essentials */}
-            <div className="flex items-center gap-3.5 px-3 sm:px-4 py-1 text-left">
-              <div className="w-10 h-10 rounded-full bg-gray-50 border border-gray-200/70 flex items-center justify-center text-[#22213A] shadow-2xs shrink-0">
-                <PackageCheck className="w-4 h-4 text-[#22213A]" />
+            <div className="group flex items-center gap-3.5 p-3 sm:px-4 rounded-xl transition-all duration-300 hover:bg-gray-50/80 text-left cursor-default">
+              <div className="w-9 h-9 rounded-lg bg-[#22213A]/[0.03] border border-[#22213A]/[0.06] flex items-center justify-center text-[#22213A]/70 group-hover:bg-[#1E1B4B] group-hover:text-white group-hover:border-transparent transition-all duration-300 shrink-0">
+                <PackageCheck className="w-4 h-4 stroke-[1.75]" />
               </div>
-              <div>
-                <h4 className="text-xs sm:text-sm font-extrabold text-[#22213A]">
+              <div className="min-w-0">
+                <h4 className="text-xs sm:text-[13px] font-semibold text-[#1E1B4B] tracking-tight group-hover:text-[#4F75FF] transition-colors duration-200 truncate sm:whitespace-normal">
                   {dock4Title}
                 </h4>
-                <p className="text-[11px] text-[#22213A]/60 font-medium">
+                <p className="text-[11px] text-[#22213A]/65 font-medium leading-snug mt-0.5">
                   {dock4Sub}
                 </p>
               </div>
             </div>
           </div>
         </div>
+
+        {/* Seamless bottom blend gradient flowing into Section 3 */}
+        <div className="h-10 sm:h-14 w-full pointer-events-none" />
       </div>
     </section>
   );

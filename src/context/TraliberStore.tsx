@@ -1,6 +1,7 @@
 'use client';
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
+import { supabase } from '@/lib/supabase';
 
 export interface Testimonial {
   id: string;
@@ -207,6 +208,38 @@ export const TraliberProvider: React.FC<{ children: React.ReactNode }> = ({
       console.warn('LocalStorage load error', e);
     }
     setIsLoaded(true);
+
+    // Sync latest testimonials from Supabase
+    const syncFromSupabase = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('testimonials')
+          .select('*')
+          .order('created_at', { ascending: false });
+
+        if (!error && data && data.length > 0) {
+          const mapped: Testimonial[] = data.map((row) => ({
+            id: String(row.id),
+            name: row.name,
+            role: row.role || 'Verified Traveler',
+            location: row.location || '',
+            rating: typeof row.rating === 'number' ? row.rating : 5,
+            comment: row.comment,
+            avatar: row.avatar || '',
+            date: row.date || (row.created_at ? String(row.created_at).split('T')[0] : ''),
+            isActive: row.is_active !== false,
+          }));
+          setTestimonials(mapped);
+          try {
+            localStorage.setItem('traliber_testimonials', JSON.stringify(mapped));
+          } catch (_) {}
+        }
+      } catch (err) {
+        console.warn('Supabase testimonials sync note:', err);
+      }
+    };
+
+    syncFromSupabase();
   }, []);
 
   // Save changes to localStorage
@@ -252,24 +285,72 @@ export const TraliberProvider: React.FC<{ children: React.ReactNode }> = ({
     }));
   };
 
-  // Testimonials
-  const addTestimonial = (t: Omit<Testimonial, 'id' | 'date'>) => {
+  // Testimonials (Optimistic Local State + Supabase Cloud Sync)
+  const addTestimonial = async (t: Omit<Testimonial, 'id' | 'date'>) => {
+    const tempId = `test-${Date.now()}`;
+    const today = new Date().toISOString().split('T')[0];
     const newT: Testimonial = {
       ...t,
-      id: `test-${Date.now()}`,
-      date: new Date().toISOString().split('T')[0],
+      id: tempId,
+      date: today,
     };
     setTestimonials((prev) => [newT, ...prev]);
+
+    try {
+      const { data, error } = await supabase
+        .from('testimonials')
+        .insert([
+          {
+            name: t.name,
+            role: t.role,
+            location: t.location,
+            rating: t.rating,
+            comment: t.comment,
+            avatar: t.avatar || '',
+            is_active: t.isActive !== false,
+          },
+        ])
+        .select();
+
+      if (!error && data && data.length > 0) {
+        const savedId = String(data[0].id);
+        setTestimonials((prev) =>
+          prev.map((item) => (item.id === tempId ? { ...item, id: savedId } : item))
+        );
+      }
+    } catch (e) {
+      console.warn('Supabase addTestimonial error:', e);
+    }
   };
 
-  const updateTestimonial = (id: string, updated: Partial<Testimonial>) => {
+  const updateTestimonial = async (id: string, updated: Partial<Testimonial>) => {
     setTestimonials((prev) =>
       prev.map((t) => (t.id === id ? { ...t, ...updated } : t))
     );
+
+    try {
+      const payload: Record<string, unknown> = {};
+      if (updated.name !== undefined) payload.name = updated.name;
+      if (updated.role !== undefined) payload.role = updated.role;
+      if (updated.location !== undefined) payload.location = updated.location;
+      if (updated.rating !== undefined) payload.rating = updated.rating;
+      if (updated.comment !== undefined) payload.comment = updated.comment;
+      if (updated.avatar !== undefined) payload.avatar = updated.avatar;
+      if (updated.isActive !== undefined) payload.is_active = updated.isActive;
+
+      await supabase.from('testimonials').update(payload).eq('id', id);
+    } catch (e) {
+      console.warn('Supabase updateTestimonial error:', e);
+    }
   };
 
-  const deleteTestimonial = (id: string) => {
+  const deleteTestimonial = async (id: string) => {
     setTestimonials((prev) => prev.filter((t) => t.id !== id));
+    try {
+      await supabase.from('testimonials').delete().eq('id', id);
+    } catch (e) {
+      console.warn('Supabase deleteTestimonial error:', e);
+    }
   };
 
   // Orders

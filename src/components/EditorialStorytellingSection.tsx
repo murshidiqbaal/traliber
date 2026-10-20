@@ -275,14 +275,6 @@ export const EditorialStorytellingSection: React.FC = () => {
                 transition={{ duration: 0.28, ease: 'easeOut' }}
                 className="space-y-4 sm:space-y-5"
               >
-                {/* Eyebrow: Chapter Number & Category */}
-                <div className="flex items-center gap-2 text-xs font-mono font-bold tracking-widest text-[#8657F6] uppercase">
-                  <span>{currentItem.chapterNum}</span>
-                  <span className="text-[#8657F6]/50">·</span>
-                  <span>{currentItem.categoryLabel}</span>
-                  <span className="text-[#8657F6]/50">·</span>
-                  <span className="text-[#22213A]/60 font-semibold">{currentItem.quantity}</span>
-                </div>
 
                 {/* Big Bold Headline */}
                 <h3 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#22213A] tracking-tight leading-[1.18]">

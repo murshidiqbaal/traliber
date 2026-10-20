@@ -95,7 +95,7 @@ export const KitItem: React.FC<KitItemProps> = ({
     >
       <div
         className={`relative transition-all duration-300 ${
-          isHovered ? 'scale-110 drop-shadow-2xl z-40' : 'drop-shadow-lg'
+          isHovered ? 'scale-110 z-40' : ''
         }`}
       >
         {/* Glow halo on hover */}
@@ -106,7 +106,9 @@ export const KitItem: React.FC<KitItemProps> = ({
         <img
           src={imageSrc}
           alt={item.name}
-          className="w-20 sm:w-24 md:w-28 lg:w-32 max-h-24 md:max-h-28 h-auto select-none pointer-events-none object-contain"
+          className={`w-20 sm:w-24 md:w-28 lg:w-32 max-h-24 md:max-h-28 h-auto select-none pointer-events-none object-contain transition-all duration-300 ${
+            isHovered ? 'drop-shadow-2xl' : 'drop-shadow-md'
+          }`}
           loading="eager"
         />
 

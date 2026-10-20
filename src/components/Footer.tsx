@@ -1,8 +1,8 @@
 'use client';
 
-import React from 'react';
 import { WHATSAPP_CONFIG } from '@/data/traliber-kit';
-import { MessageCircle, ShieldCheck, Heart } from 'lucide-react';
+import { MessageCircle, ShieldCheck } from 'lucide-react';
+import React from 'react';
 
 export const Footer: React.FC = () => {
   return (
@@ -101,18 +101,18 @@ export const Footer: React.FC = () => {
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-400">
           <p>© 2026 Traliber Travel Essentials. All rights reserved.</p>
-          <div className="flex items-center gap-4">
-            <span className="flex items-center gap-1">
+          {/* <div className="flex items-center gap-4">
+            {/* <span className="flex items-center gap-1">
               Engineered with precision for seamless travel
-            </span>
-            <span>•</span>
-            <a
+            </span> */}
+          <span>•</span>
+          {/* <a
               href="/admin"
               className="text-gray-400 hover:text-white transition-colors underline underline-offset-2"
             >
               Content Admin Panel
-            </a>
-          </div>
+            </a> */}
+          {/* </div> */}
         </div>
       </div>
     </footer>

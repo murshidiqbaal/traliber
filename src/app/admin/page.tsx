@@ -1,30 +1,29 @@
 'use client';
 
-import React, { useState, useRef, useEffect } from 'react';
+import { EDITORIAL_PRODUCTS } from '@/components/EditorialStorytellingSection';
+import { useTraliberStore } from '@/context/TraliberStore';
+import {
+  ArrowLeft,
+  Check,
+  Command,
+  Eye,
+  Image as ImageIcon,
+  LayoutTemplate,
+  MessageCircle,
+  Plus,
+  RotateCcw,
+  Save,
+  ShoppingBag,
+  Sparkles,
+  Star,
+  Trash2,
+  Type,
+  Upload,
+  Users
+} from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useTraliberStore } from '@/context/TraliberStore';
-import { EDITORIAL_PRODUCTS } from '@/components/EditorialStorytellingSection';
-import {
-  Image as ImageIcon,
-  Type,
-  Users,
-  ShoppingBag,
-  BarChart3,
-  ArrowLeft,
-  Upload,
-  RotateCcw,
-  Check,
-  Trash2,
-  Plus,
-  Eye,
-  Save,
-  MessageCircle,
-  Sparkles,
-  Command,
-  LayoutTemplate,
-  HelpCircle,
-} from 'lucide-react';
+import React, { useEffect, useRef, useState } from 'react';
 
 export default function AdminPage() {
   const router = useRouter();
@@ -52,6 +51,14 @@ export default function AdminPage() {
   const [saveNotification, setSaveNotification] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [currentUploadKey, setCurrentUploadKey] = useState<string | null>(null);
+
+  // Testimonials Add Form State
+  const [showAddReviewForm, setShowAddReviewForm] = useState(false);
+  const [newReviewName, setNewReviewName] = useState('');
+  const [newReviewRole, setNewReviewRole] = useState('');
+  const [newReviewLocation, setNewReviewLocation] = useState('');
+  const [newReviewRating, setNewReviewRating] = useState(5);
+  const [newReviewComment, setNewReviewComment] = useState('');
 
   // Keyboard shortcut listener: Ctrl + Shift + A or Escape to return to homepage
   useEffect(() => {
@@ -173,7 +180,7 @@ export default function AdminPage() {
     },
     {
       id: 'founder_photo',
-      name: 'Founder Portrait (Julian Vance)',
+      name: 'Founder Portrait (Aldrino Francis)',
       defaultImg: '/images/founder.jpg',
       category: 'Brand Assets',
     },
@@ -259,11 +266,10 @@ export default function AdminPage() {
             <div className="bg-white rounded-3xl p-4 border border-[#8657F6]/15 shadow-sm space-y-1">
               <button
                 onClick={() => setActiveTab('media')}
-                className={`w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-xs font-bold transition-all text-left ${
-                  activeTab === 'media'
+                className={`w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-xs font-bold transition-all text-left ${activeTab === 'media'
                     ? 'bg-[#8657F6] text-white shadow-md'
                     : 'text-[#22213A]/70 hover:bg-gray-100 hover:text-[#22213A]'
-                }`}
+                  }`}
               >
                 <ImageIcon className="w-4 h-4" />
                 <span>Replace Images</span>
@@ -271,11 +277,10 @@ export default function AdminPage() {
 
               <button
                 onClick={() => setActiveTab('hero')}
-                className={`w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-xs font-bold transition-all text-left ${
-                  activeTab === 'hero'
+                className={`w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-xs font-bold transition-all text-left ${activeTab === 'hero'
                     ? 'bg-[#8657F6] text-white shadow-md'
                     : 'text-[#22213A]/70 hover:bg-gray-100 hover:text-[#22213A]'
-                }`}
+                  }`}
               >
                 <Sparkles className="w-4 h-4" />
                 <span>Hero / Landing Page</span>
@@ -283,11 +288,10 @@ export default function AdminPage() {
 
               <button
                 onClick={() => setActiveTab('whats_inside')}
-                className={`w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-xs font-bold transition-all text-left ${
-                  activeTab === 'whats_inside'
+                className={`w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-xs font-bold transition-all text-left ${activeTab === 'whats_inside'
                     ? 'bg-[#8657F6] text-white shadow-md'
                     : 'text-[#22213A]/70 hover:bg-gray-100 hover:text-[#22213A]'
-                }`}
+                  }`}
               >
                 <LayoutTemplate className="w-4 h-4" />
                 <span>What&apos;s Inside Section</span>
@@ -295,11 +299,10 @@ export default function AdminPage() {
 
               <button
                 onClick={() => setActiveTab('products')}
-                className={`w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-xs font-bold transition-all text-left ${
-                  activeTab === 'products'
+                className={`w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-xs font-bold transition-all text-left ${activeTab === 'products'
                     ? 'bg-[#8657F6] text-white shadow-md'
                     : 'text-[#22213A]/70 hover:bg-gray-100 hover:text-[#22213A]'
-                }`}
+                  }`}
               >
                 <Type className="w-4 h-4" />
                 <span>10 Products Storytelling</span>
@@ -307,11 +310,10 @@ export default function AdminPage() {
 
               <button
                 onClick={() => setActiveTab('founder')}
-                className={`w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-xs font-bold transition-all text-left ${
-                  activeTab === 'founder'
+                className={`w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-xs font-bold transition-all text-left ${activeTab === 'founder'
                     ? 'bg-[#8657F6] text-white shadow-md'
                     : 'text-[#22213A]/70 hover:bg-gray-100 hover:text-[#22213A]'
-                }`}
+                  }`}
               >
                 <Users className="w-4 h-4" />
                 <span>Founder &amp; Story</span>
@@ -319,11 +321,10 @@ export default function AdminPage() {
 
               <button
                 onClick={() => setActiveTab('testimonials')}
-                className={`w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-xs font-bold transition-all text-left ${
-                  activeTab === 'testimonials'
+                className={`w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-xs font-bold transition-all text-left ${activeTab === 'testimonials'
                     ? 'bg-[#8657F6] text-white shadow-md'
                     : 'text-[#22213A]/70 hover:bg-gray-100 hover:text-[#22213A]'
-                }`}
+                  }`}
               >
                 <MessageCircle className="w-4 h-4" />
                 <span>Traveler Reviews</span>
@@ -331,11 +332,10 @@ export default function AdminPage() {
 
               <button
                 onClick={() => setActiveTab('orders')}
-                className={`w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-xs font-bold transition-all text-left ${
-                  activeTab === 'orders'
+                className={`w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-xs font-bold transition-all text-left ${activeTab === 'orders'
                     ? 'bg-[#8657F6] text-white shadow-md'
                     : 'text-[#22213A]/70 hover:bg-gray-100 hover:text-[#22213A]'
-                }`}
+                  }`}
               >
                 <ShoppingBag className="w-4 h-4" />
                 <span>Inquiries &amp; Orders</span>
@@ -912,7 +912,7 @@ export default function AdminPage() {
                       <label className="text-xs font-bold text-[#22213A]/80">Founder Name</label>
                       <input
                         type="text"
-                        value={getCustomText('founder_name', 'Julian Vance')}
+                        value={getCustomText('founder_name', 'Aldrino Francis')}
                         onChange={(e) => updateCustomText('founder_name', e.target.value)}
                         className="w-full px-4 py-2.5 text-sm rounded-xl bg-[#F8F7FC] border border-[#8657F6]/15 font-bold"
                       />
@@ -970,40 +970,175 @@ export default function AdminPage() {
             {/* TAB 6: TESTIMONIALS */}
             {activeTab === 'testimonials' && (
               <div className="space-y-6">
-                <div className="bg-white rounded-3xl p-6 sm:p-8 border border-[#8657F6]/15 shadow-sm space-y-2">
-                  <div className="inline-flex items-center gap-2 text-xs font-bold text-[#8657F6]">
-                    <MessageCircle className="w-4 h-4" />
-                    Social Proof Manager
+                <div className="bg-white rounded-3xl p-6 sm:p-8 border border-[#8657F6]/15 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <div className="space-y-1">
+                    <div className="inline-flex items-center gap-2 text-xs font-bold text-[#8657F6]">
+                      <MessageCircle className="w-4 h-4" />
+                      Testimonials Manager
+                    </div>
+                    <h2 className="text-2xl font-extrabold tracking-tight">Customer Testimonials</h2>
+                    <p className="text-xs sm:text-sm text-[#22213A]/70">
+                      Add, view, and manage traveler reviews displayed on the website.
+                    </p>
                   </div>
-                  <h2 className="text-2xl font-extrabold tracking-tight">Manage Customer Reviews</h2>
-                  <p className="text-xs sm:text-sm text-[#22213A]/70">
-                    Add new traveler testimonials or remove existing reviews.
-                  </p>
+
+                  <button
+                    onClick={() => setShowAddReviewForm(!showAddReviewForm)}
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#1E1B4B] hover:bg-[#8657F6] text-white text-xs font-bold transition-all shadow-md shrink-0 self-start sm:self-center cursor-pointer"
+                  >
+                    <Plus className="w-4 h-4" />
+                    <span>{showAddReviewForm ? 'Close Form' : 'Add Testimonial'}</span>
+                  </button>
                 </div>
 
-                <div className="space-y-4">
+                {/* ADD TESTIMONIAL FORM */}
+                {showAddReviewForm && (
+                  <div className="bg-white rounded-3xl p-6 sm:p-8 border-2 border-[#8657F6]/30 shadow-lg space-y-5 animate-in fade-in slide-in-from-top-2 duration-200">
+                    <div className="flex items-center justify-between border-b border-gray-100 pb-3">
+                      <h3 className="text-base font-bold text-[#22213A]">Add New Traveler Review</h3>
+                      <span className="text-xs text-[#8657F6] font-mono font-semibold">Live on Landing Page</span>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                      {/* Name */}
+                      <div className="space-y-1">
+                        <label className="text-xs font-bold text-[#22213A]/80">Traveler Name *</label>
+                        <input
+                          type="text"
+                          placeholder="e.g. Liam O'Connor"
+                          value={newReviewName}
+                          onChange={(e) => setNewReviewName(e.target.value)}
+                          className="w-full px-3.5 py-2 text-xs rounded-xl bg-[#F8F7FC] border border-[#8657F6]/15 focus:outline-none focus:ring-1 focus:ring-[#8657F6]"
+                        />
+                      </div>
+
+                      {/* Role */}
+                      <div className="space-y-1">
+                        <label className="text-xs font-bold text-[#22213A]/80">Role / Profession</label>
+                        <input
+                          type="text"
+                          placeholder="e.g. Frequent Flyer & Consultant"
+                          value={newReviewRole}
+                          onChange={(e) => setNewReviewRole(e.target.value)}
+                          className="w-full px-3.5 py-2 text-xs rounded-xl bg-[#F8F7FC] border border-[#8657F6]/15 focus:outline-none focus:ring-1 focus:ring-[#8657F6]"
+                        />
+                      </div>
+
+                      {/* Location */}
+                      <div className="space-y-1">
+                        <label className="text-xs font-bold text-[#22213A]/80">Location</label>
+                        <input
+                          type="text"
+                          placeholder="e.g. Dublin & London"
+                          value={newReviewLocation}
+                          onChange={(e) => setNewReviewLocation(e.target.value)}
+                          className="w-full px-3.5 py-2 text-xs rounded-xl bg-[#F8F7FC] border border-[#8657F6]/15 focus:outline-none focus:ring-1 focus:ring-[#8657F6]"
+                        />
+                      </div>
+
+                      {/* Rating */}
+                      <div className="space-y-1">
+                        <label className="text-xs font-bold text-[#22213A]/80">Star Rating</label>
+                        <select
+                          value={newReviewRating}
+                          onChange={(e) => setNewReviewRating(Number(e.target.value))}
+                          className="w-full px-3.5 py-2 text-xs rounded-xl bg-[#F8F7FC] border border-[#8657F6]/15 focus:outline-none focus:ring-1 focus:ring-[#8657F6]"
+                        >
+                          <option value={5}>★★★★★ (5 Stars)</option>
+                          <option value={4}>★★★★☆ (4 Stars)</option>
+                          <option value={3}>★★★☆☆ (3 Stars)</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    {/* Review text */}
+                    <div className="space-y-1">
+                      <label className="text-xs font-bold text-[#22213A]/80">Review Comment *</label>
+                      <textarea
+                        rows={3}
+                        placeholder="Write the traveler's feedback or testimonial..."
+                        value={newReviewComment}
+                        onChange={(e) => setNewReviewComment(e.target.value)}
+                        className="w-full px-4 py-2.5 text-xs rounded-xl bg-[#F8F7FC] border border-[#8657F6]/15 focus:outline-none focus:ring-1 focus:ring-[#8657F6] leading-relaxed"
+                      />
+                    </div>
+
+                    <div className="flex items-center justify-end gap-3 pt-2">
+                      <button
+                        type="button"
+                        onClick={() => setShowAddReviewForm(false)}
+                        className="px-4 py-2 rounded-full text-xs font-semibold text-gray-500 hover:bg-gray-100 cursor-pointer"
+                      >
+                        Cancel
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={() => {
+                          if (!newReviewName.trim() || !newReviewComment.trim()) {
+                            alert('Please provide at least a name and a review comment.');
+                            return;
+                          }
+                          addTestimonial({
+                            name: newReviewName.trim(),
+                            role: newReviewRole.trim() || 'Verified Traveler',
+                            location: newReviewLocation.trim() || '',
+                            rating: newReviewRating,
+                            comment: newReviewComment.trim(),
+                            avatar: '',
+                            isActive: true,
+                          });
+                          setNewReviewName('');
+                          setNewReviewRole('');
+                          setNewReviewLocation('');
+                          setNewReviewRating(5);
+                          setNewReviewComment('');
+                          setShowAddReviewForm(false);
+                          showNotification('New testimonial published successfully!');
+                        }}
+                        className="inline-flex items-center gap-1.5 px-6 py-2.5 rounded-full bg-[#1E1B4B] hover:bg-[#8657F6] text-white text-xs font-bold transition-all shadow-md cursor-pointer"
+                      >
+                        <Save className="w-3.5 h-3.5" />
+                        <span>Publish Testimonial</span>
+                      </button>
+                    </div>
+                  </div>
+                )}
+
+                {/* TESTIMONIALS LIST */}
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between px-1">
+                    <span className="text-xs font-bold text-gray-500">
+                      Active Testimonials ({testimonials.length})
+                    </span>
+                    <span className="text-3xs text-gray-400">
+                      Renders in sets of 3 in the landing page slideshow
+                    </span>
+                  </div>
+
                   {testimonials.map((test) => (
                     <div
                       key={test.id}
                       className="bg-white rounded-2xl p-5 border border-[#8657F6]/15 shadow-sm flex items-start justify-between gap-4"
                     >
-                      <div className="flex items-start gap-4">
-                        <img
-                          src={test.avatar}
-                          alt={test.name}
-                          className="w-12 h-12 rounded-full object-cover border border-[#8657F6]/20"
-                        />
-                        <div className="space-y-1">
-                          <div className="flex items-center gap-2">
-                            <h4 className="text-sm font-bold text-[#22213A]">{test.name}</h4>
+                      <div className="space-y-1.5 flex-1">
+                        <div className="flex items-center gap-2">
+                          <h4 className="text-sm font-bold text-[#22213A]">{test.name}</h4>
+                          {test.location && (
                             <span className="text-3xs text-gray-500">• {test.location}</span>
-                            <span className="text-3xs px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 font-bold">
-                              ★ {test.rating}.0
-                            </span>
+                          )}
+                          <div className="flex items-center gap-0.5 text-amber-400 ml-1">
+                            {[...Array(test.rating || 5)].map((_, i) => (
+                              <Star key={i} className="w-3 h-3 fill-current" />
+                            ))}
                           </div>
-                          <p className="text-xs text-[#22213A]/75 leading-relaxed font-normal">{test.comment}</p>
-                          <p className="text-3xs text-gray-400">{test.role} • {test.date}</p>
                         </div>
+                        <p className="text-xs text-[#22213A]/75 leading-relaxed font-normal">
+                          &ldquo;{test.comment}&rdquo;
+                        </p>
+                        <p className="text-3xs text-gray-400 font-mono">
+                          {test.role} {test.date ? `• ${test.date}` : ''}
+                        </p>
                       </div>
 
                       <button
@@ -1011,7 +1146,8 @@ export default function AdminPage() {
                           deleteTestimonial(test.id);
                           showNotification(`Deleted review by ${test.name}`);
                         }}
-                        className="p-2 text-gray-400 hover:text-red-500 rounded-lg hover:bg-gray-100"
+                        className="p-2 text-gray-400 hover:text-red-500 rounded-lg hover:bg-gray-100 transition-colors shrink-0 cursor-pointer"
+                        title="Delete review"
                       >
                         <Trash2 className="w-4 h-4" />
                       </button>

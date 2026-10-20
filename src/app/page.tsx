@@ -1,12 +1,13 @@
-import { Navbar } from '@/components/Navbar';
-import { HeroSection } from '@/components/HeroSection';
-import { WhatsInsideSection } from '@/components/WhatsInsideSection';
-import { KitRevealSection } from '@/components/KitRevealSection';
-import { EditorialStorytellingSection } from '@/components/EditorialStorytellingSection';
 import { BenefitsSection } from '@/components/BenefitsSection';
-import { TestimonialsSection } from '@/components/TestimonialsSection';
+import { PricingSection } from '@/components/PricingSection';
+import { EditorialStorytellingSection } from '@/components/EditorialStorytellingSection';
 import { FounderSection } from '@/components/FounderSection';
-import { OrderCtaSection } from '@/components/OrderCtaSection';
+import { HeroSection } from '@/components/HeroSection';
+import { KitRevealSection } from '@/components/KitRevealSection';
+import { Navbar } from '@/components/Navbar';
+import { TestimonialsSection } from '@/components/TestimonialsSection';
+import { WhatsInsideSection } from '@/components/WhatsInsideSection';
+// import { OrderCtaSection } from '@/components/OrderCtaSection';
 import { Footer } from '@/components/Footer';
 import { WhatsAppFloat } from '@/components/WhatsAppFloat';
 
@@ -32,14 +33,17 @@ export default function Home() {
         {/* SECTION 4: Product benefits and travel lifestyle content */}
         <BenefitsSection />
 
-        {/* SECTION 5: Traveler reviews & social proof */}
+        {/* SECTION 5: Dedicated Product Pricing Section (₹199) */}
+        <PricingSection />
+
+        {/* SECTION 6: Traveler reviews & social proof */}
         <TestimonialsSection />
 
         {/* SECTION 6: Founder story and mission */}
         <FounderSection />
 
         {/* SECTION 7: Final "Order via WhatsApp" call to action */}
-        <OrderCtaSection />
+        {/* <OrderCtaSection /> */}
       </main>
 
       {/* Global Footer */}
