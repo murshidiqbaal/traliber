@@ -15,10 +15,16 @@ export const AdminShortcutListener: React.FC = () => {
       const isCtrlOrCmd = e.ctrlKey || e.metaKey;
       if (isCtrlOrCmd && e.shiftKey && (e.key === 'A' || e.key === 'a')) {
         e.preventDefault();
-        if (pathname === '/admin') {
+        const isAuthenticated =
+          typeof window !== 'undefined' &&
+          localStorage.getItem('traliber_admin_auth') === 'true';
+
+        if (pathname === '/admin' || pathname === '/admin/login') {
           router.push('/');
-        } else {
+        } else if (isAuthenticated) {
           router.push('/admin');
+        } else {
+          router.push('/admin/login');
         }
       }
     };

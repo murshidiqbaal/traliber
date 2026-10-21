@@ -9,6 +9,7 @@ import {
   Eye,
   Image as ImageIcon,
   LayoutTemplate,
+  LogOut,
   MessageCircle,
   Plus,
   RotateCcw,
@@ -47,6 +48,22 @@ export default function AdminPage() {
   const [activeTab, setActiveTab] = useState<
     'media' | 'hero' | 'whats_inside' | 'products' | 'founder' | 'testimonials' | 'orders'
   >('media');
+
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
+
+  // Client-side authentication check
+  useEffect(() => {
+    try {
+      const auth = localStorage.getItem('traliber_admin_auth');
+      if (auth !== 'true') {
+        router.replace('/admin/login');
+      } else {
+        setIsAuthenticated(true);
+      }
+    } catch (_) {
+      router.replace('/admin/login');
+    }
+  }, [router]);
 
   const [saveNotification, setSaveNotification] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -186,6 +203,19 @@ export default function AdminPage() {
     },
   ];
 
+  if (isAuthenticated !== true) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-[#F8F7FC] text-[#22213A]">
+        <div className="text-center space-y-3">
+          <div className="w-9 h-9 border-3 border-[#4F75FF] border-t-transparent rounded-full animate-spin mx-auto" />
+          <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#22213A]/60">
+            Checking Admin Authentication...
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-[#F8F7FC] text-[#22213A]">
       {/* Hidden File Input for Image Uploads */}
@@ -243,6 +273,21 @@ export default function AdminPage() {
             >
               <RotateCcw className="w-3.5 h-3.5" />
               <span className="hidden sm:inline">Reset Defaults</span>
+            </button>
+
+            <button
+              onClick={() => {
+                try {
+                  localStorage.removeItem('traliber_admin_auth');
+                  localStorage.removeItem('traliber_admin_email');
+                } catch (_) {}
+                router.replace('/admin/login');
+              }}
+              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-full bg-white/10 hover:bg-rose-500/20 hover:text-rose-300 text-gray-300 text-xs font-bold transition-all border border-white/15"
+              title="Sign Out of Admin"
+            >
+              <LogOut className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline">Sign Out</span>
             </button>
           </div>
         </div>
