@@ -13,7 +13,7 @@ export const Footer: React.FC = () => {
           <div className="md:col-span-2 space-y-4">
             <div className="flex items-center gap-3">
               <img
-                src="/images/logo.png"
+                src="/images/logo.webp"
                 alt="Traliber Logo"
                 className="h-10 w-10 rounded-xl object-cover shadow-md"
               />
@@ -44,33 +44,33 @@ export const Footer: React.FC = () => {
             </h4>
             <ul className="space-y-2.5 text-xs text-gray-400">
               <li>
-                <a href="#kit-reveal" className="hover:text-white transition-colors">
-                  Interactive Reveal
+                <a href="/travel-essentials-kit" className="hover:text-white transition-colors">
+                  Travel Essentials Kit
                 </a>
               </li>
               <li>
-                <a href="#kit-inventory" className="hover:text-white transition-colors">
-                  10 Travel Essentials
+                <a href="/#whats-inside" className="hover:text-white transition-colors">
+                  What&apos;s Inside
                 </a>
               </li>
               <li>
-                <a href="#benefits" className="hover:text-white transition-colors">
-                  TSA & Carry-On Benefits
+                <a href="/#pricing" className="hover:text-white transition-colors">
+                  Kit Pricing (₹199)
                 </a>
               </li>
               <li>
-                <a href="#testimonials" className="hover:text-white transition-colors">
-                  Traveler Reviews
+                <a href="/about" className="hover:text-white transition-colors">
+                  About Traliber
                 </a>
               </li>
               <li>
-                <a href="#founder" className="hover:text-white transition-colors">
-                  Founder Story
+                <a href="/faq" className="hover:text-white transition-colors">
+                  Frequently Asked Questions
                 </a>
               </li>
               <li>
-                <a href="#order-section" className="hover:text-white transition-colors">
-                  Order Bundles
+                <a href="/travel-hygiene-guides" className="hover:text-white transition-colors">
+                  Travel Hygiene Guides
                 </a>
               </li>
             </ul>
@@ -84,15 +84,15 @@ export const Footer: React.FC = () => {
             <ul className="space-y-2.5 text-xs text-gray-400">
               <li className="flex items-center gap-2">
                 <ShieldCheck className="w-4 h-4 text-[#55C7DE]" />
-                <span>TSA Carry-On Certified</span>
+                <span>Compact Carry-On Friendly</span>
               </li>
               <li className="flex items-center gap-2">
                 <ShieldCheck className="w-4 h-4 text-[#8657F6]" />
-                <span>Zero Leak-Risk Guarantee</span>
+                <span>Coordinated Travel Essentials</span>
               </li>
               <li className="flex items-center gap-2">
                 <ShieldCheck className="w-4 h-4 text-[#25D366]" />
-                <span>Direct WhatsApp Support</span>
+                <span>Direct WhatsApp Concierge</span>
               </li>
             </ul>
           </div>

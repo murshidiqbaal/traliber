@@ -27,7 +27,7 @@ export const Navbar: React.FC = () => {
         {/* Brand Logo */}
         <a href="#" className="flex items-center gap-2.5 group">
           <img
-            src="/images/logo-mark.png"
+            src="/images/logo-mark.webp"
             alt="Traliber Logo"
             className="h-8 sm:h-9 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
           />
@@ -37,40 +37,50 @@ export const Navbar: React.FC = () => {
         </a>
 
         {/* Desktop Nav Links */}
-        <nav className="hidden lg:flex items-center gap-8 text-sm font-semibold text-[#22213A]">
+        <nav className="hidden lg:flex items-center gap-7 text-sm font-semibold text-[#22213A]">
           <a
-            href="#"
+            href="/"
             className="hover:text-[#4F75FF] transition-colors"
           >
             Home
           </a>
           <a
-            href="#whats-inside"
+            href="/travel-essentials-kit"
+            className="hover:text-[#4F75FF] transition-colors"
+          >
+            The Kit
+          </a>
+          <a
+            href="/#whats-inside"
             className="hover:text-[#4F75FF] transition-colors"
           >
             What&apos;s Inside
           </a>
           <a
-            href="#benefits"
+            href="/#benefits"
             className="hover:text-[#4F75FF] transition-colors"
           >
             Why Traliber
           </a>
           <a
-            href="#pricing"
+            href="/#pricing"
             className="hover:text-[#4F75FF] transition-colors"
           >
-            Pricing
+            Pricing (₹199)
           </a>
           <a
-            href="#founder"
+            href="/faq"
+            className="hover:text-[#4F75FF] transition-colors"
+          >
+            FAQ
+          </a>
+          <a
+            href="/about"
             className="hover:text-[#4F75FF] transition-colors"
           >
             About
           </a>
         </nav>
-
-        {/* Header CTA Button */}
         <div className="hidden sm:flex items-center gap-3">
           <a
             href={WHATSAPP_CONFIG.getLink()}
@@ -98,35 +108,49 @@ export const Navbar: React.FC = () => {
       {mobileMenuOpen && (
         <div className="lg:hidden bg-white/95 backdrop-blur-xl border-b border-[#8657F6]/15 px-6 py-6 space-y-4 shadow-xl">
           <a
-            href="#"
+            href="/"
             onClick={() => setMobileMenuOpen(false)}
             className="block text-base font-bold text-[#22213A] hover:text-[#4F75FF]"
           >
             Home
           </a>
           <a
-            href="#whats-inside"
+            href="/travel-essentials-kit"
+            onClick={() => setMobileMenuOpen(false)}
+            className="block text-base font-bold text-[#22213A] hover:text-[#4F75FF]"
+          >
+            The 10-Item Kit
+          </a>
+          <a
+            href="/#whats-inside"
             onClick={() => setMobileMenuOpen(false)}
             className="block text-base font-bold text-[#22213A] hover:text-[#4F75FF]"
           >
             What&apos;s Inside
           </a>
           <a
-            href="#benefits"
+            href="/#benefits"
             onClick={() => setMobileMenuOpen(false)}
             className="block text-base font-bold text-[#22213A] hover:text-[#4F75FF]"
           >
             Why Traliber
           </a>
           <a
-            href="#pricing"
+            href="/#pricing"
             onClick={() => setMobileMenuOpen(false)}
             className="block text-base font-bold text-[#22213A] hover:text-[#4F75FF]"
           >
-            Pricing
+            Pricing (₹199)
           </a>
           <a
-            href="#founder"
+            href="/faq"
+            onClick={() => setMobileMenuOpen(false)}
+            className="block text-base font-bold text-[#22213A] hover:text-[#4F75FF]"
+          >
+            FAQ
+          </a>
+          <a
+            href="/about"
             onClick={() => setMobileMenuOpen(false)}
             className="block text-base font-bold text-[#22213A] hover:text-[#4F75FF]"
           >

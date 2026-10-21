@@ -36,8 +36,8 @@ export const EDITORIAL_PRODUCTS: EditorialProduct[] = [
     caption: 'ALL-IN-ONE ORGANIZER',
     quantity: '1 pouch',
     practicalDetail: 'Dual-zipper compartment with reinforced carry loop and mountain blue water-resistant canvas.',
-    defaultImage: '/images/products/pouch.png',
-    hoverImage: '/images/products/kit-display.png',
+    defaultImage: '/images/products/pouch.webp',
+    hoverImage: '/images/products/kit-display.webp',
   },
   {
     id: 'tooth-brush',
@@ -52,7 +52,7 @@ export const EDITORIAL_PRODUCTS: EditorialProduct[] = [
     caption: 'TWO-PIECE TRAVEL FORMAT',
     quantity: '1 toothbrush set with hygienic cap',
     practicalDetail: 'Ventilated protective travel barrel that doubles as an ergonomic handle extension.',
-    defaultImage: '/images/products/toothbrush.png',
+    defaultImage: '/images/products/toothbrush.webp',
   },
   {
     id: 'tablet-paste',
@@ -67,7 +67,7 @@ export const EDITORIAL_PRODUCTS: EditorialProduct[] = [
     caption: 'YOUR ROUTINE, PACKED',
     quantity: '1 travel-size tube (10g)',
     practicalDetail: 'Sealed screw-cap travel tube sized for compact dopp kits and airport carry-on regulations.',
-    defaultImage: '/images/products/toothpaste.png',
+    defaultImage: '/images/products/toothpaste.webp',
   },
   {
     id: 'mini-sanitizer',
@@ -82,7 +82,7 @@ export const EDITORIAL_PRODUCTS: EditorialProduct[] = [
     caption: 'DISTRIBUTE ACROSS BAGS',
     quantity: '5 individual pocket bottles',
     practicalDetail: 'Fine-mist spray atomizers in shatterproof pocket bottles for transit and commuting.',
-    defaultImage: '/images/products/mini-sanitizer.png',
+    defaultImage: '/images/products/mini-sanitizer.webp',
   },
   {
     id: 'wet-wipes',
@@ -97,7 +97,7 @@ export const EDITORIAL_PRODUCTS: EditorialProduct[] = [
     caption: 'INDIVIDUALLY MOISTURE-LOCKED',
     quantity: '2 individual packets',
     practicalDetail: 'Moisture-sealed foil packets designed to prevent drying out during extended transit.',
-    defaultImage: '/images/products/wet-wipes.png',
+    defaultImage: '/images/products/wet-wipes.webp',
   },
   {
     id: 'wet-towel',
@@ -112,7 +112,7 @@ export const EDITORIAL_PRODUCTS: EditorialProduct[] = [
     caption: 'SINGLE-USE SACHET',
     quantity: '1 sealed sachet',
     practicalDetail: 'Hygienically packaged soft-weave travel towel for instant refreshment after long hours in transit.',
-    defaultImage: '/images/products/wet-towel.png',
+    defaultImage: '/images/products/wet-towel.webp',
   },
   {
     id: 'toilet-seat-cover',
@@ -127,7 +127,7 @@ export const EDITORIAL_PRODUCTS: EditorialProduct[] = [
     caption: 'UNIVERSAL FIT',
     quantity: '2 folded covers',
     practicalDetail: 'Pocket-sized paper liners folded flat to slip unnoticeably into transit bags or daypacks.',
-    defaultImage: '/images/products/toilet-seat-cover.png',
+    defaultImage: '/images/products/toilet-seat-cover.webp',
   },
   {
     id: 'face-mask',
@@ -142,7 +142,7 @@ export const EDITORIAL_PRODUCTS: EditorialProduct[] = [
     caption: 'SOFT EAR LOOPS',
     quantity: '1 sealed mask',
     practicalDetail: 'Individually wrapped contour mask with flexible nose bridge and cushioned ear loops.',
-    defaultImage: '/images/products/face-mask.png',
+    defaultImage: '/images/products/face-mask.webp',
   },
   {
     id: 'paper-soap',
@@ -157,7 +157,7 @@ export const EDITORIAL_PRODUCTS: EditorialProduct[] = [
     caption: '50 WATER-SOLUBLE SHEETS',
     quantity: '1 flip-box (50 sheets)',
     practicalDetail: 'Slim plastic flip container that prevents moisture ingress while keeping individual dry sheets accessible.',
-    defaultImage: '/images/products/paper-soap.png',
+    defaultImage: '/images/products/paper-soap.webp',
   },
   {
     id: 'cutlery-kit',
@@ -172,7 +172,7 @@ export const EDITORIAL_PRODUCTS: EditorialProduct[] = [
     caption: 'FULL UTENSIL SET WITH SLEEVE',
     quantity: '1 complete set & case',
     practicalDetail: 'Includes travel fork, spoon, serrated knife, chopsticks, and napkin housed in a slim snap case.',
-    defaultImage: '/images/products/cutlery-kit.png',
+    defaultImage: '/images/products/cutlery-kit.webp',
   },
 ];
 

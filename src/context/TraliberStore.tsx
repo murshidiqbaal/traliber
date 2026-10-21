@@ -27,6 +27,14 @@ export interface OrderItem {
   source: 'WhatsApp Button' | 'Bundle Selector' | 'Direct Chat' | 'Manual Entry';
 }
 
+export interface WhatsAppEventMeta {
+  eventType?: 'whatsapp_click' | 'product_whatsapp_click' | 'kit_enquiry_click' | 'contact_click';
+  buttonLocation?: string;
+  productName?: string;
+  pagePath?: string;
+  campaignSource?: string;
+}
+
 export interface AnalyticsData {
   pageViews: number;
   unpackScrolls: number;
@@ -36,6 +44,8 @@ export interface AnalyticsData {
     id: string;
     label: string;
     timestamp: string;
+    eventType?: string;
+    pagePath?: string;
   }>;
 }
 
@@ -47,7 +57,7 @@ interface TraliberContextType {
   customTexts: Record<string, string>; // contentKey -> text value
   trackPageView: () => void;
   trackUnpackScroll: () => void;
-  trackWhatsAppClick: (sourceLabel?: string) => void;
+  trackWhatsAppClick: (sourceOrMeta?: string | WhatsAppEventMeta) => void;
   trackProductInspect: (productName: string) => void;
   addTestimonial: (t: Omit<Testimonial, 'id' | 'date'>) => void;
   updateTestimonial: (id: string, updated: Partial<Testimonial>) => void;
@@ -265,17 +275,42 @@ export const TraliberProvider: React.FC<{ children: React.ReactNode }> = ({
     setAnalytics((prev) => ({ ...prev, unpackScrolls: prev.unpackScrolls + 1 }));
   };
 
-  const trackWhatsAppClick = (sourceLabel = 'WhatsApp Button') => {
+  const trackWhatsAppClick = (sourceOrMeta?: string | WhatsAppEventMeta) => {
+    const meta: WhatsAppEventMeta =
+      typeof sourceOrMeta === 'string'
+        ? { buttonLocation: sourceOrMeta, eventType: 'whatsapp_click' }
+        : sourceOrMeta || { eventType: 'whatsapp_click', buttonLocation: 'WhatsApp Button' };
+
+    const label = meta.buttonLocation || meta.productName || 'WhatsApp Enquiry';
     const newClick = {
       id: `clk-${Date.now()}`,
-      label: sourceLabel,
+      label,
       timestamp: 'Just now',
+      eventType: meta.eventType || 'whatsapp_click',
+      pagePath: meta.pagePath || (typeof window !== 'undefined' ? window.location.pathname : '/'),
     };
+
     setAnalytics((prev) => ({
       ...prev,
       whatsappClicks: prev.whatsappClicks + 1,
       recentClicks: [newClick, ...prev.recentClicks.slice(0, 9)],
     }));
+
+    // Trigger non-personal analytics event for Google Analytics or client telemetry if present
+    if (typeof window !== 'undefined') {
+      try {
+        window.dispatchEvent(
+          new CustomEvent('traliber_whatsapp_enquiry', {
+            detail: {
+              event: meta.eventType || 'whatsapp_click',
+              button_location: meta.buttonLocation || 'Button',
+              product_name: meta.productName || 'Travel Essentials Kit',
+              page_path: window.location.pathname,
+            },
+          })
+        );
+      } catch (_) {}
+    }
   };
 
   const trackProductInspect = (_productName: string) => {

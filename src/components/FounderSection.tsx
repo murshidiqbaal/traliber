@@ -17,7 +17,7 @@ export const FounderSection: React.FC = () => {
   );
   const founderBio = getCustomText(
     'founder_bio',
-    'In 2023, a ruptured toothpaste tube under cabin pressure ruined my carry-on and sparked a simple question: Why are travelers still wrestling with messy plastic bottles, liquid quotas, and leaky toiletries?\n\nThat frustration led to Traliber. We engineered a solid-state travel personal care kit — replacing messy liquids with chewable mint tablets, dissolvable botanical paper soap sheets, and compressed towels in one water-resistant pouch. Zero spills. Zero checkpoint delays.'
+    'In 2023, an unorganized travel kit during a long transit journey sparked a simple question: Why are travelers still wrestling with scattered toiletries, messy bags, and missing hygiene essentials on the road?\n\nThat frustration led to Traliber. We designed a coordinated, compact travel personal care kit — bringing together everyday hygiene essentials, from a sealed travel toothpaste tube and water-soluble paper soap to pocket sanitizers and clean towels, all neatly organized in one water-resistant pouch. Built for travelers who value freshness, cleanliness, and peace of mind on every journey.'
   );
 
   const paragraphs = founderBio.split('\n\n').filter(Boolean);
@@ -75,7 +75,7 @@ export const FounderSection: React.FC = () => {
           >
             <div className="w-full rounded-[22px] overflow-hidden border border-[#22213A]/[0.08] shadow-[0_8px_24px_rgba(30,27,75,0.04)] bg-[#F8F7FC] aspect-[4/5] relative">
               <img
-                src="/images/founder.jpg"
+                src="/images/founder.webp"
                 alt={`${founderName} - ${founderTitle}`}
                 className="w-full h-full object-cover object-top"
                 loading="lazy"
@@ -196,7 +196,7 @@ export const FounderSection: React.FC = () => {
           >
             <div className="rounded-3xl overflow-hidden border border-[#22213A]/[0.08] shadow-[0_8px_30px_rgba(30,27,75,0.04)] bg-[#F8F7FC] aspect-[4/5] relative">
               <img
-                src="/images/founder.jpg"
+                src="/images/founder.webp"
                 alt={`${founderName} - ${founderTitle}`}
                 className="w-full h-full object-cover object-top hover:scale-[1.02] transition-transform duration-500"
               />

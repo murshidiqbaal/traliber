@@ -8,7 +8,7 @@ import { useTraliberStore } from '@/context/TraliberStore';
 export const HeroSection: React.FC = () => {
   const { trackWhatsAppClick, getProductImage, getCustomText } = useTraliberStore();
 
-  const heroBg = getProductImage('hero_background', '/images/hero-alpine-mountain.png');
+  const heroBg = getProductImage('hero_background', '/images/hero-alpine-mountain.webp');
   const heroEyebrow = getCustomText('hero_eyebrow', 'TRAVEL ✦ ESSENTIALS');
   const heroHeadline1 = getCustomText('hero_headline_1', 'Smaller');
   const heroHeadline2 = getCustomText('hero_headline_2', 'Bag.');

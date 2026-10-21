@@ -71,7 +71,7 @@ export const KitItem: React.FC<KitItemProps> = ({
             className="w-24 sm:w-28 md:w-36 h-auto drop-shadow-md select-none pointer-events-none"
             loading="eager"
           />
-          <div className="mt-1 text-center bg-[#22213A]/90 text-white px-2 py-0.5 rounded text-[10px] font-bold">
+          <div className="hidden md:block mt-1 text-center bg-[#22213A]/90 text-white px-2 py-0.5 rounded text-[10px] font-bold">
             {item.name} {item.quantity && item.quantity > 1 ? `(${item.quantity})` : ''}
           </div>
         </div>
@@ -112,13 +112,15 @@ export const KitItem: React.FC<KitItemProps> = ({
           loading="eager"
         />
 
-        {/* Floating Product Label */}
-        <KitItemLabel
-          item={item}
-          opacity={labelOpacity}
-          placement={config.labelPlacement}
-          isMobile={isMobile}
-        />
+        {/* Floating Product Label (Desktop only, hidden on mobile) */}
+        {!isMobile && (
+          <KitItemLabel
+            item={item}
+            opacity={labelOpacity}
+            placement={config.labelPlacement}
+            isMobile={isMobile}
+          />
+        )}
       </div>
     </motion.div>
   );

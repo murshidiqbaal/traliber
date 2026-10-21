@@ -13,7 +13,7 @@ import { useTraliberStore } from '@/context/TraliberStore';
 export const WhatsInsideSection: React.FC = () => {
   const { getProductImage, getCustomText } = useTraliberStore();
 
-  const burstImg = getProductImage('whats_inside_burst', '/images/kit-burst-alpine.png');
+  const burstImg = getProductImage('whats_inside_burst', '/images/kit-burst-alpine.webp');
   const eyebrow = getCustomText('whats_inside_eyebrow', "— WHAT'S INSIDE");
   const headlinePrefix = getCustomText('whats_inside_headline_prefix', 'Ten little things.');
   const headlineSuffix = getCustomText('whats_inside_headline_suffix', 'A big difference.');

@@ -18,11 +18,13 @@ export const KitItemLabel: React.FC<KitItemLabelProps> = ({
   placement,
   isMobile,
 }) => {
+  // Completely hide text title labels on mobile screen ratio
+  if (isMobile) {
+    return null;
+  }
+
   // Compute positioning classes relative to the item container
   const getPlacementClass = () => {
-    if (isMobile) {
-      return 'top-full left-1/2 -translate-x-1/2 mt-1.5';
-    }
     switch (placement) {
       case 'top':
         return 'bottom-full left-1/2 -translate-x-1/2 mb-2';
@@ -40,7 +42,7 @@ export const KitItemLabel: React.FC<KitItemLabelProps> = ({
   return (
     <motion.div
       style={{ opacity }}
-      className={`absolute ${getPlacementClass()} pointer-events-none z-30 transition-transform duration-200 will-change-transform [transform:translateZ(0)]`}
+      className={`hidden md:block absolute ${getPlacementClass()} pointer-events-none z-30 transition-transform duration-200 will-change-transform [transform:translateZ(0)]`}
     >
       <div className="flex flex-col items-center whitespace-nowrap bg-[#1E1B4B] text-white px-3 py-1.5 rounded-lg border border-white/20 shadow-xl antialiased">
         <div className="flex items-center gap-1.5">
@@ -53,7 +55,7 @@ export const KitItemLabel: React.FC<KitItemLabelProps> = ({
             </span>
           )}
         </div>
-        {!isMobile && item.quantityLabel && (
+        {item.quantityLabel && (
           <span className="text-[10px] text-[#A5B4FC] font-medium tracking-wide antialiased">
             {item.quantityLabel}
           </span>

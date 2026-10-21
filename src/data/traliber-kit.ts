@@ -37,8 +37,8 @@ export interface PouchData {
 export const TRALIBER_POUCH: PouchData = {
   id: 'cotton-pouch',
   name: 'Travel Essentials Pouch',
-  closedImage: '/images/products/pouch.png',
-  openImage: '/images/products/pouch.png',
+  closedImage: '/images/products/pouch.webp',
+  openImage: '/images/products/pouch.webp',
   description: 'Water-resistant travel organizer pouch with reinforced dual zippers, carrying handle, and signature mountain blue aesthetics.',
 };
 
@@ -46,7 +46,7 @@ export const TRALIBER_KIT_ITEMS: KitItemData[] = [
   {
     id: 'tooth-brush',
     name: 'Tooth Brush Set',
-    imagePath: '/images/products/toothbrush.png',
+    imagePath: '/images/products/toothbrush.webp',
     quantity: 1,
     quantityLabel: '1 unit with hygienic cap',
     order: 1,
@@ -71,7 +71,7 @@ export const TRALIBER_KIT_ITEMS: KitItemData[] = [
   {
     id: 'tablet-paste',
     name: 'Mountain Mint Toothpaste',
-    imagePath: '/images/products/toothpaste.png',
+    imagePath: '/images/products/toothpaste.webp',
     quantity: 1,
     quantityLabel: '1 10g travel tube',
     order: 2,
@@ -96,7 +96,7 @@ export const TRALIBER_KIT_ITEMS: KitItemData[] = [
   {
     id: 'mini-sanitizer',
     name: 'Mini Sanitizer (5)',
-    imagePath: '/images/products/mini-sanitizer.png',
+    imagePath: '/images/products/mini-sanitizer.webp',
     quantity: 5,
     quantityLabel: '5 individual pocket spray bottles',
     order: 3,
@@ -121,7 +121,7 @@ export const TRALIBER_KIT_ITEMS: KitItemData[] = [
   {
     id: 'paper-soap',
     name: 'Paper Soap (50 Sheets)',
-    imagePath: '/images/products/paper-soap.png',
+    imagePath: '/images/products/paper-soap.webp',
     quantity: 1,
     quantityLabel: '1 flip-box (50 soluble sheets)',
     order: 4,
@@ -146,7 +146,7 @@ export const TRALIBER_KIT_ITEMS: KitItemData[] = [
   {
     id: 'wet-wipes',
     name: 'Wet Wipes (2)',
-    imagePath: '/images/products/wet-wipes.png',
+    imagePath: '/images/products/wet-wipes.webp',
     quantity: 2,
     quantityLabel: '2 individual moisture-locked packs',
     order: 5,
@@ -171,7 +171,7 @@ export const TRALIBER_KIT_ITEMS: KitItemData[] = [
   {
     id: 'wet-towel',
     name: 'Wet Towel Sachet',
-    imagePath: '/images/products/wet-towel.png',
+    imagePath: '/images/products/wet-towel.webp',
     quantity: 1,
     quantityLabel: '1 refreshing hygienic wet towel',
     order: 6,
@@ -196,7 +196,7 @@ export const TRALIBER_KIT_ITEMS: KitItemData[] = [
   {
     id: 'toilet-seat-cover',
     name: 'Toilet Seat Cover (2)',
-    imagePath: '/images/products/toilet-seat-cover.png',
+    imagePath: '/images/products/toilet-seat-cover.webp',
     quantity: 2,
     quantityLabel: '2 sanitary flushable covers',
     order: 7,
@@ -221,7 +221,7 @@ export const TRALIBER_KIT_ITEMS: KitItemData[] = [
   {
     id: 'face-mask',
     name: 'Face Mask Kit',
-    imagePath: '/images/products/face-mask.png',
+    imagePath: '/images/products/face-mask.webp',
     quantity: 1,
     quantityLabel: '1 3-layer protective mask kit',
     order: 8,
@@ -246,7 +246,7 @@ export const TRALIBER_KIT_ITEMS: KitItemData[] = [
   {
     id: 'cutlery-kit',
     name: 'Travel Cutlery Kit',
-    imagePath: '/images/products/cutlery-kit.png',
+    imagePath: '/images/products/cutlery-kit.webp',
     quantity: 1,
     quantityLabel: '1 kit (Fork, Spoon, Knife, Chopsticks & Napkin)',
     order: 9,

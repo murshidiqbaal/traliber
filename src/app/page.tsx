@@ -7,7 +7,7 @@ import { KitRevealSection } from '@/components/KitRevealSection';
 import { Navbar } from '@/components/Navbar';
 import { TestimonialsSection } from '@/components/TestimonialsSection';
 import { WhatsInsideSection } from '@/components/WhatsInsideSection';
-// import { OrderCtaSection } from '@/components/OrderCtaSection';
+import { FaqSection } from '@/components/FaqSection';
 import { Footer } from '@/components/Footer';
 import { WhatsAppFloat } from '@/components/WhatsAppFloat';
 
@@ -30,20 +30,20 @@ export default function Home() {
         {/* SECTION 4: Single-Frame Editorial Product Storytelling pinned on scroll */}
         <EditorialStorytellingSection />
 
-        {/* SECTION 4: Product benefits and travel lifestyle content */}
+        {/* SECTION 5: Product benefits and travel lifestyle content */}
         <BenefitsSection />
 
-        {/* SECTION 5: Dedicated Product Pricing Section (₹199) */}
+        {/* SECTION 6: Dedicated Product Pricing Section (₹199) */}
         <PricingSection />
 
-        {/* SECTION 6: Traveler reviews & social proof */}
+        {/* SECTION 7: Traveler reviews & social proof */}
         <TestimonialsSection />
 
-        {/* SECTION 6: Founder story and mission */}
+        {/* SECTION 8: Founder story and mission */}
         <FounderSection />
 
-        {/* SECTION 7: Final "Order via WhatsApp" call to action */}
-        {/* <OrderCtaSection /> */}
+        {/* SECTION 9: Answer Engine Optimized FAQ Section */}
+        <FaqSection />
       </main>
 
       {/* Global Footer */}

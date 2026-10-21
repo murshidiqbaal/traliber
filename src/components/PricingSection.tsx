@@ -13,17 +13,16 @@ export const PricingSection: React.FC = () => {
   )}`;
 
   const inclusions = [
-    'Reusable Water-Resistant Cotton Pouch',
-    'Chewable Mint Toothpaste Tablets',
-    'Botanical Paper Soap Sheets (Zero Liquid)',
-    'Ultra-Soft Ergonomic Toothbrush & Cap',
-    'Compressed Microfiber Pocket Towel',
-    'Food-Grade Reusable Travel Cutlery Set',
-    'Flushable Biodegradable Toilet Seat Covers',
-    '3D Ergonomic Blackout Eye Mask',
-    '5x Expanding Coin Towels',
-    '5x Pocket Mist Hand Sanitizers',
-    '5x Refreshing Antiseptic Wet Wipes',
+    'Travel Essentials Organizer Pouch (1 unit)',
+    'Toothbrush Set with Hygienic Travel Cap (1 set)',
+    'Mountain Mint Travel Toothpaste Tube (1 tube, 10g)',
+    'Pocket Sanitizer Spray Bottles (5 bottles)',
+    'Moisture-Locked Travel Wet Wipes (2 packets)',
+    'Individually Sealed Wet Towel (1 sachet)',
+    'Flushable Toilet Seat Covers (2 covers)',
+    'Breathable Protective Face Mask (1 mask)',
+    'Water-Soluble Paper Soap Flip-Box (50 sheets)',
+    'Reusable Travel Cutlery Kit with Travel Case (1 set)',
   ];
 
   return (
@@ -96,15 +95,15 @@ export const PricingSection: React.FC = () => {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 py-4 border-t border-b border-[#22213A]/[0.08] text-center text-xs">
             <div className="p-2.5 rounded-xl bg-white border border-[#22213A]/[0.05] flex items-center justify-center gap-2 text-[#1E1B4B]">
               <ShieldCheck className="w-4 h-4 text-[#4F75FF]" />
-              <span className="font-semibold">100% TSA Carry-on Legal</span>
+              <span className="font-semibold">Compact Carry-On Size</span>
             </div>
             <div className="p-2.5 rounded-xl bg-white border border-[#22213A]/[0.05] flex items-center justify-center gap-2 text-[#1E1B4B]">
               <Zap className="w-4 h-4 text-[#8657F6]" />
-              <span className="font-semibold">Zero Liquid Leaks</span>
+              <span className="font-semibold">Coordinated Travel Pouch</span>
             </div>
             <div className="p-2.5 rounded-xl bg-white border border-[#22213A]/[0.05] flex items-center justify-center gap-2 text-[#1E1B4B]">
               <Check className="w-4 h-4 text-emerald-600" />
-              <span className="font-semibold">Dispatched in 24 Hours</span>
+              <span className="font-semibold">Direct WhatsApp Concierge</span>
             </div>
           </div>
 
