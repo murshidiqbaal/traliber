@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Package, ShieldCheck, Droplets, Compass, MessageCircle, CheckCircle2 } from 'lucide-react';
+import { Package, Droplets, Compass, MessageCircle, CheckCircle2 } from 'lucide-react';
 import { WHATSAPP_CONFIG } from '@/data/traliber-kit';
 import { useTraliberStore } from '@/context/TraliberStore';
 
@@ -12,34 +12,42 @@ export const BenefitsSection: React.FC = () => {
     {
       icon: Package,
       title: 'Compact & Ready to Pack',
-      tagline: 'No More Scrambling for Toiletries',
-      description:
+      tagline: 'No More Scrambling',
+      mobileDescription:
         'Instead of hunting through multiple drawers or buying bulky full-sized bottles before a journey, Traliber brings 10 essential personal care items together in one durable, water-resistant pouch that slips easily into your backpack or cabin bag.',
-      highlights: ['Pre-sorted items', 'Water-resistant travel pouch', 'Fits easily into cabin baggage'],
+      desktopDescription:
+        '10 essential personal care items organized in a durable, water-resistant pouch that slips effortlessly into your backpack or cabin bag.',
+      highlights: ['Pre-sorted items', 'Water-resistant pouch', 'Cabin baggage ready'],
     },
     {
       icon: Droplets,
       title: 'Hygienic Transit Peace of Mind',
-      tagline: 'Cleanliness Across Stations & Flights',
-      description:
+      tagline: 'Stations, Trains & Flights',
+      mobileDescription:
         'From railway washrooms to highway pit-stops and busy airport lounges, keep your personal hygiene in your own hands with disposable toilet seat covers, soluble paper soap sheets, individually wrapped wet towels, and pocket sanitizers.',
-      highlights: ['Water-soluble paper soap', 'Flushable toilet seat covers', 'Sealed single-use wet towel'],
+      desktopDescription:
+        'Keep hygiene in your hands across train washrooms, pit-stops, and airports with disposable seat covers, paper soaps, and sanitizers.',
+      highlights: ['Water-soluble paper soap', 'Flushable seat covers', 'Single-use wet towel'],
     },
     {
       icon: Compass,
       title: 'Carry-On Friendly Sizing',
       tagline: 'Sub-100ml personal care formats',
-      description:
+      mobileDescription:
         'Standard toiletries often get flagged or spill inside luggage. Traliber kits feature compact formats—including a 10g sealed toothpaste tube and mini 15ml sanitizer bottles—designed to keep your journey smooth and organized.',
-      highlights: ['Compact 10g travel toothpaste tube', '5x portable mist sanitizers', 'Reusable dining cutlery set'],
+      desktopDescription:
+        'TSA-ready sub-100ml formats including 10g sealed toothpaste and pocket sanitizers that eliminate airport security friction and luggage leaks.',
+      highlights: ['10g sealed toothpaste', '5x portable mist sanitizers', 'Reusable cutlery set'],
     },
     {
       icon: MessageCircle,
       title: 'Direct WhatsApp Concierge',
-      tagline: 'No Complex Checkout Friction',
-      description:
+      tagline: 'No Complex Checkout',
+      mobileDescription:
         'Skip lengthy checkout forms and payment gateways. Chat directly with our team on WhatsApp to confirm delivery availability, ask questions about kit items, or place corporate and group travel enquiries.',
-      highlights: ['Personal customer response', 'Quick dispatch tracking', 'Corporate & group enquiry support'],
+      desktopDescription:
+        'Skip lengthy checkout forms. Chat directly on WhatsApp to confirm pin-code dispatch, ask questions, or request bulk travel packs.',
+      highlights: ['Personal human response', 'Quick dispatch tracking', 'Corporate & bulk support'],
     },
   ];
 
@@ -48,7 +56,7 @@ export const BenefitsSection: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-20">
+        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
           <span className="text-[11px] font-mono font-bold uppercase tracking-[0.2em] text-[#4F75FF] block mb-3">
             WHY CHOOSE TRALIBER
           </span>
@@ -61,8 +69,10 @@ export const BenefitsSection: React.FC = () => {
           </p>
         </div>
 
-        {/* Benefits Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+        {/* ============================================================== */}
+        {/* MOBILE / TABLET LAYOUT (Remains exactly the same style)        */}
+        {/* ============================================================== */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:hidden">
           {benefits.map((benefit, index) => {
             const Icon = benefit.icon;
             return (
@@ -81,7 +91,7 @@ export const BenefitsSection: React.FC = () => {
                     {benefit.title}
                   </h3>
                   <p className="text-sm text-[#22213A]/75 leading-relaxed mb-6 font-normal">
-                    {benefit.description}
+                    {benefit.mobileDescription}
                   </p>
                 </div>
 
@@ -89,6 +99,53 @@ export const BenefitsSection: React.FC = () => {
                   {benefit.highlights.map((item, hIdx) => (
                     <div key={hIdx} className="flex items-center gap-2 text-xs font-medium text-[#22213A]/80">
                       <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                      <span>{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* ============================================================== */}
+        {/* DESKTOP LAYOUT (Redesigned: Small, Sleek, 1 Single Row of 4)   */}
+        {/* ============================================================== */}
+        <div className="hidden lg:grid lg:grid-cols-4 lg:gap-5 items-stretch">
+          {benefits.map((benefit, index) => {
+            const Icon = benefit.icon;
+            return (
+              <div
+                key={index}
+                className="bg-white rounded-2xl p-5 xl:p-6 border border-[#22213A]/[0.08] shadow-[0_4px_20px_rgba(30,27,75,0.02)] hover:shadow-[0_12px_32px_rgba(30,27,75,0.06)] hover:-translate-y-1 hover:border-[#8657F6]/30 transition-all duration-300 flex flex-col justify-between group"
+              >
+                <div>
+                  {/* Compact Icon */}
+                  <div className="w-10 h-10 rounded-xl bg-[#EEF2FF] text-[#4F75FF] group-hover:bg-[#4F75FF] group-hover:text-white transition-colors duration-200 flex items-center justify-center mb-3.5">
+                    <Icon className="w-5 h-5" />
+                  </div>
+
+                  {/* Tagline */}
+                  <span className="text-[10px] font-mono font-bold text-[#8657F6] uppercase tracking-wider block mb-1">
+                    {benefit.tagline}
+                  </span>
+
+                  {/* Small Heading */}
+                  <h3 className="text-[15px] xl:text-base font-bold text-[#1E1B4B] tracking-tight mb-2 leading-snug">
+                    {benefit.title}
+                  </h3>
+
+                  {/* Compact Description */}
+                  <p className="text-xs text-[#22213A]/70 leading-relaxed mb-4 font-normal">
+                    {benefit.desktopDescription}
+                  </p>
+                </div>
+
+                {/* Compact Highlights */}
+                <div className="pt-3 border-t border-[#22213A]/[0.06] space-y-1.5">
+                  {benefit.highlights.map((item, hIdx) => (
+                    <div key={hIdx} className="flex items-start gap-1.5 text-[11px] font-medium text-[#22213A]/80 leading-tight">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5" />
                       <span>{item}</span>
                     </div>
                   ))}

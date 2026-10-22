@@ -3,8 +3,10 @@
 import { WHATSAPP_CONFIG } from '@/data/traliber-kit';
 import { Menu, MessageCircle, X } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
+import { useTraliberStore } from '@/context/TraliberStore';
 
 export const Navbar: React.FC = () => {
+  const { trackWhatsAppClick } = useTraliberStore();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -84,6 +86,7 @@ export const Navbar: React.FC = () => {
         <div className="hidden sm:flex items-center gap-3">
           <a
             href={WHATSAPP_CONFIG.getLink()}
+            onClick={() => trackWhatsAppClick('Navbar WhatsApp CTA (Desktop)')}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#1E1B4B] hover:bg-[#2C2860] text-white text-xs font-bold shadow-md hover:shadow-lg transition-all"
@@ -159,6 +162,10 @@ export const Navbar: React.FC = () => {
           <div className="pt-2">
             <a
               href={WHATSAPP_CONFIG.getLink()}
+              onClick={() => {
+                trackWhatsAppClick('Navbar WhatsApp CTA (Mobile)');
+                setMobileMenuOpen(false);
+              }}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full flex items-center justify-center gap-2 py-3 rounded-full bg-[#1E1B4B] text-white font-bold text-sm shadow-md"

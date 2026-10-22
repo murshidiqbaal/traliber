@@ -3,8 +3,11 @@
 import { WHATSAPP_CONFIG } from '@/data/traliber-kit';
 import { MessageCircle, ShieldCheck } from 'lucide-react';
 import React from 'react';
+import { useTraliberStore } from '@/context/TraliberStore';
 
 export const Footer: React.FC = () => {
+  const { trackWhatsAppClick } = useTraliberStore();
+
   return (
     <footer className="bg-[#22213A] text-white pt-16 pb-12 border-t border-white/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -27,6 +30,7 @@ export const Footer: React.FC = () => {
             <div className="pt-2 flex items-center gap-3">
               <a
                 href={WHATSAPP_CONFIG.getLink()}
+                onClick={() => trackWhatsAppClick('Footer Concierge CTA')}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#25D366] text-white font-bold text-xs shadow hover:opacity-90"

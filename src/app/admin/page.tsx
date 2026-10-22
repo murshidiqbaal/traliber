@@ -1,7 +1,7 @@
 'use client';
 
 import { EDITORIAL_PRODUCTS } from '@/components/EditorialStorytellingSection';
-import { useTraliberStore } from '@/context/TraliberStore';
+import { useTraliberStore, OrderItem } from '@/context/TraliberStore';
 import {
   ArrowLeft,
   Check,
@@ -20,7 +20,10 @@ import {
   Trash2,
   Type,
   Upload,
-  Users
+  Users,
+  ExternalLink,
+  MousePointerClick,
+  RefreshCw,
 } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -43,6 +46,11 @@ export default function AdminPage() {
     deleteTestimonial,
     orders,
     analytics,
+    addOrder,
+    deleteOrder,
+    clearOrders,
+    clearAnalytics,
+    trackWhatsAppClick,
   } = useTraliberStore();
 
   const [activeTab, setActiveTab] = useState<
@@ -76,6 +84,15 @@ export default function AdminPage() {
   const [newReviewLocation, setNewReviewLocation] = useState('');
   const [newReviewRating, setNewReviewRating] = useState(5);
   const [newReviewComment, setNewReviewComment] = useState('');
+
+  // Orders Add Form State
+  const [showAddOrderForm, setShowAddOrderForm] = useState(false);
+  const [newOrderCustomer, setNewOrderCustomer] = useState('');
+  const [newOrderPhone, setNewOrderPhone] = useState('');
+  const [newOrderBundle, setNewOrderBundle] = useState('Solo Explorer Kit (₹199)');
+  const [newOrderDestination, setNewOrderDestination] = useState('');
+  const [newOrderAmount, setNewOrderAmount] = useState('₹199');
+  const [newOrderStatus, setNewOrderStatus] = useState<'Pending' | 'Confirmed' | 'Shipped' | 'Delivered'>('Confirmed');
 
   // Keyboard shortcut listener: Ctrl + Shift + A or Escape to return to homepage
   useEffect(() => {
@@ -119,8 +136,14 @@ export default function AdminPage() {
   const mediaItems = [
     {
       id: 'hero_background',
-      name: 'Hero Section Alpine Background',
+      name: 'Hero Section Alpine Background (Desktop)',
       defaultImg: '/images/hero-alpine-mountain.webp',
+      category: 'Page Backgrounds',
+    },
+    {
+      id: 'hero_background_mobile',
+      name: 'Hero Section Sunrise Background (Mobile)',
+      defaultImg: '/images/hero-alpine-mobile.webp',
       category: 'Page Backgrounds',
     },
     {
@@ -198,7 +221,7 @@ export default function AdminPage() {
     {
       id: 'founder_photo',
       name: 'Founder Portrait (Aldrino Francis)',
-      defaultImg: '/images/founder.webp',
+      defaultImg: '/images/aldrino.jpeg',
       category: 'Brand Assets',
     },
   ];
@@ -1205,66 +1228,370 @@ export default function AdminPage() {
             {/* TAB 7: INQUIRIES & ORDERS */}
             {activeTab === 'orders' && (
               <div className="space-y-6">
-                <div className="bg-white rounded-3xl p-6 sm:p-8 border border-[#8657F6]/15 shadow-sm space-y-2">
-                  <div className="inline-flex items-center gap-2 text-xs font-bold text-[#8657F6]">
-                    <ShoppingBag className="w-4 h-4" />
-                    Orders &amp; WhatsApp Inquiries
+                {/* Header with Quick Actions */}
+                <div className="bg-white rounded-3xl p-6 sm:p-8 border border-[#8657F6]/15 shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                  <div className="space-y-1.5">
+                    <div className="inline-flex items-center gap-2 text-xs font-bold text-[#8657F6]">
+                      <ShoppingBag className="w-4 h-4" />
+                      Verified Analytics &amp; WhatsApp Redirection
+                    </div>
+                    <h2 className="text-2xl font-extrabold tracking-tight">Customer Clicks &amp; Orders</h2>
+                    <p className="text-xs sm:text-sm text-[#22213A]/70">
+                      Real-time log of customer visits, live WhatsApp CTA clicks, button redirection telemetry, and customer orders.
+                    </p>
                   </div>
-                  <h2 className="text-2xl font-extrabold tracking-tight">Recent Customer Activity</h2>
-                  <p className="text-xs sm:text-sm text-[#22213A]/70">
-                    Real-time log of customer enquiries, WhatsApp dispatch requests, and interaction analytics.
-                  </p>
+
+                  <div className="flex items-center gap-2.5 shrink-0 flex-wrap">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        if (confirm('Reset real-time click and visit analytics counters?')) {
+                          clearAnalytics();
+                          showNotification('Analytics counters reset to zero.');
+                        }
+                      }}
+                      className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl border border-gray-200 text-xs font-semibold text-gray-600 hover:text-[#22213A] hover:bg-gray-100 transition-all cursor-pointer"
+                    >
+                      <RefreshCw className="w-3.5 h-3.5" />
+                      <span>Reset Analytics</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => setShowAddOrderForm(!showAddOrderForm)}
+                      className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#1E1B4B] hover:bg-[#8657F6] text-white text-xs font-bold transition-all shadow-sm cursor-pointer"
+                    >
+                      <Plus className="w-3.5 h-3.5" />
+                      <span>Log Customer Order</span>
+                    </button>
+                  </div>
                 </div>
 
+                {/* 4 Metric KPI Cards */}
                 <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
                   <div className="bg-white rounded-2xl p-5 border border-[#8657F6]/15 shadow-sm">
-                    <span className="text-3xs font-bold uppercase text-gray-500">Total Visits</span>
+                    <span className="text-3xs font-bold uppercase text-gray-500">Live Website Visits</span>
                     <p className="text-2xl font-extrabold text-[#22213A] mt-1">{analytics.pageViews}</p>
+                    <span className="text-[10px] text-gray-400 mt-0.5 block">Unique page impressions</span>
                   </div>
                   <div className="bg-white rounded-2xl p-5 border border-[#8657F6]/15 shadow-sm">
                     <span className="text-3xs font-bold uppercase text-gray-500">Unpack Scrolls</span>
                     <p className="text-2xl font-extrabold text-[#8657F6] mt-1">{analytics.unpackScrolls}</p>
+                    <span className="text-[10px] text-gray-400 mt-0.5 block">Scroll animation triggers</span>
                   </div>
                   <div className="bg-white rounded-2xl p-5 border border-[#8657F6]/15 shadow-sm">
-                    <span className="text-3xs font-bold uppercase text-gray-500">WhatsApp Clicks</span>
+                    <span className="text-3xs font-bold uppercase text-gray-500">WhatsApp CTA Clicks</span>
                     <p className="text-2xl font-extrabold text-[#25D366] mt-1">{analytics.whatsappClicks}</p>
+                    <span className="text-[10px] text-gray-400 mt-0.5 block">Total button redirections</span>
                   </div>
                   <div className="bg-white rounded-2xl p-5 border border-[#8657F6]/15 shadow-sm">
-                    <span className="text-3xs font-bold uppercase text-gray-500">Product Inspects</span>
+                    <span className="text-3xs font-bold uppercase text-gray-500">Product Inquiries</span>
                     <p className="text-2xl font-extrabold text-[#55C7DE] mt-1">{analytics.productInspects}</p>
+                    <span className="text-[10px] text-gray-400 mt-0.5 block">Item inspect actions</span>
                   </div>
                 </div>
 
-                <div className="bg-white rounded-3xl p-6 border border-[#8657F6]/15 shadow-sm space-y-4">
-                  <h3 className="text-sm font-bold text-[#22213A]">Recent Order &amp; WhatsApp Requests</h3>
-                  <div className="overflow-x-auto">
-                    <table className="w-full text-left text-xs">
-                      <thead>
-                        <tr className="border-b border-gray-200 text-gray-400 uppercase text-3xs font-bold">
-                          <th className="pb-3">Order ID</th>
-                          <th className="pb-3">Customer</th>
-                          <th className="pb-3">Bundle</th>
-                          <th className="pb-3">Destination</th>
-                          <th className="pb-3">Status</th>
-                        </tr>
-                      </thead>
-                      <tbody className="divide-y divide-gray-100">
-                        {orders.map((ord) => (
-                          <tr key={ord.id} className="hover:bg-gray-50">
-                            <td className="py-3 font-mono font-bold text-[#8657F6]">{ord.id}</td>
-                            <td className="py-3 font-semibold text-[#22213A]">{ord.customerName}</td>
-                            <td className="py-3 text-gray-600">{ord.bundle}</td>
-                            <td className="py-3 text-gray-500">{ord.destination}</td>
-                            <td className="py-3">
-                              <span className="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-bold text-3xs">
-                                {ord.status}
-                              </span>
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
+                {/* SECTION 1: LIVE CLICK & REDIRECTION TELEMETRY STREAM */}
+                <div className="bg-white rounded-3xl p-6 sm:p-7 border border-[#8657F6]/15 shadow-sm space-y-4">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <MousePointerClick className="w-4 h-4 text-[#4F75FF]" />
+                        <h3 className="text-sm font-bold text-[#22213A]">
+                          Live Click &amp; WhatsApp Redirection Stream
+                        </h3>
+                        <span className="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-3xs font-bold">
+                          Real-time
+                        </span>
+                      </div>
+                      <p className="text-xs text-gray-500 mt-0.5">
+                        Logs the exact button clicked by visitors, the page origin, and the WhatsApp chat destination.
+                      </p>
+                    </div>
+
+                    <button
+                      type="button"
+                      onClick={() => {
+                        trackWhatsAppClick({
+                          buttonLocation: 'Admin Test Click',
+                          eventType: 'whatsapp_click',
+                          productName: 'Travel Kit',
+                        });
+                        showNotification('Test click event recorded.');
+                      }}
+                      className="text-xs font-semibold text-[#4F75FF] hover:underline cursor-pointer"
+                    >
+                      + Simulate Test Click
+                    </button>
                   </div>
+
+                  {analytics.recentClicks && analytics.recentClicks.length > 0 ? (
+                    <div className="overflow-x-auto">
+                      <table className="w-full text-left text-xs">
+                        <thead>
+                          <tr className="border-b border-gray-200 text-gray-400 uppercase text-3xs font-bold">
+                            <th className="pb-3">Button / CTA Source</th>
+                            <th className="pb-3">Redirection Destination</th>
+                            <th className="pb-3">Page Origin</th>
+                            <th className="pb-3">Recorded Time</th>
+                            <th className="pb-3 text-right">Event Status</th>
+                          </tr>
+                        </thead>
+                        <tbody className="divide-y divide-gray-100">
+                          {analytics.recentClicks.map((clk) => (
+                            <tr key={clk.id} className="hover:bg-gray-50 transition-colors">
+                              <td className="py-3 font-semibold text-[#1E1B4B]">
+                                <div className="flex items-center gap-1.5">
+                                  <span className="w-2 h-2 rounded-full bg-[#25D366]" />
+                                  <span>{clk.label}</span>
+                                </div>
+                              </td>
+                              <td className="py-3 font-mono text-gray-600">
+                                <span className="inline-flex items-center gap-1 text-[#25D366]">
+                                  <span>{clk.destination || 'WhatsApp (+91 89210 19251)'}</span>
+                                  <ExternalLink className="w-3 h-3" />
+                                </span>
+                              </td>
+                              <td className="py-3 font-mono text-gray-500">{clk.pagePath || '/'}</td>
+                              <td className="py-3 text-gray-500">{clk.timestamp}</td>
+                              <td className="py-3 text-right">
+                                <span className="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 font-bold text-3xs border border-emerald-200">
+                                  Redirected
+                                </span>
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  ) : (
+                    <div className="p-8 text-center rounded-2xl bg-[#F8F7FC] border border-dashed border-gray-200 space-y-2">
+                      <MousePointerClick className="w-7 h-7 text-gray-400 mx-auto" />
+                      <p className="text-xs font-bold text-[#22213A]/70">No Clicks Recorded Yet</p>
+                      <p className="text-3xs text-gray-400 max-w-sm mx-auto">
+                        When visitors click any WhatsApp order button, concierge float, or product inquiry on your site, each redirection will appear here in real time.
+                      </p>
+                    </div>
+                  )}
+                </div>
+
+                {/* SECTION 2: MANUAL ORDER LOGGING FORM */}
+                {showAddOrderForm && (
+                  <div className="bg-white rounded-3xl p-6 border border-[#8657F6]/30 shadow-md space-y-4">
+                    <div className="flex items-center justify-between">
+                      <h3 className="text-sm font-bold text-[#22213A]">Log Customer Order</h3>
+                      <button
+                        type="button"
+                        onClick={() => setShowAddOrderForm(false)}
+                        className="text-gray-400 hover:text-gray-600 text-xs"
+                      >
+                        ✕ Close
+                      </button>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                      <div>
+                        <label className="text-3xs font-bold uppercase text-gray-500">Customer Name *</label>
+                        <input
+                          type="text"
+                          required
+                          value={newOrderCustomer}
+                          onChange={(e) => setNewOrderCustomer(e.target.value)}
+                          placeholder="e.g. Rahul Verma"
+                          className="w-full px-3 py-2 text-xs rounded-xl bg-[#F8F7FC] border border-gray-200 focus:outline-none focus:border-[#4F75FF]"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="text-3xs font-bold uppercase text-gray-500">Phone Number *</label>
+                        <input
+                          type="text"
+                          required
+                          value={newOrderPhone}
+                          onChange={(e) => setNewOrderPhone(e.target.value)}
+                          placeholder="e.g. +91 98765 43210"
+                          className="w-full px-3 py-2 text-xs rounded-xl bg-[#F8F7FC] border border-gray-200 focus:outline-none focus:border-[#4F75FF]"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="text-3xs font-bold uppercase text-gray-500">Kit Bundle</label>
+                        <input
+                          type="text"
+                          value={newOrderBundle}
+                          onChange={(e) => setNewOrderBundle(e.target.value)}
+                          placeholder="Solo Explorer Kit (₹199)"
+                          className="w-full px-3 py-2 text-xs rounded-xl bg-[#F8F7FC] border border-gray-200 focus:outline-none focus:border-[#4F75FF]"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="text-3xs font-bold uppercase text-gray-500">Destination / City</label>
+                        <input
+                          type="text"
+                          value={newOrderDestination}
+                          onChange={(e) => setNewOrderDestination(e.target.value)}
+                          placeholder="e.g. Mumbai, Maharashtra"
+                          className="w-full px-3 py-2 text-xs rounded-xl bg-[#F8F7FC] border border-gray-200 focus:outline-none focus:border-[#4F75FF]"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="text-3xs font-bold uppercase text-gray-500">Amount</label>
+                        <input
+                          type="text"
+                          value={newOrderAmount}
+                          onChange={(e) => setNewOrderAmount(e.target.value)}
+                          placeholder="₹199"
+                          className="w-full px-3 py-2 text-xs rounded-xl bg-[#F8F7FC] border border-gray-200 focus:outline-none focus:border-[#4F75FF]"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="text-3xs font-bold uppercase text-gray-500">Order Status</label>
+                        <select
+                          value={newOrderStatus}
+                          onChange={(e) => setNewOrderStatus(e.target.value as OrderItem['status'])}
+                          className="w-full px-3 py-2 text-xs rounded-xl bg-[#F8F7FC] border border-gray-200 focus:outline-none focus:border-[#4F75FF]"
+                        >
+                          <option value="Confirmed">Confirmed</option>
+                          <option value="Pending">Pending</option>
+                          <option value="Shipped">Shipped</option>
+                          <option value="Delivered">Delivered</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div className="flex justify-end gap-2 pt-2">
+                      <button
+                        type="button"
+                        onClick={() => setShowAddOrderForm(false)}
+                        className="px-4 py-2 text-xs text-gray-500 hover:bg-gray-100 rounded-lg cursor-pointer"
+                      >
+                        Cancel
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          if (!newOrderCustomer.trim()) {
+                            alert('Please enter a customer name.');
+                            return;
+                          }
+                          addOrder({
+                            customerName: newOrderCustomer.trim(),
+                            phone: newOrderPhone.trim() || 'WhatsApp Customer',
+                            bundle: newOrderBundle.trim() || 'Travel Essentials Kit',
+                            destination: newOrderDestination.trim() || 'India',
+                            amount: newOrderAmount.trim() || '₹199',
+                            status: newOrderStatus,
+                            source: 'Direct Chat',
+                          });
+                          setNewOrderCustomer('');
+                          setNewOrderPhone('');
+                          setNewOrderDestination('');
+                          setShowAddOrderForm(false);
+                          showNotification('Customer order logged successfully.');
+                        }}
+                        className="px-5 py-2 text-xs font-bold bg-[#1E1B4B] hover:bg-[#8657F6] text-white rounded-lg transition-all cursor-pointer shadow-sm"
+                      >
+                        Save Order Record
+                      </button>
+                    </div>
+                  </div>
+                )}
+
+                {/* SECTION 3: VERIFIED CUSTOMER ORDERS LIST */}
+                <div className="bg-white rounded-3xl p-6 sm:p-7 border border-[#8657F6]/15 shadow-sm space-y-4">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h3 className="text-sm font-bold text-[#22213A]">Customer Orders ({orders.length})</h3>
+                      <p className="text-xs text-gray-500 mt-0.5">
+                        Log of confirmed orders and WhatsApp inquiries. All dummy mock records have been removed.
+                      </p>
+                    </div>
+
+                    {orders.length > 0 && (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          if (confirm('Clear all customer orders?')) {
+                            clearOrders();
+                            showNotification('All orders cleared.');
+                          }
+                        }}
+                        className="text-xs font-semibold text-rose-500 hover:underline cursor-pointer"
+                      >
+                        Clear All Orders
+                      </button>
+                    )}
+                  </div>
+
+                  {orders.length > 0 ? (
+                    <div className="overflow-x-auto">
+                      <table className="w-full text-left text-xs">
+                        <thead>
+                          <tr className="border-b border-gray-200 text-gray-400 uppercase text-3xs font-bold">
+                            <th className="pb-3">Order ID</th>
+                            <th className="pb-3">Customer</th>
+                            <th className="pb-3">Phone</th>
+                            <th className="pb-3">Bundle</th>
+                            <th className="pb-3">Destination</th>
+                            <th className="pb-3">Amount</th>
+                            <th className="pb-3">Status</th>
+                            <th className="pb-3 text-right">Action</th>
+                          </tr>
+                        </thead>
+                        <tbody className="divide-y divide-gray-100">
+                          {orders.map((ord) => (
+                            <tr key={ord.id} className="hover:bg-gray-50">
+                              <td className="py-3 font-mono font-bold text-[#8657F6]">{ord.id}</td>
+                              <td className="py-3 font-semibold text-[#22213A]">{ord.customerName}</td>
+                              <td className="py-3 font-mono text-gray-500">{ord.phone}</td>
+                              <td className="py-3 text-gray-600">{ord.bundle}</td>
+                              <td className="py-3 text-gray-500">{ord.destination}</td>
+                              <td className="py-3 font-bold text-[#1E1B4B]">{ord.amount}</td>
+                              <td className="py-3">
+                                <span
+                                  className={`px-2 py-0.5 rounded-full font-bold text-3xs ${
+                                    ord.status === 'Delivered'
+                                      ? 'bg-blue-100 text-blue-800'
+                                      : ord.status === 'Shipped'
+                                      ? 'bg-amber-100 text-amber-800'
+                                      : ord.status === 'Confirmed'
+                                      ? 'bg-emerald-100 text-emerald-800'
+                                      : 'bg-gray-100 text-gray-800'
+                                  }`}
+                                >
+                                  {ord.status}
+                                </span>
+                              </td>
+                              <td className="py-3 text-right">
+                                <button
+                                  type="button"
+                                  onClick={() => {
+                                    deleteOrder(ord.id);
+                                    showNotification(`Deleted order ${ord.id}`);
+                                  }}
+                                  className="p-1.5 text-gray-400 hover:text-rose-500 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer"
+                                  title="Delete order record"
+                                >
+                                  <Trash2 className="w-3.5 h-3.5" />
+                                </button>
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  ) : (
+                    <div className="p-8 text-center rounded-2xl bg-[#F8F7FC] border border-dashed border-gray-200 space-y-2">
+                      <ShoppingBag className="w-7 h-7 text-gray-400 mx-auto" />
+                      <p className="text-xs font-bold text-[#22213A]/70">No Customer Orders Yet</p>
+                      <p className="text-3xs text-gray-400 max-w-sm mx-auto">
+                        Dummy sample orders have been purged. When you confirm orders with customers on WhatsApp, click &quot;Log Customer Order&quot; above to record them.
+                      </p>
+                    </div>
+                  )}
                 </div>
               </div>
             )}

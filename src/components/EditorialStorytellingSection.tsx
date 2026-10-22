@@ -1,10 +1,10 @@
 'use client';
 
-import React, { useState, useRef, useEffect } from 'react';
-import { motion, useScroll, useReducedMotion } from 'framer-motion';
-import { WHATSAPP_CONFIG } from '@/data/traliber-kit';
 import { useTraliberStore } from '@/context/TraliberStore';
+import { WHATSAPP_CONFIG } from '@/data/traliber-kit';
+import { motion, useReducedMotion, useScroll } from 'framer-motion';
 import { MessageCircle } from 'lucide-react';
+import React, { useEffect, useRef, useState } from 'react';
 
 export interface EditorialProduct {
   id: string;
@@ -180,7 +180,7 @@ export const EditorialStorytellingSection: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const shouldReduceMotion = useReducedMotion();
-  const { getProductImage, getCustomText } = useTraliberStore();
+  const { getProductImage, getCustomText, trackWhatsAppClick } = useTraliberStore();
 
   const count = EDITORIAL_PRODUCTS.length;
 
@@ -227,17 +227,15 @@ export const EditorialStorytellingSection: React.FC = () => {
     <section
       id="kit-inventory"
       ref={containerRef}
-      className={`relative w-full ${
-        shouldReduceMotion ? 'h-auto py-16' : 'h-[500vh]'
-      } bg-[#F8F7FC] border-y border-[#8657F6]/10`}
+      className={`relative w-full ${shouldReduceMotion ? 'h-auto py-16' : 'h-[500vh]'
+        } bg-[#F8F7FC] border-y border-[#8657F6]/10`}
     >
       {/* Sticky Frame: Pins in the center of the viewport while scrolling */}
       <div
-        className={`${
-          shouldReduceMotion
+        className={`${shouldReduceMotion
             ? 'relative w-full'
             : 'sticky top-0 h-screen w-full overflow-hidden'
-        } flex items-center justify-center px-4 sm:px-6 lg:px-8`}
+          } flex items-center justify-center px-4 sm:px-6 lg:px-8`}
       >
         <div className="max-w-6xl w-full mx-auto">
           {/* THE EXACT EDITORIAL FRAME: Left Image Card + Right Narrative */}
@@ -290,6 +288,7 @@ export const EditorialStorytellingSection: React.FC = () => {
                 <div className="pt-1">
                   <a
                     href={getWhatsAppItemLink(currentItem.name)}
+                    onClick={() => trackWhatsAppClick(`Editorial Story: ${currentItem.name}`)}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#22213A] hover:bg-[#1a192e] text-white transition-all text-xs font-bold shadow-sm hover:shadow-md active:scale-98"
@@ -304,12 +303,12 @@ export const EditorialStorytellingSection: React.FC = () => {
 
           {/* Minimal Bottom Chapter Dots Indicator */}
           <div className="mt-8 flex items-center justify-between border-t border-[#8657F6]/10 pt-4">
-            <div className="flex items-center gap-2">
+            {/* <div className="flex items-center gap-2">
               <span className="text-xs font-mono font-bold text-[#8657F6]">
                 {String(currentIndex + 1).padStart(2, '0')} / {String(count).padStart(2, '0')}
               </span>
               <span className="text-xs text-[#22213A]/50">· Scroll to explore all essentials</span>
-            </div>
+            </div> */}
 
             {/* Interactive Dots for direct jumping */}
             <div className="flex items-center gap-1.5">
@@ -317,11 +316,10 @@ export const EditorialStorytellingSection: React.FC = () => {
                 <button
                   key={prod.id}
                   onClick={() => handleSelectIndex(idx)}
-                  className={`h-2 rounded-full transition-all duration-300 ${
-                    idx === currentIndex
+                  className={`h-2 rounded-full transition-all duration-300 ${idx === currentIndex
                       ? 'w-6 bg-[#8657F6]'
                       : 'w-2 bg-[#22213A]/15 hover:bg-[#8657F6]/50'
-                  }`}
+                    }`}
                   aria-label={`Go to ${prod.name}`}
                   title={prod.name}
                 />

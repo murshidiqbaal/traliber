@@ -53,7 +53,7 @@ export default function AboutPage() {
       name: 'Traliber',
       url: siteUrl,
     },
-    image: `${siteUrl}/images/founder.webp`,
+    image: `${siteUrl}/images/aldrino.jpeg`,
     description:
       'Founder and product architect at Traliber, focused on creating thoughtful travel essentials and hygiene kits.',
   };
@@ -105,7 +105,7 @@ export default function AboutPage() {
             <div className="lg:col-span-5 flex justify-center">
               <div className="w-full max-w-sm aspect-[4/5] rounded-2xl overflow-hidden bg-[#F8F7FC] border border-[#22213A]/[0.06] shadow-md">
                 <img
-                  src="/images/founder.webp"
+                  src="/images/aldrino.jpeg"
                   alt="Aldrino Francis, Founder & Product Architect of Traliber"
                   className="w-full h-full object-cover object-top"
                   loading="lazy"

@@ -7,7 +7,7 @@ import { WHATSAPP_CONFIG } from '@/data/traliber-kit';
 import { useTraliberStore } from '@/context/TraliberStore';
 
 export const FounderSection: React.FC = () => {
-  const { getCustomText } = useTraliberStore();
+  const { getCustomText, getProductImage, trackWhatsAppClick } = useTraliberStore();
 
   const founderName = getCustomText('founder_name', 'Aldrino Francis');
   const founderTitle = getCustomText('founder_title', 'Founder & Product Architect');
@@ -75,7 +75,7 @@ export const FounderSection: React.FC = () => {
           >
             <div className="w-full rounded-[22px] overflow-hidden border border-[#22213A]/[0.08] shadow-[0_8px_24px_rgba(30,27,75,0.04)] bg-[#F8F7FC] aspect-[4/5] relative">
               <img
-                src="/images/founder.webp"
+                src={getProductImage('founder_photo', '/images/aldrino.jpeg')}
                 alt={`${founderName} - ${founderTitle}`}
                 className="w-full h-full object-cover object-top"
                 loading="lazy"
@@ -168,6 +168,7 @@ export const FounderSection: React.FC = () => {
           >
             <a
               href={whatsappHref}
+              onClick={() => trackWhatsAppClick('Founder Section Chat CTA (Mobile)')}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full min-h-[48px] px-6 py-3.5 rounded-full bg-[#1E1B4B] hover:bg-[#2C2860] active:scale-[0.99] text-white text-xs font-semibold shadow-md transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer"
@@ -196,7 +197,7 @@ export const FounderSection: React.FC = () => {
           >
             <div className="rounded-3xl overflow-hidden border border-[#22213A]/[0.08] shadow-[0_8px_30px_rgba(30,27,75,0.04)] bg-[#F8F7FC] aspect-[4/5] relative">
               <img
-                src="/images/founder.webp"
+                src={getProductImage('founder_photo', '/images/aldrino.jpeg')}
                 alt={`${founderName} - ${founderTitle}`}
                 className="w-full h-full object-cover object-top hover:scale-[1.02] transition-transform duration-500"
               />
@@ -265,6 +266,7 @@ export const FounderSection: React.FC = () => {
 
               <a
                 href={whatsappHref}
+                onClick={() => trackWhatsAppClick('Founder Section Chat CTA (Desktop)')}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#1E1B4B] hover:bg-[#2C2860] text-white text-xs font-semibold shadow-sm transition-all duration-200 cursor-pointer"

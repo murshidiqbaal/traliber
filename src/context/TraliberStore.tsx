@@ -2,6 +2,7 @@
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabase';
+import { WHATSAPP_CONFIG } from '@/data/traliber-kit';
 
 export interface Testimonial {
   id: string;
@@ -35,18 +36,21 @@ export interface WhatsAppEventMeta {
   campaignSource?: string;
 }
 
+export interface ClickEventItem {
+  id: string;
+  label: string;
+  destination: string;
+  timestamp: string;
+  eventType?: string;
+  pagePath?: string;
+}
+
 export interface AnalyticsData {
   pageViews: number;
   unpackScrolls: number;
   whatsappClicks: number;
   productInspects: number;
-  recentClicks: Array<{
-    id: string;
-    label: string;
-    timestamp: string;
-    eventType?: string;
-    pagePath?: string;
-  }>;
+  recentClicks: ClickEventItem[];
 }
 
 interface TraliberContextType {
@@ -59,12 +63,14 @@ interface TraliberContextType {
   trackUnpackScroll: () => void;
   trackWhatsAppClick: (sourceOrMeta?: string | WhatsAppEventMeta) => void;
   trackProductInspect: (productName: string) => void;
-  addTestimonial: (t: Omit<Testimonial, 'id' | 'date'>) => void;
+  addTestimonial: (t: Omit<Testimonial, 'id' | 'date'>) => Promise<{ success: boolean; id: string; error?: unknown }>;
   updateTestimonial: (id: string, updated: Partial<Testimonial>) => void;
   deleteTestimonial: (id: string) => void;
   addOrder: (o: Omit<OrderItem, 'id' | 'createdAt'>) => void;
   updateOrderStatus: (id: string, status: OrderItem['status']) => void;
   deleteOrder: (id: string) => void;
+  clearOrders: () => void;
+  clearAnalytics: () => void;
   updateProductImage: (itemId: string, imageUrl: string) => void;
   resetProductImage: (itemId: string) => void;
   getProductImage: (itemId: string, fallback: string) => string;
@@ -125,64 +131,14 @@ const INITIAL_TESTIMONIALS: Testimonial[] = [
   },
 ];
 
-const INITIAL_ORDERS: OrderItem[] = [
-  {
-    id: 'TRL-9841',
-    customerName: 'Sophie Bennett',
-    phone: '+91 89210 19251',
-    bundle: 'Duo Journey Pack (2x Kits)',
-    destination: 'Seattle, USA',
-    amount: '$69',
-    status: 'Shipped',
-    createdAt: '2026-10-14 14:22',
-    source: 'WhatsApp Button',
-  },
-  {
-    id: 'TRL-9840',
-    customerName: 'Devon Patel',
-    phone: '+44 7700 900451',
-    bundle: 'Voyage Family Pack (4x Kits)',
-    destination: 'London, UK',
-    amount: '$129',
-    status: 'Confirmed',
-    createdAt: '2026-10-14 11:05',
-    source: 'Bundle Selector',
-  },
-  {
-    id: 'TRL-9839',
-    customerName: 'Liam O’Connor',
-    phone: '+353 87 123 4567',
-    bundle: 'Solo Explorer Kit',
-    destination: 'Dublin, Ireland',
-    amount: '$39',
-    status: 'Delivered',
-    createdAt: '2026-10-13 18:40',
-    source: 'Direct Chat',
-  },
-  {
-    id: 'TRL-9838',
-    customerName: 'Camille Laurent',
-    phone: '+33 6 12 34 56 78',
-    bundle: 'Duo Journey Pack (2x Kits)',
-    destination: 'Paris, France',
-    amount: '$69',
-    status: 'Pending',
-    createdAt: '2026-10-13 09:15',
-    source: 'WhatsApp Button',
-  },
-];
+const INITIAL_ORDERS: OrderItem[] = [];
 
 const INITIAL_ANALYTICS: AnalyticsData = {
-  pageViews: 1428,
-  unpackScrolls: 986,
-  whatsappClicks: 247,
-  productInspects: 634,
-  recentClicks: [
-    { id: 'clk-1', label: 'Order via WhatsApp (Hero)', timestamp: 'Just now' },
-    { id: 'clk-2', label: 'Order via WhatsApp (Stage 5)', timestamp: '4 mins ago' },
-    { id: 'clk-3', label: 'WhatsApp Concierge Float', timestamp: '12 mins ago' },
-    { id: 'clk-4', label: 'Bundle Selector (Duo Pack)', timestamp: '28 mins ago' },
-  ],
+  pageViews: 0,
+  unpackScrolls: 0,
+  whatsappClicks: 0,
+  productInspects: 0,
+  recentClicks: [],
 };
 
 const TraliberContext = createContext<TraliberContextType | undefined>(undefined);
@@ -201,13 +157,37 @@ export const TraliberProvider: React.FC<{ children: React.ReactNode }> = ({
   useEffect(() => {
     try {
       const storedAnalytics = localStorage.getItem('traliber_analytics');
-      if (storedAnalytics) setAnalytics(JSON.parse(storedAnalytics));
+      if (storedAnalytics) {
+        try {
+          const parsed = JSON.parse(storedAnalytics);
+          // If legacy dummy mock data exists, reset it cleanly
+          if (
+            parsed &&
+            (parsed.pageViews === 1428 ||
+              (Array.isArray(parsed.recentClicks) &&
+                parsed.recentClicks.some((c: { id?: string }) => c.id === 'clk-1')))
+          ) {
+            setAnalytics(INITIAL_ANALYTICS);
+          } else {
+            setAnalytics(parsed);
+          }
+        } catch (_) {}
+      }
 
       const storedTestimonials = localStorage.getItem('traliber_testimonials');
       if (storedTestimonials) setTestimonials(JSON.parse(storedTestimonials));
 
       const storedOrders = localStorage.getItem('traliber_orders');
-      if (storedOrders) setOrders(JSON.parse(storedOrders));
+      if (storedOrders) {
+        try {
+          const parsed = JSON.parse(storedOrders);
+          // Filter out legacy dummy orders starting with TRL-98
+          const realOrders = Array.isArray(parsed)
+            ? parsed.filter((o: OrderItem) => !o.id.startsWith('TRL-98'))
+            : [];
+          setOrders(realOrders);
+        } catch (_) {}
+      }
 
       const storedImages = localStorage.getItem('traliber_custom_images');
       if (storedImages) setCustomImages(JSON.parse(storedImages));
@@ -217,6 +197,14 @@ export const TraliberProvider: React.FC<{ children: React.ReactNode }> = ({
     } catch (e) {
       console.warn('LocalStorage load error', e);
     }
+    // Real page view tracker (client-side only, non-admin)
+    if (typeof window !== 'undefined' && !window.location.pathname.startsWith('/admin')) {
+      setAnalytics((prev) => ({
+        ...prev,
+        pageViews: (prev.pageViews || 0) + 1,
+      }));
+    }
+
     setIsLoaded(true);
 
     // Sync latest testimonials from Supabase
@@ -282,18 +270,24 @@ export const TraliberProvider: React.FC<{ children: React.ReactNode }> = ({
         : sourceOrMeta || { eventType: 'whatsapp_click', buttonLocation: 'WhatsApp Button' };
 
     const label = meta.buttonLocation || meta.productName || 'WhatsApp Enquiry';
-    const newClick = {
-      id: `clk-${Date.now()}`,
+    const now = new Date();
+    const timeFormatted = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    const dateFormatted = now.toLocaleDateString([], { month: 'short', day: 'numeric' });
+    const currentPath = typeof window !== 'undefined' ? window.location.pathname : '/';
+
+    const newClick: ClickEventItem = {
+      id: `clk-${Date.now()}-${Math.random().toString(36).substring(2, 6)}`,
       label,
-      timestamp: 'Just now',
+      destination: `WhatsApp Concierge (+91 ${WHATSAPP_CONFIG.phoneNumber})`,
+      timestamp: `${dateFormatted}, ${timeFormatted}`,
       eventType: meta.eventType || 'whatsapp_click',
-      pagePath: meta.pagePath || (typeof window !== 'undefined' ? window.location.pathname : '/'),
+      pagePath: meta.pagePath || currentPath,
     };
 
     setAnalytics((prev) => ({
       ...prev,
-      whatsappClicks: prev.whatsappClicks + 1,
-      recentClicks: [newClick, ...prev.recentClicks.slice(0, 9)],
+      whatsappClicks: (prev.whatsappClicks || 0) + 1,
+      recentClicks: [newClick, ...(prev.recentClicks || []).slice(0, 49)],
     }));
 
     // Trigger non-personal analytics event for Google Analytics or client telemetry if present
@@ -352,9 +346,16 @@ export const TraliberProvider: React.FC<{ children: React.ReactNode }> = ({
         setTestimonials((prev) =>
           prev.map((item) => (item.id === tempId ? { ...item, id: savedId } : item))
         );
+        return { success: true, id: savedId };
       }
+      if (error) {
+        console.warn('Supabase addTestimonial returned error:', error);
+        return { success: true, id: tempId, error }; // local state still updated
+      }
+      return { success: true, id: tempId };
     } catch (e) {
       console.warn('Supabase addTestimonial error:', e);
+      return { success: false, id: tempId, error: e };
     }
   };
 
@@ -406,6 +407,27 @@ export const TraliberProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const deleteOrder = (id: string) => {
     setOrders((prev) => prev.filter((o) => o.id !== id));
+  };
+
+  const clearOrders = () => {
+    setOrders([]);
+    try {
+      localStorage.setItem('traliber_orders', JSON.stringify([]));
+    } catch (_) {}
+  };
+
+  const clearAnalytics = () => {
+    const resetData: AnalyticsData = {
+      pageViews: 0,
+      unpackScrolls: 0,
+      whatsappClicks: 0,
+      productInspects: 0,
+      recentClicks: [],
+    };
+    setAnalytics(resetData);
+    try {
+      localStorage.setItem('traliber_analytics', JSON.stringify(resetData));
+    } catch (_) {}
   };
 
   // Product Image Replacement
@@ -467,6 +489,8 @@ export const TraliberProvider: React.FC<{ children: React.ReactNode }> = ({
         addOrder,
         updateOrderStatus,
         deleteOrder,
+        clearOrders,
+        clearAnalytics,
         updateProductImage,
         resetProductImage,
         getProductImage,
