@@ -5,7 +5,9 @@ import { Footer } from '@/components/Footer';
 import { WhatsAppFloat } from '@/components/WhatsAppFloat';
 import { FaqSection } from '@/components/FaqSection';
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.traliber.com';
+import { SITE_URL } from '@/lib/site';
+
+const siteUrl = SITE_URL;
 
 export const metadata: Metadata = {
   title: 'Frequently Asked Questions | Traliber Travel Essentials Kit',

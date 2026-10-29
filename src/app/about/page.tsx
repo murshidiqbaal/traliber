@@ -6,7 +6,9 @@ import { WhatsAppFloat } from '@/components/WhatsAppFloat';
 import { WHATSAPP_CONFIG } from '@/data/traliber-kit';
 import { ShieldCheck, Compass, Sparkles, MessageCircle, HeartHandshake, Eye } from 'lucide-react';
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.traliber.com';
+import { SITE_URL } from '@/lib/site';
+
+const siteUrl = SITE_URL;
 
 export const metadata: Metadata = {
   title: 'About Traliber | For a Cleaner Tomorrow',

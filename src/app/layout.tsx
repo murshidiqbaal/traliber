@@ -24,7 +24,9 @@ const caveat = Caveat({
   display: 'swap',
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.traliber.com';
+import { SITE_URL } from '@/lib/site';
+
+const siteUrl = SITE_URL;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

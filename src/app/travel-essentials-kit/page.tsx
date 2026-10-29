@@ -6,7 +6,9 @@ import { WhatsAppFloat } from '@/components/WhatsAppFloat';
 import { WHATSAPP_CONFIG, TRALIBER_KIT_ITEMS, TRALIBER_POUCH } from '@/data/traliber-kit';
 import { Check, ShieldCheck, Sparkles, MessageCircle, ArrowLeft, ArrowRight, Package, MapPin } from 'lucide-react';
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.traliber.com';
+import { SITE_URL } from '@/lib/site';
+
+const siteUrl = SITE_URL;
 
 export const metadata: Metadata = {
   title: 'Traliber Travel Essentials Kit | 10-Item Personal Care & Hygiene Kit',
