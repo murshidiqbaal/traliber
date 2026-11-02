@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { BenefitsSection } from '@/components/BenefitsSection';
 import { PricingSection } from '@/components/PricingSection';
 import { EditorialStorytellingSection } from '@/components/EditorialStorytellingSection';
@@ -10,10 +11,78 @@ import { WhatsInsideSection } from '@/components/WhatsInsideSection';
 import { FaqSection } from '@/components/FaqSection';
 import { Footer } from '@/components/Footer';
 import { WhatsAppFloat } from '@/components/WhatsAppFloat';
+import ShowcaseGallery from '@/components/ShowcaseGallery';
+import { SITE_URL } from '@/lib/site';
+
+export const metadata: Metadata = {
+  title: 'Travel Essentials Kit Online in India | Traliber',
+  description:
+    'Shop convenient travel essentials kits online with Traliber. Carry everyday travel hygiene necessities including sanitiser, wipes, toothbrushes and more in one convenient travel kit.',
+  alternates: {
+    canonical: SITE_URL,
+  },
+  openGraph: {
+    title: 'Travel Essentials Kit Online in India | Traliber',
+    description:
+      'Shop convenient travel essentials kits online with Traliber. Carry everyday travel hygiene necessities including sanitiser, wipes, toothbrushes and more in one convenient travel kit.',
+    url: SITE_URL,
+    siteName: 'Traliber',
+    locale: 'en_IN',
+    type: 'website',
+    images: [
+      {
+        url: '/images/kit-display.webp',
+        width: 1200,
+        height: 630,
+        alt: 'Traliber Travel Essentials Kit with 10 travel hygiene and personal care items',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Travel Essentials Kit Online in India | Traliber',
+    description:
+      'Shop convenient travel essentials kits online with Traliber. Carry everyday travel hygiene necessities including sanitiser, wipes, toothbrushes and more in one convenient travel kit.',
+    images: ['/images/kit-display.webp'],
+  },
+};
 
 export default function Home() {
+  const homePageSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: 'Traliber Travel Essentials Kit | Online in India',
+    url: SITE_URL,
+    description:
+      'Shop convenient travel essentials kits online with Traliber. Carry everyday travel hygiene necessities including sanitiser, wipes, toothbrushes and more in one convenient travel kit.',
+    inLanguage: 'en-IN',
+    mainEntity: {
+      '@type': 'Product',
+      name: 'Traliber Travel Essentials Kit',
+      image: `${SITE_URL}/images/kit-display.webp`,
+      description:
+        'A compact travel kit containing 10 essential personal care and hygiene items organized in a water-resistant travel pouch.',
+      brand: {
+        '@type': 'Brand',
+        name: 'Traliber',
+      },
+      offers: {
+        '@type': 'Offer',
+        price: '199',
+        priceCurrency: 'INR',
+        availability: 'https://schema.org/InStock',
+        url: `${SITE_URL}/travel-essentials-kit`,
+      },
+    },
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-[#F8F7FC] text-[#22213A] selection:bg-[#8657F6]/20 selection:text-[#22213A]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(homePageSchema) }}
+      />
+
       {/* Sticky Brand Navigation */}
       <Navbar />
 
@@ -42,7 +111,10 @@ export default function Home() {
         {/* SECTION 8: Founder story and mission */}
         <FounderSection />
 
-        {/* SECTION 9: Answer Engine Optimized FAQ Section */}
+        {/* SECTION 9: Showcase Gallery – dynamic, from Supabase */}
+        <ShowcaseGallery />
+
+        {/* SECTION 10: Answer Engine Optimized FAQ Section */}
         <FaqSection />
       </main>
 

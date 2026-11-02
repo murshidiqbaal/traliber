@@ -31,7 +31,7 @@ const siteUrl = SITE_URL;
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'Traliber Travel Essentials Kit | Compact Travel Hygiene Essentials',
+    default: 'Travel Essentials Kit Online in India | Traliber',
     template: '%s | Traliber',
   },
   description:
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
   creator: 'Traliber',
   publisher: 'Traliber',
   alternates: {
-    canonical: '/',
+    canonical: siteUrl,
   },
   openGraph: {
     title: 'Traliber Travel Essentials Kit | For a Cleaner Tomorrow',

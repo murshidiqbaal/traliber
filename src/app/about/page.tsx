@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import React from 'react';
+import Link from 'next/link';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import { WhatsAppFloat } from '@/components/WhatsAppFloat';
@@ -15,13 +16,29 @@ export const metadata: Metadata = {
   description:
     'Learn about Traliber, our brand story, and our mission to simplify personal hygiene for modern travelers on trains, flights, and road trips.',
   alternates: {
-    canonical: '/about',
+    canonical: `${SITE_URL}/about`,
   },
   openGraph: {
     title: 'About Traliber | Our Story and Mission',
     description:
       'Discover how Traliber is rethinking travel hygiene and personal care essentials for smoother journeys.',
     url: `${siteUrl}/about`,
+    type: 'website',
+    images: [
+      {
+        url: '/images/founder.webp',
+        width: 1200,
+        height: 630,
+        alt: 'About Traliber Founder and Mission',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'About Traliber | For a Cleaner Tomorrow',
+    description:
+      'Discover how Traliber is rethinking travel hygiene and personal care essentials for smoother journeys.',
+    images: ['/images/founder.webp'],
   },
 };
 
@@ -80,9 +97,9 @@ export default function AboutPage() {
           <nav aria-label="Breadcrumb" className="mb-8">
             <ol className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[#22213A]/60">
               <li>
-                <a href="/" className="hover:text-[#4F75FF] transition-colors">
+                <Link href="/" className="hover:text-[#4F75FF] transition-colors">
                   Home
-                </a>
+                </Link>
               </li>
               <li>/</li>
               <li className="text-[#1E1B4B] font-bold">About Traliber</li>

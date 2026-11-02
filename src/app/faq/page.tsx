@@ -4,10 +4,8 @@ import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import { WhatsAppFloat } from '@/components/WhatsAppFloat';
 import { FaqSection } from '@/components/FaqSection';
-
+import Link from 'next/link';
 import { SITE_URL } from '@/lib/site';
-
-const siteUrl = SITE_URL;
 
 export const metadata: Metadata = {
   title: 'Frequently Asked Questions | Traliber Travel Essentials Kit',
@@ -21,13 +19,29 @@ export const metadata: Metadata = {
     'travel kit WhatsApp order',
   ],
   alternates: {
-    canonical: '/faq',
+    canonical: `${SITE_URL}/faq`,
   },
   openGraph: {
     title: 'Frequently Asked Questions | Traliber Travel Essentials',
     description:
       'Answers to common traveler questions about the Traliber Travel Essentials Kit, items, and ordering.',
-    url: `${siteUrl}/faq`,
+    url: `${SITE_URL}/faq`,
+    type: 'website',
+    images: [
+      {
+        url: '/images/kit-display.webp',
+        width: 1200,
+        height: 630,
+        alt: 'Traliber Travel Essentials Kit FAQ',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Frequently Asked Questions | Traliber Travel Essentials Kit',
+    description:
+      'Answers to common traveler questions about the Traliber Travel Essentials Kit, items, and ordering.',
+    images: ['/images/kit-display.webp'],
   },
 };
 
@@ -40,13 +54,13 @@ export default function FaqPage() {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: siteUrl,
+        item: SITE_URL,
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'FAQ',
-        item: `${siteUrl}/faq`,
+        item: `${SITE_URL}/faq`,
       },
     ],
   };
@@ -66,9 +80,9 @@ export default function FaqPage() {
           <nav aria-label="Breadcrumb" className="mb-4">
             <ol className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[#22213A]/60">
               <li>
-                <a href="/" className="hover:text-[#4F75FF] transition-colors">
+                <Link href="/" className="hover:text-[#4F75FF] transition-colors">
                   Home
-                </a>
+                </Link>
               </li>
               <li>/</li>
               <li className="text-[#1E1B4B] font-bold">Frequently Asked Questions</li>
@@ -76,8 +90,8 @@ export default function FaqPage() {
           </nav>
         </div>
 
-        {/* Dedicated FAQ Component with Schema */}
-        <FaqSection />
+        {/* Dedicated FAQ Component with H1 and FAQPage Schema */}
+        <FaqSection titleAs="h1" includeSchema={true} />
       </main>
 
       <Footer />

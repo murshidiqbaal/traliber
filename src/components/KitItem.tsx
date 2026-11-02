@@ -67,7 +67,7 @@ export const KitItem: React.FC<KitItemProps> = ({
         <div className="relative p-2 transition-transform duration-300 group-hover:scale-105">
           <img
             src={imageSrc}
-            alt={item.name}
+            alt={`Traliber ${item.name} - Travel Essentials Kit Item`}
             className="w-24 sm:w-28 md:w-36 h-auto drop-shadow-md select-none pointer-events-none"
             loading="eager"
           />
@@ -105,7 +105,7 @@ export const KitItem: React.FC<KitItemProps> = ({
 
         <img
           src={imageSrc}
-          alt={item.name}
+          alt={`Traliber ${item.name} - Travel Essentials Kit Item`}
           className={`w-20 sm:w-24 md:w-28 lg:w-32 max-h-24 md:max-h-28 h-auto select-none pointer-events-none object-contain transition-all duration-300 ${
             isHovered ? 'drop-shadow-2xl' : 'drop-shadow-md'
           }`}

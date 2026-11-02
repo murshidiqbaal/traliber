@@ -2,6 +2,7 @@
 
 import { WHATSAPP_CONFIG } from '@/data/traliber-kit';
 import { MessageCircle, ShieldCheck } from 'lucide-react';
+import Link from 'next/link';
 import React from 'react';
 import { useTraliberStore } from '@/context/TraliberStore';
 
@@ -17,15 +18,17 @@ export const Footer: React.FC = () => {
             <div className="flex items-center gap-3">
               <img
                 src="/images/logo.webp"
-                alt="Traliber Logo"
+                alt="Traliber Travel Essentials Kit Logo"
                 className="h-10 w-10 rounded-xl object-cover shadow-md"
+                width={40}
+                height={40}
               />
               <span className="font-bold text-xl tracking-wider text-white">
                 TRALIBER
               </span>
             </div>
             <p className="text-xs text-gray-400 max-w-sm leading-relaxed">
-              Traliber redefines personal travel care. Thoughtfully packed essentials designed to eliminate airport friction, liquid leaks, and packing stress for modern wanderers.
+              Traliber provides thoughtfully curated travel essentials and personal care kits for modern wanderers. For a cleaner, safer, and more comfortable tomorrow.
             </p>
             <div className="pt-2 flex items-center gap-3">
               <a
@@ -33,7 +36,7 @@ export const Footer: React.FC = () => {
                 onClick={() => trackWhatsAppClick('Footer Concierge CTA')}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#25D366] text-white font-bold text-xs shadow hover:opacity-90"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#25D366] text-white font-bold text-xs shadow hover:opacity-90 transition-opacity"
               >
                 <MessageCircle className="w-3.5 h-3.5 fill-current" />
                 Chat with Concierge
@@ -48,34 +51,34 @@ export const Footer: React.FC = () => {
             </h4>
             <ul className="space-y-2.5 text-xs text-gray-400">
               <li>
-                <a href="/travel-essentials-kit" className="hover:text-white transition-colors">
+                <Link href="/travel-essentials-kit" className="hover:text-white transition-colors">
                   Travel Essentials Kit
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/#whats-inside" className="hover:text-white transition-colors">
+                <Link href="/#whats-inside" className="hover:text-white transition-colors">
                   What&apos;s Inside
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/#pricing" className="hover:text-white transition-colors">
+                <Link href="/#pricing" className="hover:text-white transition-colors">
                   Kit Pricing (₹199)
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/about" className="hover:text-white transition-colors">
-                  About Traliber
-                </a>
-              </li>
-              <li>
-                <a href="/faq" className="hover:text-white transition-colors">
-                  Frequently Asked Questions
-                </a>
-              </li>
-              <li>
-                <a href="/travel-hygiene-guides" className="hover:text-white transition-colors">
+                <Link href="/travel-hygiene-guides" className="hover:text-white transition-colors">
                   Travel Hygiene Guides
-                </a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/faq" className="hover:text-white transition-colors">
+                  Frequently Asked Questions
+                </Link>
+              </li>
+              <li>
+                <Link href="/about" className="hover:text-white transition-colors">
+                  About Traliber
+                </Link>
               </li>
             </ul>
           </div>
@@ -98,25 +101,30 @@ export const Footer: React.FC = () => {
                 <ShieldCheck className="w-4 h-4 text-[#25D366]" />
                 <span>Direct WhatsApp Concierge</span>
               </li>
+              <li className="flex items-center gap-2">
+                <ShieldCheck className="w-4 h-4 text-emerald-400" />
+                <span>Fast India-Wide Dispatch</span>
+              </li>
             </ul>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-400">
-          <p>© 2026 Traliber Travel Essentials. All rights reserved.</p>
-          {/* <div className="flex items-center gap-4">
-            {/* <span className="flex items-center gap-1">
-              Engineered with precision for seamless travel
-            </span> */}
-          <span>•</span>
-          {/* <a
-              href="/admin"
-              className="text-gray-400 hover:text-white transition-colors underline underline-offset-2"
-            >
-              Content Admin Panel
-            </a> */}
-          {/* </div> */}
+        {/* Bottom credits */}
+        <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between text-[11px] text-gray-500 gap-4">
+          <p>© 2026 Traliber. For a Cleaner Tomorrow. All rights reserved.</p>
+          <div className="flex items-center gap-4">
+            <Link href="/about" className="hover:text-gray-300 transition-colors">
+              Brand Story
+            </Link>
+            <span>•</span>
+            <Link href="/travel-hygiene-guides" className="hover:text-gray-300 transition-colors">
+              Hygiene Guides
+            </Link>
+            <span>•</span>
+            <Link href="/faq" className="hover:text-gray-300 transition-colors">
+              FAQ
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

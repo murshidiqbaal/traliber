@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { MessageCircle, Check, ShieldCheck, Zap, Sparkles } from 'lucide-react';
 import { WHATSAPP_CONFIG } from '@/data/traliber-kit';
 import { useTraliberStore } from '@/context/TraliberStore';
@@ -122,6 +123,14 @@ export const PricingSection: React.FC = () => {
             <p className="text-center text-[11px] text-[#22213A]/50">
               No complicated checkout forms. Simply message our team to confirm your address and dispatch.
             </p>
+            <div className="pt-2 text-center">
+              <Link
+                href="/travel-essentials-kit"
+                className="text-xs font-semibold text-[#4F75FF] hover:underline inline-flex items-center gap-1"
+              >
+                View full 10-item dimensions and detailed specifications &rarr;
+              </Link>
+            </div>
           </div>
 
         </div>

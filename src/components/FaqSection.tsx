@@ -58,7 +58,15 @@ export const TRALIBER_FAQS: FaqItem[] = [
   },
 ];
 
-export const FaqSection: React.FC = () => {
+interface FaqSectionProps {
+  titleAs?: 'h1' | 'h2';
+  includeSchema?: boolean;
+}
+
+export const FaqSection: React.FC<FaqSectionProps> = ({
+  titleAs = 'h2',
+  includeSchema = false,
+}) => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
   const { trackWhatsAppClick } = useTraliberStore();
 
@@ -79,13 +87,17 @@ export const FaqSection: React.FC = () => {
     })),
   };
 
+  const HeadingTag = titleAs;
+
   return (
     <section id="faq" className="py-20 sm:py-28 bg-white relative overflow-hidden">
-      {/* Schema.org FAQPage structured data */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
+      {/* Schema.org FAQPage structured data (injected on dedicated FAQ page) */}
+      {includeSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
@@ -94,9 +106,9 @@ export const FaqSection: React.FC = () => {
           <span className="text-[11px] font-mono font-bold uppercase tracking-[0.2em] text-[#4F75FF] block mb-3">
             QUESTIONS &amp; ANSWERS
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-extrabold text-[#1E1B4B] tracking-tight leading-[1.14]">
+          <HeadingTag className="text-3xl sm:text-4xl md:text-5xl font-serif font-extrabold text-[#1E1B4B] tracking-tight leading-[1.14]">
             Frequently Asked Questions
-          </h2>
+          </HeadingTag>
           <p className="mt-3.5 text-sm sm:text-base text-[#22213A]/70 leading-relaxed font-normal">
             Everything you need to know about the Traliber Travel Essentials Kit, contents, ordering process, and transit use.
           </p>
@@ -109,25 +121,34 @@ export const FaqSection: React.FC = () => {
             return (
               <div
                 key={index}
-                className="bg-[#F8F7FC] rounded-2xl border border-[#22213A]/[0.08] overflow-hidden transition-all duration-200"
+                className={`rounded-2xl transition-all duration-200 border ${
+                  isOpen
+                    ? 'bg-[#F8F7FC] border-[#4F75FF]/40 shadow-xs'
+                    : 'bg-white border-[#22213A]/[0.08] hover:border-[#22213A]/20'
+                }`}
               >
                 <button
-                  type="button"
                   onClick={() => toggleFaq(index)}
-                  className="w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-semibold text-[#1E1B4B] text-base sm:text-lg cursor-pointer hover:text-[#4F75FF] transition-colors"
+                  className="w-full py-5 px-6 sm:px-8 flex items-center justify-between text-left gap-4 focus:outline-hidden"
                   aria-expanded={isOpen}
                 >
-                  <span>{faq.question}</span>
-                  <ChevronDown
-                    className={`w-5 h-5 text-[#4F75FF] shrink-0 transition-transform duration-300 ${
-                      isOpen ? 'rotate-180' : ''
+                  <span className="font-serif font-bold text-base sm:text-lg text-[#1E1B4B]">
+                    {faq.question}
+                  </span>
+                  <div
+                    className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-transform duration-200 ${
+                      isOpen
+                        ? 'bg-[#4F75FF] text-white rotate-180'
+                        : 'bg-[#22213A]/[0.04] text-[#22213A]/60'
                     }`}
-                  />
+                  >
+                    <ChevronDown className="w-4 h-4" />
+                  </div>
                 </button>
 
                 {isOpen && (
-                  <div className="px-6 pb-6 pt-1 text-sm sm:text-base text-[#22213A]/80 leading-relaxed font-normal border-t border-[#22213A]/[0.05]">
-                    {faq.answer}
+                  <div className="px-6 sm:px-8 pb-6 pt-1 text-sm sm:text-base text-[#22213A]/75 leading-relaxed font-normal border-t border-[#22213A]/[0.04]">
+                    <p>{faq.answer}</p>
                   </div>
                 )}
               </div>
@@ -135,31 +156,25 @@ export const FaqSection: React.FC = () => {
           })}
         </div>
 
-        {/* Have More Questions CTA */}
-        <div className="mt-12 text-center p-8 bg-[#F4F3FA] rounded-3xl border border-[#22213A]/[0.08] space-y-4">
-          <div className="w-10 h-10 rounded-full bg-[#EEF2FF] text-[#4F75FF] flex items-center justify-center mx-auto">
-            <HelpCircle className="w-5 h-5" />
-          </div>
-          <h3 className="text-lg sm:text-xl font-bold text-[#1E1B4B]">
-            Have a question about delivery, bulk orders, or kit details?
+        {/* WhatsApp Help CTA */}
+        <div className="mt-12 text-center p-8 rounded-3xl bg-[#F8F7FC] border border-[#22213A]/[0.08]">
+          <h3 className="font-serif font-bold text-lg sm:text-xl text-[#1E1B4B] mb-2">
+            Have a question not answered here?
           </h3>
-          <p className="text-xs sm:text-sm text-[#22213A]/70 max-w-md mx-auto">
-            Our team is available on WhatsApp to answer questions, share delivery timelines, or process custom enquiries.
+          <p className="text-sm text-[#22213A]/65 max-w-md mx-auto mb-6">
+            Our team is available on WhatsApp to assist with product inquiries, bulk orders, and delivery questions.
           </p>
-          <div className="pt-2">
-            <a
-              href={WHATSAPP_CONFIG.getLink("I have a question about the Traliber Travel Essentials Kit.")}
-              onClick={() => trackWhatsAppClick('FAQ Help CTA')}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#1E1B4B] hover:bg-[#2C2860] text-white text-xs sm:text-sm font-bold shadow-md hover:shadow-lg transition-all cursor-pointer"
-            >
-              <MessageCircle className="w-4 h-4 text-[#25D366]" />
-              <span>Ask Us on WhatsApp</span>
-            </a>
-          </div>
+          <a
+            href={WHATSAPP_CONFIG.getLink('I have a question about the Travel Essentials Kit')}
+            onClick={() => trackWhatsAppClick('FAQ WhatsApp Support CTA')}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#25D366] text-white font-bold text-xs shadow hover:opacity-90 transition-opacity"
+          >
+            <MessageCircle className="w-4 h-4 fill-current" />
+            Ask on WhatsApp
+          </a>
         </div>
-
       </div>
     </section>
   );

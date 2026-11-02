@@ -2,6 +2,7 @@
 
 import { WHATSAPP_CONFIG } from '@/data/traliber-kit';
 import { Menu, MessageCircle, X } from 'lucide-react';
+import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import { useTraliberStore } from '@/context/TraliberStore';
 
@@ -21,67 +22,75 @@ export const Navbar: React.FC = () => {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent ${isScrolled
-        ? 'backdrop-blur-md py-3'
+        ? 'backdrop-blur-md bg-white/70 py-3 shadow-xs'
         : 'py-5'
         }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         {/* Brand Logo */}
-        <a href="#" className="flex items-center gap-2.5 group">
+        <Link href="/" className="flex items-center gap-2.5 group">
           <img
             src="/images/logo-mark.webp"
-            alt="Traliber Logo"
+            alt="Traliber Travel Essentials Kit Logo"
             className="h-8 sm:h-9 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+            width={36}
+            height={36}
           />
           <span className="font-bold text-lg sm:text-xl tracking-wider text-[#22213A] group-hover:text-[#4F75FF] transition-colors">
             TRALIBER
           </span>
-        </a>
+        </Link>
 
         {/* Desktop Nav Links */}
-        <nav className="hidden lg:flex items-center gap-7 text-sm font-semibold text-[#22213A]">
-          <a
+        <nav className="hidden lg:flex items-center gap-6 xl:gap-7 text-sm font-semibold text-[#22213A]">
+          <Link
             href="/"
             className="hover:text-[#4F75FF] transition-colors"
           >
             Home
-          </a>
-          <a
+          </Link>
+          <Link
             href="/travel-essentials-kit"
             className="hover:text-[#4F75FF] transition-colors"
           >
             The Kit
-          </a>
-          <a
+          </Link>
+          <Link
             href="/#whats-inside"
             className="hover:text-[#4F75FF] transition-colors"
           >
             What&apos;s Inside
-          </a>
-          <a
+          </Link>
+          <Link
             href="/#benefits"
             className="hover:text-[#4F75FF] transition-colors"
           >
             Why Traliber
-          </a>
-          <a
+          </Link>
+          <Link
             href="/#pricing"
             className="hover:text-[#4F75FF] transition-colors"
           >
             Pricing (₹199)
-          </a>
-          <a
+          </Link>
+          <Link
+            href="/travel-hygiene-guides"
+            className="hover:text-[#4F75FF] transition-colors"
+          >
+            Guides
+          </Link>
+          <Link
             href="/faq"
             className="hover:text-[#4F75FF] transition-colors"
           >
             FAQ
-          </a>
-          <a
+          </Link>
+          <Link
             href="/about"
             className="hover:text-[#4F75FF] transition-colors"
           >
             About
-          </a>
+          </Link>
         </nav>
         <div className="hidden sm:flex items-center gap-3">
           <a
@@ -110,55 +119,62 @@ export const Navbar: React.FC = () => {
       {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
         <div className="lg:hidden bg-white/95 backdrop-blur-xl border-b border-[#8657F6]/15 px-6 py-6 space-y-4 shadow-xl">
-          <a
+          <Link
             href="/"
             onClick={() => setMobileMenuOpen(false)}
             className="block text-base font-bold text-[#22213A] hover:text-[#4F75FF]"
           >
             Home
-          </a>
-          <a
+          </Link>
+          <Link
             href="/travel-essentials-kit"
             onClick={() => setMobileMenuOpen(false)}
             className="block text-base font-bold text-[#22213A] hover:text-[#4F75FF]"
           >
             The 10-Item Kit
-          </a>
-          <a
+          </Link>
+          <Link
             href="/#whats-inside"
             onClick={() => setMobileMenuOpen(false)}
             className="block text-base font-bold text-[#22213A] hover:text-[#4F75FF]"
           >
             What&apos;s Inside
-          </a>
-          <a
+          </Link>
+          <Link
             href="/#benefits"
             onClick={() => setMobileMenuOpen(false)}
             className="block text-base font-bold text-[#22213A] hover:text-[#4F75FF]"
           >
             Why Traliber
-          </a>
-          <a
+          </Link>
+          <Link
             href="/#pricing"
             onClick={() => setMobileMenuOpen(false)}
             className="block text-base font-bold text-[#22213A] hover:text-[#4F75FF]"
           >
             Pricing (₹199)
-          </a>
-          <a
+          </Link>
+          <Link
+            href="/travel-hygiene-guides"
+            onClick={() => setMobileMenuOpen(false)}
+            className="block text-base font-bold text-[#22213A] hover:text-[#4F75FF]"
+          >
+            Travel Hygiene Guides
+          </Link>
+          <Link
             href="/faq"
             onClick={() => setMobileMenuOpen(false)}
             className="block text-base font-bold text-[#22213A] hover:text-[#4F75FF]"
           >
             FAQ
-          </a>
-          <a
+          </Link>
+          <Link
             href="/about"
             onClick={() => setMobileMenuOpen(false)}
             className="block text-base font-bold text-[#22213A] hover:text-[#4F75FF]"
           >
             About
-          </a>
+          </Link>
           <div className="pt-2">
             <a
               href={WHATSAPP_CONFIG.getLink()}

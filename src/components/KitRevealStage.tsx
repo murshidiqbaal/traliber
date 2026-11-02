@@ -80,7 +80,7 @@ export const KitRevealStage: React.FC<KitRevealStageProps> = ({
           <div className="relative w-64 sm:w-80 md:w-96 lg:w-[410px] flex items-center justify-center">
             <img
               src={pouchSrc}
-              alt="Traliber Travel Essentials Pouch"
+              alt="Traliber Water-Resistant Travel Essentials Pouch"
               className="w-full h-auto drop-shadow-2xl select-none"
               loading="eager"
             />
@@ -124,7 +124,7 @@ export const KitRevealStage: React.FC<KitRevealStageProps> = ({
               <div className="w-28 h-28 flex items-center justify-center bg-[#F8F7FC] rounded-xl p-2 mb-4 border border-[#8657F6]/10">
                 <img
                   src={selectedItem.imagePath}
-                  alt={selectedItem.name}
+                  alt={`Traliber ${selectedItem.name} - Travel Essentials Kit Item`}
                   className="max-h-full max-w-full object-contain drop-shadow"
                 />
               </div>

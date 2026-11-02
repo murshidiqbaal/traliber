@@ -23,8 +23,10 @@ import {
   Users,
   ExternalLink,
   MousePointerClick,
+  GalleryHorizontal,
   RefreshCw,
 } from 'lucide-react';
+import ShowcaseAdmin from '@/components/ShowcaseAdmin';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useRef, useState } from 'react';
@@ -54,7 +56,7 @@ export default function AdminPage() {
   } = useTraliberStore();
 
   const [activeTab, setActiveTab] = useState<
-    'media' | 'hero' | 'whats_inside' | 'products' | 'founder' | 'testimonials' | 'orders'
+    'media' | 'hero' | 'whats_inside' | 'products' | 'founder' | 'testimonials' | 'orders' | 'showcase'
   >('media');
 
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
@@ -66,7 +68,7 @@ export default function AdminPage() {
       if (auth !== 'true') {
         router.replace('/admin/login');
       } else {
-        setIsAuthenticated(true);
+        queueMicrotask(() => { setIsAuthenticated(true); });
       }
     } catch (_) {
       router.replace('/admin/login');
@@ -407,6 +409,17 @@ export default function AdminPage() {
               >
                 <ShoppingBag className="w-4 h-4" />
                 <span>Inquiries &amp; Orders</span>
+              </button>
+
+              <button
+                onClick={() => setActiveTab('showcase')}
+                className={`w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-xs font-bold transition-all text-left ${ activeTab === 'showcase'
+                    ? 'bg-[#8657F6] text-white shadow-md'
+                    : 'text-[#22213A]/70 hover:bg-gray-100 hover:text-[#22213A]'
+                  }`}
+              >
+                <GalleryHorizontal className="w-4 h-4" />
+                <span>Showcase Gallery</span>
               </button>
             </div>
 
@@ -1595,6 +1608,8 @@ export default function AdminPage() {
                 </div>
               </div>
             )}
+          {/* TAB 8: SHOWCASE GALLERY */}
+            {activeTab === 'showcase' && <ShowcaseAdmin />}
           </main>
         </div>
       </div>

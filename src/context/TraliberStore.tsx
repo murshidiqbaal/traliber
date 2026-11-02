@@ -155,6 +155,7 @@ export const TraliberProvider: React.FC<{ children: React.ReactNode }> = ({
 
   // Load from localStorage on client mount
   useEffect(() => {
+    queueMicrotask(() => {
     try {
       const storedAnalytics = localStorage.getItem('traliber_analytics');
       if (storedAnalytics) {
@@ -167,9 +168,9 @@ export const TraliberProvider: React.FC<{ children: React.ReactNode }> = ({
               (Array.isArray(parsed.recentClicks) &&
                 parsed.recentClicks.some((c: { id?: string }) => c.id === 'clk-1')))
           ) {
-            setAnalytics(INITIAL_ANALYTICS);
+            queueMicrotask(() => { setAnalytics(INITIAL_ANALYTICS); });
           } else {
-            setAnalytics(parsed);
+            queueMicrotask(() => { setAnalytics(parsed); });
           }
         } catch (_) {}
       }
@@ -206,6 +207,7 @@ export const TraliberProvider: React.FC<{ children: React.ReactNode }> = ({
     }
 
     setIsLoaded(true);
+    });
 
     // Sync latest testimonials from Supabase
     const syncFromSupabase = async () => {

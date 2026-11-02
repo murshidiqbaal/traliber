@@ -131,7 +131,7 @@ export const KitInventoryGrid: React.FC = () => {
                   )}
                   <img
                     src={getProductImage(item.id, item.imagePath)}
-                    alt={item.name}
+                    alt={`Traliber ${item.name} - Travel Essentials Kit`}
                     className="max-h-32 max-w-full object-contain drop-shadow transition-transform duration-300 group-hover:scale-110"
                     loading="lazy"
                   />

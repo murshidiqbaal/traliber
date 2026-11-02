@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { Package, Droplets, Compass, MessageCircle, CheckCircle2 } from 'lucide-react';
 import { WHATSAPP_CONFIG } from '@/data/traliber-kit';
 import { useTraliberStore } from '@/context/TraliberStore';
@@ -164,6 +165,14 @@ export const BenefitsSection: React.FC = () => {
             <p className="text-sm text-gray-300 max-w-xl">
               Get the complete 10-item travel essentials kit in a water-resistant mountain blue pouch for ₹199.
             </p>
+            <div className="pt-1">
+              <Link
+                href="/travel-essentials-kit"
+                className="text-xs font-semibold text-[#788CF5] hover:text-white underline inline-flex items-center gap-1"
+              >
+                View 10-item breakdown &amp; material specifications &rarr;
+              </Link>
+            </div>
           </div>
           <a
             href={WHATSAPP_CONFIG.getLink()}

@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { MessageCircle, ShieldCheck, Compass } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { WHATSAPP_CONFIG } from '@/data/traliber-kit';
@@ -156,6 +157,11 @@ export const FounderSection: React.FC = () => {
             <p className="text-xs text-[#22213A]/50 mt-0.5">
               {founderTitle}, Traliber
             </p>
+            <div className="pt-1.5">
+              <Link href="/about" className="text-xs font-semibold text-[#4F75FF] hover:underline">
+                Read the full founder story &rarr;
+              </Link>
+            </div>
           </motion.div>
 
           {/* H. WhatsApp CTA */}
@@ -262,6 +268,11 @@ export const FounderSection: React.FC = () => {
                 <p className="text-xs text-[#22213A]/50">
                   {founderTitle}, Traliber Personal Care
                 </p>
+                <div className="pt-1">
+                  <Link href="/about" className="text-xs font-semibold text-[#4F75FF] hover:underline">
+                    Read the full founder story &rarr;
+                  </Link>
+                </div>
               </div>
 
               <a

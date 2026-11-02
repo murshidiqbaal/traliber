@@ -2,16 +2,29 @@ import type { MetadataRoute } from 'next';
 import { SITE_URL } from '@/lib/site';
 
 export default function robots(): MetadataRoute.Robots {
-  const siteUrl = SITE_URL;
-
   return {
     rules: [
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/admin', '/api/'],
+        disallow: ['/admin', '/admin/', '/api/'],
+      },
+      {
+        userAgent: [
+          'Googlebot',
+          'Bingbot',
+          'Applebot',
+          'GPTBot',
+          'PerplexityBot',
+          'ClaudeBot',
+          'anthropic-ai',
+          'cohere-ai',
+        ],
+        allow: '/',
+        disallow: ['/admin', '/admin/', '/api/'],
       },
     ],
-    sitemap: `${siteUrl}/sitemap.xml`,
+    sitemap: `${SITE_URL}/sitemap.xml`,
+    host: SITE_URL,
   };
 }

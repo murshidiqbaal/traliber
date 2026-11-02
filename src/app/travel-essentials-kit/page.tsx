@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import React from 'react';
+import Link from 'next/link';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import { WhatsAppFloat } from '@/components/WhatsAppFloat';
@@ -23,13 +24,14 @@ export const metadata: Metadata = {
     'flight travel kit',
   ],
   alternates: {
-    canonical: '/travel-essentials-kit',
+    canonical: `${SITE_URL}/travel-essentials-kit`,
   },
   openGraph: {
     title: 'Traliber Travel Essentials Kit | 10-Item Travel Hygiene Kit',
     description:
       'Explore the contents of the Traliber Travel Essentials Kit. Sized for long journeys and short breaks. Available for ₹199 via WhatsApp.',
     url: `${siteUrl}/travel-essentials-kit`,
+    type: 'website',
     images: [
       {
         url: '/images/kit-display.webp',
@@ -38,6 +40,13 @@ export const metadata: Metadata = {
         alt: 'Traliber Travel Essentials Kit complete 10-item display and water-resistant pouch',
       },
     ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Traliber Travel Essentials Kit | 10-Item Travel Hygiene Kit',
+    description:
+      '10 travel hygiene items in one water-resistant pouch for ₹199. Designed for Indian trains, flights, and road trips.',
+    images: ['/images/kit-display.webp'],
   },
 };
 
@@ -59,11 +68,25 @@ export default function TravelEssentialsKitPage() {
       '@type': 'Offer',
       price: '199',
       priceCurrency: 'INR',
+      priceValidUntil: '2027-12-31',
+      itemCondition: 'https://schema.org/NewCondition',
       availability: 'https://schema.org/InStock',
       url: `${siteUrl}/travel-essentials-kit`,
       seller: {
         '@type': 'Organization',
         name: 'Traliber',
+      },
+      shippingDetails: {
+        '@type': 'OfferShippingDetails',
+        shippingRate: {
+          '@type': 'MonetaryAmount',
+          value: '0',
+          currency: 'INR',
+        },
+        shippingDestination: {
+          '@type': 'DefinedRegion',
+          addressCountry: 'IN',
+        },
       },
     },
   };
@@ -190,9 +213,9 @@ export default function TravelEssentialsKitPage() {
           <nav aria-label="Breadcrumb" className="mb-8">
             <ol className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[#22213A]/60">
               <li>
-                <a href="/" className="hover:text-[#4F75FF] transition-colors">
+                <Link href="/" className="hover:text-[#4F75FF] transition-colors">
                   Home
-                </a>
+                </Link>
               </li>
               <li>/</li>
               <li className="text-[#1E1B4B] font-bold">Travel Essentials Kit</li>

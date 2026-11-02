@@ -10,14 +10,12 @@ export const HeroSection: React.FC = () => {
 
   const heroBgDesktop = getProductImage('hero_background', '/images/hero-alpine-mountain.webp');
   const heroBgMobile = getProductImage('hero_background_mobile', '/images/hero-alpine-mobile.webp');
-  const heroEyebrow = getCustomText('hero_eyebrow', 'TRAVEL ✦ ESSENTIALS');
-  const heroHeadline1 = getCustomText('hero_headline_1', 'Smaller');
-  const heroHeadline2 = getCustomText('hero_headline_2', 'Bag.');
-  const heroHeadline3 = getCustomText('hero_headline_3', 'Brighter');
-  const heroHeadline4 = getCustomText('hero_headline_4', 'Journeys.');
+  const heroEyebrow = getCustomText('hero_eyebrow', 'TRAVEL ESSENTIALS ✦ FOR A CLEANER TOMORROW');
+  const heroHeadline1 = getCustomText('hero_headline_1', 'Travel Essentials Kit');
+  const heroHeadline2 = getCustomText('hero_headline_2', 'for Every Journey.');
   const heroSubtitle = getCustomText(
     'hero_subtitle',
-    'Ten thoughtfully chosen travel essentials for a cleaner, safer and more comfortable tomorrow.'
+    "Stay prepared for every journey with Traliber's convenient travel essentials kit. Carry everyday hygiene and travel necessities together in one practical kit."
   );
   const heroCtaText = getCustomText('hero_cta_text', 'Get Your Travel Kit');
 
@@ -28,7 +26,7 @@ export const HeroSection: React.FC = () => {
         {/* Mobile background image (< lg screen ratio) */}
         <img
           src={heroBgMobile}
-          alt="Traliber Essentials in Alpine Mountains"
+          alt="Traliber Travel Essentials Kit on journey against scenic mountain landscape (Mobile)"
           className="w-full h-full object-cover object-center lg:hidden"
           loading="eager"
         />
@@ -36,7 +34,7 @@ export const HeroSection: React.FC = () => {
         {/* Desktop background image (>= lg screen ratio) */}
         <img
           src={heroBgDesktop}
-          alt="Traliber Essentials in Alpine Mountains"
+          alt="Traliber Travel Essentials Kit on journey against scenic alpine mountain landscape"
           className="w-full h-full object-cover object-[85%_center] xl:object-[90%_center] hidden lg:block"
           loading="eager"
         />
@@ -80,11 +78,9 @@ export const HeroSection: React.FC = () => {
             </div>
 
             {/* Main Headline */}
-            <h1 className="text-5xl sm:text-6xl md:text-7xl font-serif font-extrabold text-[#22213A] tracking-tight leading-[1.04]">
-              {heroHeadline1}<br />
-              {heroHeadline2}<br />
-              <span className="text-[#4F75FF]">{heroHeadline3}</span><br />
-              {heroHeadline4}
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif font-extrabold text-[#22213A] tracking-tight leading-[1.08]">
+              {heroHeadline1} <br />
+              <span className="text-[#4F75FF]">{heroHeadline2}</span>
             </h1>
 
             {/* Subtitle */}

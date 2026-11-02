@@ -61,7 +61,7 @@ export const WhatsInsideSection: React.FC = () => {
           <div className="relative w-full rounded-3xl overflow-hidden shadow-2xl border border-white/60 bg-white/40">
             <img
               src={burstImg}
-              alt="Traliber Travel Kit with 10 essentials revealed"
+              alt="Traliber Travel Essentials Kit with 10 travel personal care items and water-resistant pouch"
               className="w-full h-auto object-contain select-none transition-transform duration-700 hover:scale-[1.02]"
               loading="eager"
             />
