@@ -2,14 +2,24 @@ import type { MetadataRoute } from 'next';
 import { SITE_URL, absoluteUrl } from '@/lib/site';
 import { TRAVEL_GUIDES } from '@/data/travel-guides';
 
+/**
+ * Production XML Sitemap for Traliber (https://traliber.in/sitemap.xml)
+ * 
+ * Strict Canonical Policy:
+ * 1. Only 200 OK indexable canonical URLs are included.
+ * 2. Static, stable lastModified ISO timestamps (prevents Search Console crawl churn).
+ * 3. All image URLs are fully qualified absolute HTTPS URLs on traliber.in.
+ * 4. Excludes private /admin, /api, and preview deployment URLs.
+ */
 export default function sitemap(): MetadataRoute.Sitemap {
-  const lastUpdated = '2026-10-31T00:00:00.000Z';
+  const coreLastModified = '2026-10-31T00:00:00.000Z';
+  const policyLastModified = '2026-10-31T00:00:00.000Z';
 
   // Core canonical indexable pages
   const staticPages: MetadataRoute.Sitemap = [
     {
       url: SITE_URL,
-      lastModified: lastUpdated,
+      lastModified: coreLastModified,
       changeFrequency: 'weekly',
       priority: 1.0,
       images: [
@@ -19,9 +29,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: absoluteUrl('/travel-essentials-kit'),
-      lastModified: lastUpdated,
+      lastModified: coreLastModified,
       changeFrequency: 'weekly',
-      priority: 0.9,
+      priority: 0.95,
       images: [
         absoluteUrl('/images/kit-display.webp'),
         absoluteUrl('/images/products/pouch.webp'),
@@ -38,17 +48,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: absoluteUrl('/about'),
-      lastModified: lastUpdated,
+      lastModified: coreLastModified,
       changeFrequency: 'monthly',
       priority: 0.7,
       images: [
-        absoluteUrl('/images/founder.webp'),
+        absoluteUrl('/images/aldrino.jpeg'),
         absoluteUrl('/images/logo.webp'),
       ],
     },
     {
       url: absoluteUrl('/faq'),
-      lastModified: lastUpdated,
+      lastModified: coreLastModified,
       changeFrequency: 'weekly',
       priority: 0.8,
       images: [
@@ -56,8 +66,38 @@ export default function sitemap(): MetadataRoute.Sitemap {
       ],
     },
     {
+      url: absoluteUrl('/contact'),
+      lastModified: coreLastModified,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: absoluteUrl('/shipping-policy'),
+      lastModified: policyLastModified,
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    },
+    {
+      url: absoluteUrl('/refund-policy'),
+      lastModified: policyLastModified,
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    },
+    {
+      url: absoluteUrl('/privacy-policy'),
+      lastModified: policyLastModified,
+      changeFrequency: 'yearly',
+      priority: 0.5,
+    },
+    {
+      url: absoluteUrl('/terms'),
+      lastModified: policyLastModified,
+      changeFrequency: 'yearly',
+      priority: 0.5,
+    },
+    {
       url: absoluteUrl('/travel-hygiene-guides'),
-      lastModified: lastUpdated,
+      lastModified: coreLastModified,
       changeFrequency: 'weekly',
       priority: 0.85,
       images: [

@@ -103,40 +103,16 @@ export const metadata: Metadata = {
 
 import { TraliberProvider } from '@/context/TraliberStore';
 import { AdminShortcutListener } from '@/components/AdminShortcutListener';
-
-const organizationSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'Organization',
-  name: 'Traliber',
-  url: siteUrl,
-  logo: `${siteUrl}/images/logo.webp`,
-  slogan: 'For a Cleaner Tomorrow.',
-  description:
-    'Traliber provides thoughtfully curated travel essentials and personal care kits for modern wanderers.',
-  contactPoint: {
-    '@type': 'ContactPoint',
-    telephone: '+91-89210-19251',
-    contactType: 'customer service',
-    availableLanguage: ['English', 'Hindi'],
-    contactOption: 'WhatsApp Support',
-  },
-};
-
-const webSiteSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'WebSite',
-  name: 'Traliber',
-  url: siteUrl,
-  inLanguage: 'en-IN',
-  description:
-    'Official website of Traliber Travel Essentials Kit. Explore kit contents and enquire on WhatsApp.',
-};
+import { getOrganizationSchema, getWebSiteSchema } from '@/lib/brand';
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const organizationSchema = getOrganizationSchema();
+  const webSiteSchema = getWebSiteSchema();
+
   return (
     <html
       lang="en"

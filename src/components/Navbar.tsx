@@ -91,6 +91,12 @@ export const Navbar: React.FC = () => {
           >
             About
           </Link>
+          <Link
+            href="/contact"
+            className="hover:text-[#4F75FF] transition-colors"
+          >
+            Contact
+          </Link>
         </nav>
         <div className="hidden sm:flex items-center gap-3">
           <a
@@ -174,6 +180,13 @@ export const Navbar: React.FC = () => {
             className="block text-base font-bold text-[#22213A] hover:text-[#4F75FF]"
           >
             About
+          </Link>
+          <Link
+            href="/contact"
+            onClick={() => setMobileMenuOpen(false)}
+            className="block text-base font-bold text-[#22213A] hover:text-[#4F75FF]"
+          >
+            Contact
           </Link>
           <div className="pt-2">
             <a

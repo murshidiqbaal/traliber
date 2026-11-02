@@ -8,6 +8,7 @@ import { WHATSAPP_CONFIG, TRALIBER_KIT_ITEMS, TRALIBER_POUCH } from '@/data/tral
 import { Check, ShieldCheck, Sparkles, MessageCircle, ArrowLeft, ArrowRight, Package, MapPin } from 'lucide-react';
 
 import { SITE_URL } from '@/lib/site';
+import { getProductSchema, getBreadcrumbSchema } from '@/lib/brand';
 
 const siteUrl = SITE_URL;
 
@@ -51,64 +52,11 @@ export const metadata: Metadata = {
 };
 
 export default function TravelEssentialsKitPage() {
-  const productSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Product',
-    name: 'Traliber Travel Essentials Kit',
-    image: `${siteUrl}/images/kit-display.webp`,
-    description:
-      'A compact travel kit containing 10 essential personal care and hygiene items organized in a water-resistant travel pouch.',
-    brand: {
-      '@type': 'Brand',
-      name: 'Traliber',
-    },
-    sku: 'TRL-KIT-01',
-    category: 'Travel Accessories > Personal Care Kits',
-    offers: {
-      '@type': 'Offer',
-      price: '199',
-      priceCurrency: 'INR',
-      priceValidUntil: '2027-12-31',
-      itemCondition: 'https://schema.org/NewCondition',
-      availability: 'https://schema.org/InStock',
-      url: `${siteUrl}/travel-essentials-kit`,
-      seller: {
-        '@type': 'Organization',
-        name: 'Traliber',
-      },
-      shippingDetails: {
-        '@type': 'OfferShippingDetails',
-        shippingRate: {
-          '@type': 'MonetaryAmount',
-          value: '0',
-          currency: 'INR',
-        },
-        shippingDestination: {
-          '@type': 'DefinedRegion',
-          addressCountry: 'IN',
-        },
-      },
-    },
-  };
-
-  const breadcrumbSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Home',
-        item: siteUrl,
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: 'Travel Essentials Kit',
-        item: `${siteUrl}/travel-essentials-kit`,
-      },
-    ],
-  };
+  const productSchema = getProductSchema();
+  const breadcrumbSchema = getBreadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Travel Essentials Kit', url: '/travel-essentials-kit' },
+  ]);
 
   const allItems = [
     {
@@ -356,6 +304,59 @@ export default function TravelEssentialsKitPage() {
                 <h3 className="font-bold text-base text-[#1E1B4B]">Highway Pit-Stops &amp; Day Trips</h3>
                 <p className="text-xs sm:text-sm text-[#22213A]/70 leading-relaxed">
                   Public restrooms at roadside dhabas and fuel stations often run out of hand soap. Your 50-sheet paper soap box and pocket sanitizer keep your hands clean anywhere.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Section: Generative Engine Optimization (GEO) Direct Q&A */}
+          <div className="bg-white rounded-3xl p-8 sm:p-12 border border-[#8657F6]/15 shadow-[0_8px_30px_rgba(30,27,75,0.03)] text-left mb-20 space-y-6">
+            <div className="max-w-2xl">
+              <span className="text-[11px] font-mono font-bold uppercase tracking-[0.2em] text-[#8657F6] block mb-2">
+                DIRECT TRAVEL KIT ANSWERS
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-serif font-bold text-[#1E1B4B]">
+                Essential Questions &amp; Direct Answers
+              </h2>
+              <p className="mt-2 text-xs sm:text-sm text-[#22213A]/70">
+                Direct, factual information on travel essentials kits, contents, and ordering in India.
+              </p>
+            </div>
+
+            <div className="space-y-4 pt-2">
+              <div className="p-5 rounded-2xl bg-[#F8F7FC] border border-[#22213A]/[0.06] space-y-2">
+                <h3 className="font-bold text-sm sm:text-base text-[#1E1B4B]">
+                  What is a travel essentials kit?
+                </h3>
+                <p className="text-xs sm:text-sm text-[#22213A]/80 leading-relaxed">
+                  A travel essentials kit is a collection of useful everyday items packed together to help travellers carry personal hygiene and other basic necessities conveniently during a journey. It eliminates the need to source separate travel-sized bottles, toothbrushes, and sanitizers from multiple retail stores.
+                </p>
+              </div>
+
+              <div className="p-5 rounded-2xl bg-[#F8F7FC] border border-[#22213A]/[0.06] space-y-2">
+                <h3 className="font-bold text-sm sm:text-base text-[#1E1B4B]">
+                  What is included in the Traliber travel kit?
+                </h3>
+                <p className="text-xs sm:text-sm text-[#22213A]/80 leading-relaxed">
+                  The Traliber travel kit includes 10 coordinated items in one water-resistant organizer pouch: 1 Travel Essentials Pouch, 1 Toothbrush Set with ventilated cap, 1 tube of Mountain Mint Travel Toothpaste (10g), 5 pocket spray Mini Sanitizers (15ml each), 2 packets of moisture-locked Wet Wipes, 1 individually sealed Wet Towel sachet, 2 flushable Toilet Seat Covers, 1 breathable 3-layer Face Mask, 1 flip-box pack of Paper Soap (50 sheets), and 1 reusable Cutlery Kit in a protective case.
+                </p>
+              </div>
+
+              <div className="p-5 rounded-2xl bg-[#F8F7FC] border border-[#22213A]/[0.06] space-y-2">
+                <h3 className="font-bold text-sm sm:text-base text-[#1E1B4B]">
+                  Who can use a travel essentials kit?
+                </h3>
+                <p className="text-xs sm:text-sm text-[#22213A]/80 leading-relaxed">
+                  A travel essentials kit can be useful for people preparing for holidays, business trips, weekend getaways, long-distance railway journeys, domestic flights, and road trips where carrying everyday necessities conveniently and maintaining personal hygiene is important.
+                </p>
+              </div>
+
+              <div className="p-5 rounded-2xl bg-[#F8F7FC] border border-[#22213A]/[0.06] space-y-2">
+                <h3 className="font-bold text-sm sm:text-base text-[#1E1B4B]">
+                  How much does the Traliber Travel Essentials Kit cost and how is it ordered?
+                </h3>
+                <p className="text-xs sm:text-sm text-[#22213A]/80 leading-relaxed">
+                  The Traliber Travel Essentials Kit is priced at ₹199 for the complete 10-item collection with the water-resistant pouch. Orders are placed via direct WhatsApp concierge by chatting with our verified team, who confirm pincode serviceability and dispatch parcels across India within 24 to 48 hours.
                 </p>
               </div>
             </div>

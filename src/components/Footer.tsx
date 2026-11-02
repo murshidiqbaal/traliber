@@ -1,10 +1,10 @@
 'use client';
 
+import { useTraliberStore } from '@/context/TraliberStore';
 import { WHATSAPP_CONFIG } from '@/data/traliber-kit';
 import { MessageCircle, ShieldCheck } from 'lucide-react';
 import Link from 'next/link';
 import React from 'react';
-import { useTraliberStore } from '@/context/TraliberStore';
 
 export const Footer: React.FC = () => {
   const { trackWhatsAppClick } = useTraliberStore();
@@ -80,30 +80,43 @@ export const Footer: React.FC = () => {
                   About Traliber
                 </Link>
               </li>
+              <li>
+                <Link href="/contact" className="hover:text-white transition-colors">
+                  Contact &amp; Concierge
+                </Link>
+              </li>
             </ul>
           </div>
 
-          {/* Guarantee & Specs */}
+          {/* Guarantee, Specs & Policies */}
           <div>
             <h4 className="text-xs font-bold uppercase tracking-wider text-[#55C7DE] mb-4">
-              Commitment
+              Trust &amp; Policies
             </h4>
             <ul className="space-y-2.5 text-xs text-gray-400">
-              <li className="flex items-center gap-2">
-                <ShieldCheck className="w-4 h-4 text-[#55C7DE]" />
-                <span>Compact Carry-On Friendly</span>
+              <li>
+                <Link href="/shipping-policy" className="hover:text-white transition-colors flex items-center gap-2">
+                  <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
+                  <span>Pan-India Shipping Policy</span>
+                </Link>
               </li>
-              <li className="flex items-center gap-2">
-                <ShieldCheck className="w-4 h-4 text-[#8657F6]" />
-                <span>Coordinated Travel Essentials</span>
+              <li>
+                <Link href="/refund-policy" className="hover:text-white transition-colors flex items-center gap-2">
+                  <ShieldCheck className="w-4 h-4 text-[#8657F6] shrink-0" />
+                  <span>Refund &amp; Replacements</span>
+                </Link>
               </li>
-              <li className="flex items-center gap-2">
-                <ShieldCheck className="w-4 h-4 text-[#25D366]" />
-                <span>Direct WhatsApp Concierge</span>
+              <li>
+                <Link href="/privacy-policy" className="hover:text-white transition-colors flex items-center gap-2">
+                  <ShieldCheck className="w-4 h-4 text-[#55C7DE] shrink-0" />
+                  <span>Privacy Policy</span>
+                </Link>
               </li>
-              <li className="flex items-center gap-2">
-                <ShieldCheck className="w-4 h-4 text-emerald-400" />
-                <span>Fast India-Wide Dispatch</span>
+              <li>
+                <Link href="/terms" className="hover:text-white transition-colors flex items-center gap-2">
+                  <ShieldCheck className="w-4 h-4 text-[#25D366] shrink-0" />
+                  <span>Terms &amp; Conditions</span>
+                </Link>
               </li>
             </ul>
           </div>
@@ -112,17 +125,29 @@ export const Footer: React.FC = () => {
         {/* Bottom credits */}
         <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between text-[11px] text-gray-500 gap-4">
           <p>© 2026 Traliber. For a Cleaner Tomorrow. All rights reserved.</p>
-          <div className="flex items-center gap-4">
+          <div className="flex flex-wrap items-center gap-3 sm:gap-4">
             <Link href="/about" className="hover:text-gray-300 transition-colors">
               Brand Story
             </Link>
             <span>•</span>
-            <Link href="/travel-hygiene-guides" className="hover:text-gray-300 transition-colors">
-              Hygiene Guides
+            <Link href="/contact" className="hover:text-gray-300 transition-colors">
+              Contact
             </Link>
             <span>•</span>
-            <Link href="/faq" className="hover:text-gray-300 transition-colors">
-              FAQ
+            <Link href="/shipping-policy" className="hover:text-gray-300 transition-colors">
+              Shipping
+            </Link>
+            <span>•</span>
+            <Link href="/refund-policy" className="hover:text-gray-300 transition-colors">
+              Refunds
+            </Link>
+            <span>•</span>
+            <Link href="/privacy-policy" className="hover:text-gray-300 transition-colors">
+              Privacy
+            </Link>
+            <span>•</span>
+            <Link href="/terms" className="hover:text-gray-300 transition-colors">
+              Terms
             </Link>
           </div>
         </div>

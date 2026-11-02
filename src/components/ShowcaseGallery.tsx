@@ -192,8 +192,28 @@ export default function ShowcaseGallery() {
   // Don't render section at all if no published items (after loading)
   if (!loading && items.length === 0) return null;
 
+  const imageGallerySchema = items.length > 0 ? {
+    '@context': 'https://schema.org',
+    '@type': 'ImageGallery',
+    name: 'Explore the World with Traliber | Travel Showcase',
+    description: 'A glimpse of travel, experiences, and the essentials that make every journey better.',
+    image: items.map((item) => ({
+      '@type': 'ImageObject',
+      contentUrl: item.image_url,
+      name: item.title,
+      description: item.description || item.title,
+      caption: item.alt_text || item.title,
+    })),
+  } : null;
+
   return (
     <>
+      {imageGallerySchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(imageGallerySchema) }}
+        />
+      )}
       <section ref={sectionRef} className="py-20 sm:py-28 bg-white" aria-label="Showcase Gallery">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
