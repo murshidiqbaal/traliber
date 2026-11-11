@@ -1,8 +1,6 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* Output build files to 'dist' directory for hosting */
-  distDir: 'dist',
   cacheComponents: true,
   images: {
     remotePatterns: [
