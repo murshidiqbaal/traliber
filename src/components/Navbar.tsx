@@ -42,7 +42,7 @@ export const Navbar: React.FC = () => {
         </Link>
 
         {/* Desktop Nav Links */}
-        <nav className="hidden lg:flex items-center gap-6 xl:gap-7 text-sm font-semibold text-[#22213A]">
+        <nav className="hidden lg:flex items-center gap-7 text-sm font-semibold text-[#22213A]">
           <Link
             href="/"
             className="hover:text-[#4F75FF] transition-colors"
@@ -50,40 +50,10 @@ export const Navbar: React.FC = () => {
             Home
           </Link>
           <Link
-            href="/travel-essentials-kit"
-            className="hover:text-[#4F75FF] transition-colors"
+            href="/build-your-kit"
+            className="text-[#8657F6] hover:text-[#4F75FF] transition-colors font-bold flex items-center gap-1"
           >
-            The Kit
-          </Link>
-          <Link
-            href="/#whats-inside"
-            className="hover:text-[#4F75FF] transition-colors"
-          >
-            What&apos;s Inside
-          </Link>
-          <Link
-            href="/#benefits"
-            className="hover:text-[#4F75FF] transition-colors"
-          >
-            Why Traliber
-          </Link>
-          <Link
-            href="/#pricing"
-            className="hover:text-[#4F75FF] transition-colors"
-          >
-            Pricing (₹199)
-          </Link>
-          <Link
-            href="/travel-hygiene-guides"
-            className="hover:text-[#4F75FF] transition-colors"
-          >
-            Guides
-          </Link>
-          <Link
-            href="/faq"
-            className="hover:text-[#4F75FF] transition-colors"
-          >
-            FAQ
+            <span>✦ Build Your Kit</span>
           </Link>
           <Link
             href="/about"
@@ -133,46 +103,11 @@ export const Navbar: React.FC = () => {
             Home
           </Link>
           <Link
-            href="/travel-essentials-kit"
+            href="/build-your-kit"
             onClick={() => setMobileMenuOpen(false)}
-            className="block text-base font-bold text-[#22213A] hover:text-[#4F75FF]"
+            className="block text-base font-bold text-[#8657F6] hover:text-[#4F75FF]"
           >
-            The 10-Item Kit
-          </Link>
-          <Link
-            href="/#whats-inside"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block text-base font-bold text-[#22213A] hover:text-[#4F75FF]"
-          >
-            What&apos;s Inside
-          </Link>
-          <Link
-            href="/#benefits"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block text-base font-bold text-[#22213A] hover:text-[#4F75FF]"
-          >
-            Why Traliber
-          </Link>
-          <Link
-            href="/#pricing"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block text-base font-bold text-[#22213A] hover:text-[#4F75FF]"
-          >
-            Pricing (₹199)
-          </Link>
-          <Link
-            href="/travel-hygiene-guides"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block text-base font-bold text-[#22213A] hover:text-[#4F75FF]"
-          >
-            Travel Hygiene Guides
-          </Link>
-          <Link
-            href="/faq"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block text-base font-bold text-[#22213A] hover:text-[#4F75FF]"
-          >
-            FAQ
+            ✦ Build Your Kit
           </Link>
           <Link
             href="/about"

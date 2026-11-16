@@ -47,6 +47,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
       ],
     },
     {
+      url: absoluteUrl('/build-your-kit'),
+      lastModified: coreLastModified,
+      changeFrequency: 'weekly',
+      priority: 0.9,
+      images: [
+        absoluteUrl('/images/kit-display.webp'),
+        absoluteUrl('/images/hero-alpine-mountain.webp'),
+      ],
+    },
+    {
       url: absoluteUrl('/about'),
       lastModified: coreLastModified,
       changeFrequency: 'monthly',

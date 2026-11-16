@@ -25,8 +25,10 @@ import {
   MousePointerClick,
   GalleryHorizontal,
   RefreshCw,
+  PackageSearch,
 } from 'lucide-react';
 import ShowcaseAdmin from '@/components/ShowcaseAdmin';
+import { TravelKitAdmin } from '@/components/TravelKitAdmin';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useRef, useState } from 'react';
@@ -56,7 +58,7 @@ export default function AdminPage() {
   } = useTraliberStore();
 
   const [activeTab, setActiveTab] = useState<
-    'media' | 'hero' | 'whats_inside' | 'products' | 'founder' | 'testimonials' | 'orders' | 'showcase'
+    'media' | 'hero' | 'whats_inside' | 'products' | 'founder' | 'testimonials' | 'orders' | 'showcase' | 'kit_builder'
   >('media');
 
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
@@ -420,6 +422,18 @@ export default function AdminPage() {
               >
                 <GalleryHorizontal className="w-4 h-4" />
                 <span>Showcase Gallery</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setActiveTab('kit_builder')}
+                className={`w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-xs font-bold transition-all text-left ${ activeTab === 'kit_builder'
+                    ? 'bg-[#8657F6] text-white shadow-md'
+                    : 'text-[#22213A]/70 hover:bg-gray-100 hover:text-[#22213A]'
+                  }`}
+              >
+                <PackageSearch className="w-4 h-4" />
+                <span>Travel Kit Builder</span>
               </button>
             </div>
 
@@ -1610,6 +1624,8 @@ export default function AdminPage() {
             )}
           {/* TAB 8: SHOWCASE GALLERY */}
             {activeTab === 'showcase' && <ShowcaseAdmin />}
+          {/* TAB 9: TRAVEL KIT BUILDER */}
+            {activeTab === 'kit_builder' && <TravelKitAdmin />}
           </main>
         </div>
       </div>

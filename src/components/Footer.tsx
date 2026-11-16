@@ -56,6 +56,11 @@ export const Footer: React.FC = () => {
                 </Link>
               </li>
               <li>
+                <Link href="/build-your-kit" className="text-[#8657F6] hover:text-white font-semibold transition-colors flex items-center gap-1">
+                  <span>✦ Build Your Travel Kit</span>
+                </Link>
+              </li>
+              <li>
                 <Link href="/#whats-inside" className="hover:text-white transition-colors">
                   What&apos;s Inside
                 </Link>
