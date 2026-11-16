@@ -11,8 +11,8 @@ export const HeroSection: React.FC = () => {
   const heroBgDesktop = getProductImage('hero_background', '/images/hero-alpine-mountain.webp');
   const heroBgMobile = getProductImage('hero_background_mobile', '/images/hero-alpine-mobile.webp');
   const heroEyebrow = getCustomText('hero_eyebrow', 'TRAVEL ESSENTIALS ✦ FOR A CLEANER TOMORROW');
-  const heroHeadline1 = getCustomText('hero_headline_1', 'Travel Essentials Kit');
-  const heroHeadline2 = getCustomText('hero_headline_2', 'for Every Journey.');
+  const heroHeadline1 = getCustomText('hero_headline_1', 'Explore Beyond');
+  const heroHeadline2 = getCustomText('hero_headline_2', 'Limits.');
   const heroSubtitle = getCustomText(
     'hero_subtitle',
     "Stay prepared for every journey with Traliber's convenient travel essentials kit. Carry everyday hygiene and travel necessities together in one practical kit."
