@@ -20,22 +20,6 @@ const nextConfig: NextConfig = {
       },
     },
   },
-  async redirects() {
-    return [
-      // Canonical redirect: www to non-www
-      {
-        source: '/:path*',
-        has: [
-          {
-            type: 'host',
-            value: 'www.traliber.in',
-          },
-        ],
-        destination: 'https://traliber.in/:path*',
-        permanent: true,
-      },
-    ];
-  },
   async headers() {
     return [
       {
